@@ -13,6 +13,6 @@ namespace CasinoRoyal.Data
             : base(options)
         {
         }
-        public DbSet<CasinoRoyal.Data.Entity.Guest> Guest { get; set; }
+        public DbSet<Guest> Guest { get; set; }
     }
 }

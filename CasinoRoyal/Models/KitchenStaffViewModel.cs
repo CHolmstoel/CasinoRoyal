@@ -14,6 +14,7 @@ namespace CasinoRoyal.Models
         public int TotalNotCheckedIn { get; set; }
         public int AdultsCheckedIn { get; set; }
         public int ChildrenCheckedIn { get; set; }
-
+        public int AdultsNotCheckedIn { get; set; }
+        public int ChildrenNotCheckedIn { get; set; }
     }
 }
