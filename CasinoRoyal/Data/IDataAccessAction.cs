@@ -10,6 +10,8 @@ namespace CasinoRoyal.Data
     {
         IHotelRoomRepository HotelRooms { get; }
         IGuestRepository Guests { get; }
+
+        IApplicationUserRepository ApplicationUsers { get; }
         int Complete();
     }
 }
