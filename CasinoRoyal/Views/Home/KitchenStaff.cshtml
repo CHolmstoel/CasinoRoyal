@@ -1,0 +1,80 @@
+﻿@model KitchenStaffViewModel
+
+@{
+    ViewData["Title"] = "Hotel Rooms";
+    if (Model == null)
+    {
+        Model.ChildrenNotCheckedIn = 0;
+        Model.AdultsCheckedIn = 0;
+    }
+}
+
+<h1>Hotel Rooms</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalGuests)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalAdults)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalChildren)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChildrenCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            @Html.DisplayNameFor(model => model.TotalGuests)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.TotalAdults)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.TotalChildren)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.ChildrenCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+        </td>
+    </tr>
+    </tbody>
+</table>
