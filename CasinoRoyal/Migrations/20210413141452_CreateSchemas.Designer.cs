@@ -4,14 +4,16 @@ using CasinoRoyal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CasinoRoyal.Data.Migrations
+namespace CasinoRoyal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210413141452_CreateSchemas")]
+    partial class CreateSchemas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +24,9 @@ namespace CasinoRoyal.Data.Migrations
             modelBuilder.Entity("CasinoRoyal.Data.Entity.Guest", b =>
                 {
                     b.Property<int>("GuestID")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -33,7 +37,7 @@ namespace CasinoRoyal.Data.Migrations
                     b.Property<bool>("HasEatenBreakfast")
                         .HasColumnType("bit");
 
-                    b.Property<int>("HotelRoom")
+                    b.Property<int?>("HotelRoomID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsCheckedIn")
@@ -43,6 +47,8 @@ namespace CasinoRoyal.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GuestID");
+
+                    b.HasIndex("HotelRoomID");
 
                     b.ToTable("Guest");
                 });
@@ -278,11 +284,11 @@ namespace CasinoRoyal.Data.Migrations
 
             modelBuilder.Entity("CasinoRoyal.Data.Entity.Guest", b =>
                 {
-                    b.HasOne("CasinoRoyal.Data.Entity.HotelRoom", null)
-                        .WithMany("Occupants")
-                        .HasForeignKey("GuestID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("CasinoRoyal.Data.Entity.HotelRoom", "HotelRoom")
+                        .WithMany("Guests")
+                        .HasForeignKey("HotelRoomID");
+
+                    b.Navigation("HotelRoom");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -338,7 +344,7 @@ namespace CasinoRoyal.Data.Migrations
 
             modelBuilder.Entity("CasinoRoyal.Data.Entity.HotelRoom", b =>
                 {
-                    b.Navigation("Occupants");
+                    b.Navigation("Guests");
                 });
 #pragma warning restore 612, 618
         }

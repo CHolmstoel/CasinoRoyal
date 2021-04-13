@@ -13,7 +13,6 @@ namespace CasinoRoyal.Data.Entity
         [Display(Name = "Room Number")]
         public int HotelRoomID { get; set; }
 
-        [ForeignKey("GuestID")]
-        public List<Guest> Occupants { get; set; }
+        public List<Guest> Guests { get; set; }
     }
 }

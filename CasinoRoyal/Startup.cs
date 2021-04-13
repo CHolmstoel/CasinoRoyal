@@ -51,7 +51,7 @@ namespace CasinoRoyal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -70,7 +70,7 @@ namespace CasinoRoyal
             app.UseRouting();
 
             app.UseAuthentication();
-            SeedUsers(userManager); // Added for seeding
+            SeedUsers(userManager, context); // Added for seeding
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -82,7 +82,7 @@ namespace CasinoRoyal
             });
         }
 
-        public static void SeedUsers(UserManager<ApplicationUser> userManager)
+        public static void SeedUsers(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             const bool emailConfirmed = true;
 
@@ -126,6 +126,23 @@ namespace CasinoRoyal
                 }
             }
 
+            using (context)
+            {
+                var hotelRoom = new HotelRoom();
+                var guest = new Guest()
+                {
+                    FirstName = "Ole",
+                    LastName = "Hansen",
+                    GuestType = "Adult",
+                    HasEatenBreakfast = false,
+                    IsCheckedIn = true,
+                    HotelRoom = hotelRoom
+                };
+
+                context.Guest.Add(guest);
+                context.HotelRooms.Add(hotelRoom);
+                context.SaveChanges();
+            }
         }
     }
 }

@@ -13,8 +13,8 @@ namespace CasinoRoyal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDataAccessAction _dataAccsess;
-        private readonly ApplicationDbContext _context;
+        private IDataAccessAction _dataAccsess;
+        private ApplicationDbContext _context;
 
         public HomeController(ApplicationDbContext context)
         {
@@ -42,6 +42,8 @@ namespace CasinoRoyal.Controllers
             kitchenStaffViewModel.TotalGuests = _dataAccsess.Guests.GetAllGuests();
             kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
             kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+
+            _dataAccsess.Complete();
 
             return View(kitchenStaffViewModel);
         }
