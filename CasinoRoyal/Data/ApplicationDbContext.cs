@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CasinoRoyal.Data.Entity;
 
 namespace CasinoRoyal.Data
 {
@@ -12,5 +13,6 @@ namespace CasinoRoyal.Data
             : base(options)
         {
         }
+        public DbSet<CasinoRoyal.Data.Entity.Guest> Guest { get; set; }
     }
 }
