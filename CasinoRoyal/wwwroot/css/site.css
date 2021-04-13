@@ -92,3 +92,28 @@ fieldset legend {
     font-size: medium;
     margin: 10px;
 }
+
+.mytable {
+    border-style: none;
+    width: 12em;
+    font-family: Arial, sans-serif;
+    padding: 5px;
+}
+
+th {
+    font-weight: normal;
+    text-align: right;
+    vertical-align: bottom;
+}
+
+td, th {
+    padding-bottom: 10px;
+}
+
+select {
+    font-size: small;
+}
+
+label {
+    margin-bottom: 0;
+}

@@ -8,7 +8,7 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 {
     public interface IGuestRepository: IRepository<Guest>
     {
-        int GetAllGuests();
+        List<Guest> GetAllGuests();
         int GetAllAdults();
         int GetAllChildren();
         int GetAllAdultsCheckedIn();

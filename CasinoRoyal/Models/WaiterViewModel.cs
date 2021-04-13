@@ -10,5 +10,7 @@ namespace CasinoRoyal.Models
     {
         public List<HotelRoom> HotelRooms { get; set; }
         public List<Guest> Guests { get; set; }
+        public List<Guest> CheckedInGuests { get; set; }
+        public int ChoosenRoom { get; set; }
     }
 }

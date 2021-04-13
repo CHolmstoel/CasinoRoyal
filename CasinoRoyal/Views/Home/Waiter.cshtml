@@ -1,34 +1,61 @@
-﻿@*@model WaiterViewModel
+﻿@using CasinoRoyal.Data.Entity
+@model WaiterViewModel
 
 @{
     ViewData["Title"] = "Hotel Rooms";
 }
 
-<h1>Hotel Rooms</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+<h2>Guest Check-in For Breakfast</h2>
+<br/>
+<table class="mytable">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.HotelRoomID)
-        </th>
+        <td>
+            <label>Room Number:</label>
+        </td>
+        <td>
+            <select >
+                @foreach(var room in Model.HotelRooms)
+                {
+                    <option value="@room.HotelRoomID">@room.HotelRoomID</option>
+                }
+            </select>
+        </td>
     </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HotelRoomID)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.HotelRoomID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.HotelRoomID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.HotelRoomID">Delete</a>
-            </td>
-        </tr>
-    }
-    </tbody>
-</table>*@
+    <tr>
+        <td>
+            <label>Adults</label>
+        </td>
+        <td>
+            @foreach (var guest in Model.HotelRooms[Model.ChoosenRoom].Guests)
+                {
+                    int index = 0;
+                    if (guest.GuestType == "Adult")
+                    {
+                        <label for="@(++index)">@guest.FirstName</label>
+                        <input type="checkbox" id="@(++index)" name="@(++index)" value="" /><br/>
+                    }
+                }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label>Children</label>
+        </td>
+        <td>
+            @foreach (var guest in Model.HotelRooms[Model.ChoosenRoom].Guests)
+            {
+                int index = 0;
+                if (guest.GuestType == "Child")
+                {
+                    <label for="@(++index)">@guest.FirstName</label>
+                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="" /><br/>
+                }
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="submit" asp-action="CheckIn">Check-in</button>
+        </td>
+    </tr>
+</table>

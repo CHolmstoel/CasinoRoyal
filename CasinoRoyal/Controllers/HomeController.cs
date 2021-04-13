@@ -7,7 +7,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CasinoRoyal.Data;
+using CasinoRoyal.Data.Entity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace CasinoRoyal.Controllers
 {
@@ -42,6 +44,35 @@ namespace CasinoRoyal.Controllers
             return View(kitchenStaffViewModel);
         }
 
+
+
+        //[Authorize("IsWaiter")] // commented out during testing
+        public IActionResult Waiter()
+        {
+            var waiterViewModel = new WaiterViewModel();
+            waiterViewModel.HotelRooms = _dataAccsess.HotelRooms.GetAllHotelRooms();
+            waiterViewModel.Guests = _dataAccsess.Guests.GetAllGuests();
+
+            return View(waiterViewModel);
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult CheckIn(FormCollection collection)
+        {
+
+            _dataAccsess.Complete();
+
+            TempData["success"] = true;
+
+            return RedirectToAction(nameof(Waiter));
+        }
+
         public KitchenStaffViewModel GetKitchenStaffInformationFromDb()
         {
             var kitchenStaffViewModel = new KitchenStaffViewModel();
@@ -58,17 +89,5 @@ namespace CasinoRoyal.Controllers
             return kitchenStaffViewModel;
         }
 
-        [Authorize("IsWaiter")]
-        public IActionResult Waiter()
-        {
-            return View();
-        }
-
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
