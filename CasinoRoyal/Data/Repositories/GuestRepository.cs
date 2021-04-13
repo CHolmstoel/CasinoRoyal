@@ -33,9 +33,9 @@ namespace CasinoRoyal.Data.Repositories
             return Context.Guest.Where(g => g.GuestType == "Child").Count();
         }
 
-        public List<Guest> GetAllGuests()
+        public int GetAllGuests()
         {
-            return Context.Guest.ToList();
+            return Context.Guest.Count();
         }
 
         public Guest GetSingleGuest(int id)
