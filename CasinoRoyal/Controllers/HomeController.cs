@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
@@ -23,6 +24,7 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
+        [Authorize("IsReceptionist")]
         public IActionResult Receptionist()
         {
             return View();
@@ -33,6 +35,7 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
+        [Authorize("IsWaiter")]
         public IActionResult Waiter()
         {
             return View();
