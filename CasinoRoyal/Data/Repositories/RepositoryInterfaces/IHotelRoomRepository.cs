@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 {
-    interface IHotelRoomRepository: IRepository<HotelRoom>
+    public interface IHotelRoomRepository: IRepository<HotelRoom>
     {
-        public List<HotelRoom> GetAllHotelRooms();
-        public HotelRoom GetSingleHotelRoom(int id);
-        public void AddHotelRoom(HotelRoom hotelRoom);
+        List<HotelRoom> GetAllHotelRooms();
+        HotelRoom GetSingleHotelRoom(int id);
+        void AddHotelRoom(HotelRoom hotelRoom);
     }
 }
