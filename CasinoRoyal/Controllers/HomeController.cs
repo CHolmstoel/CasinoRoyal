@@ -14,12 +14,12 @@ namespace CasinoRoyal.Controllers
     public class HomeController : Controller
     {
         private IDataAccessAction _dataAccsess;
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
-            _dataAccsess = new DataAccsessAction(_context);
+            _dataAccsess = new DataAccsessAction(context);
         }
 
         public IActionResult Index()
@@ -39,11 +39,13 @@ namespace CasinoRoyal.Controllers
         {
             var kitchenStaffViewModel = new KitchenStaffViewModel();
 
-            kitchenStaffViewModel.TotalGuests = _dataAccsess.Guests.GetAllGuests();
-            kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
-            kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+            kitchenStaffViewModel.TotalGuests = _context.Guest.Count();
+            kitchenStaffViewModel.TotalAdults = _context.Guest.Count(g => g.GuestType == "Adult");
+            kitchenStaffViewModel.TotalChildren = _context.Guest.Count(g => g.GuestType == "Child");
 
-            _dataAccsess.Complete();
+            //kitchenStaffViewModel.TotalGuests = _dataAccsess.Guests.GetAllGuests();
+            //kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
+            //kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
 
             return View(kitchenStaffViewModel);
         }

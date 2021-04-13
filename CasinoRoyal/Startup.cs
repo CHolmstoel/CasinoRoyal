@@ -101,7 +101,6 @@ namespace CasinoRoyal
                 user1.Name = kitchenUserName;
 
                 IdentityResult result = userManager.CreateAsync(user1, kitchenPassword).Result;
-
             }
 
             const string receptionUserEmail = "reception@reception.com";
@@ -148,6 +147,23 @@ namespace CasinoRoyal
                 }
             }
 
+            using (context)
+            {
+                var hotelRoom = new HotelRoom();
+                var guest = new Guest()
+                {
+                    FirstName = "Ole",
+                    LastName = "Hansen",
+                    GuestType = "Adult",
+                    HasEatenBreakfast = false,
+                    IsCheckedIn = true,
+                    HotelRoom = hotelRoom
+                };
+
+                context.Guest.Add(guest);
+                context.HotelRooms.Add(hotelRoom);
+                context.SaveChanges();
+            }
         }
     }
 }
