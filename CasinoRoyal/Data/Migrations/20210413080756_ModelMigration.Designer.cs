@@ -4,66 +4,22 @@ using CasinoRoyal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CasinoRoyal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210413080756_ModelMigration")]
+    partial class ModelMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.5")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.Guest", b =>
-                {
-                    b.Property<int>("GuestID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GuestType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("HasEatenBreakfast")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("HotelRoom")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsCheckedIn")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("GuestID");
-
-                    b.ToTable("Guest");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Guest");
-                });
-
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.HotelRoom", b =>
-                {
-                    b.Property<int>("HotelRoomID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("HotelRoomID");
-
-                    b.ToTable("HotelRooms");
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -265,29 +221,6 @@ namespace CasinoRoyal.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.Adult", b =>
-                {
-                    b.HasBaseType("CasinoRoyal.Data.Entity.Guest");
-
-                    b.HasDiscriminator().HasValue("Adult");
-                });
-
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.Child", b =>
-                {
-                    b.HasBaseType("CasinoRoyal.Data.Entity.Guest");
-
-                    b.HasDiscriminator().HasValue("Child");
-                });
-
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.Guest", b =>
-                {
-                    b.HasOne("CasinoRoyal.Data.Entity.HotelRoom", null)
-                        .WithMany("Occupants")
-                        .HasForeignKey("GuestID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -337,11 +270,6 @@ namespace CasinoRoyal.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CasinoRoyal.Data.Entity.HotelRoom", b =>
-                {
-                    b.Navigation("Occupants");
                 });
 #pragma warning restore 612, 618
         }
