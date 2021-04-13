@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using CasinoRoyal.Data.Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace CasinoRoyal.Data
             : base(options)
         {
         }
+        DbSet<HotelRoom> HotelRooms { get; set; }
+        DbSet<Child> Children { get; set; }
+        DbSet<Adult> Adults { get; set; }
     }
 }
