@@ -10,11 +10,11 @@ namespace CasinoRoyal.Data.Repositories
 {
     public class HotelRoomRepository : Repository<HotelRoom>, IHotelRoomRepository
     {
-        public ApplicationDbContext Context
+        public ApplicationDbContext context
         {
             get { return Context as ApplicationDbContext; }
         }
-        public HotelRoomRepository(DbContext context) : base(context)
+        public HotelRoomRepository(ApplicationDbContext context) : base(context)
         {
 
         }

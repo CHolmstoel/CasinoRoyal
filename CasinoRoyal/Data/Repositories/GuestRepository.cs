@@ -5,19 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace CasinoRoyal.Data.Repositories
 {
     public class GuestRepository : Repository<Guest>, IGuestRepository
     {
-        public ApplicationDbContext Context
+        public ApplicationDbContext context
         {
             get { return Context as ApplicationDbContext; }
         }
-        public GuestRepository(DbContext context) : base(context)
+        public GuestRepository(ApplicationDbContext context) : base(context)
         {
-
         }
+
         public void AddGuest(Guest guest)
         {
             Context.Guest.Add(guest);

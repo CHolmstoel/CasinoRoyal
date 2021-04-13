@@ -9,8 +9,17 @@ namespace CasinoRoyal.Models
 {
     public class KitchenStaffViewModel
     {
-        [Display(Name = "Guests")]
-        public int TotalGuests { get; set; }
+        [Display(Name = "Total")]
+        public int TotalGuests
+        {
+            get { return TotalChildren + TotalAdults; }
+        }
+
+        [Display(Name = "Total")]
+        public int TotalNotCheckedIn
+        {
+            get { return ChildrenNotCheckedIn + AdultsNotCheckedIn; }
+        }
 
         [Display(Name = "Adults")]
         public int TotalAdults { get; set; }
@@ -18,19 +27,16 @@ namespace CasinoRoyal.Models
         [Display(Name = "Children")]
         public int TotalChildren { get; set; }
 
-        [Display(Name = "Adults Checked In")]
+        [Display(Name = "Adults")]
         public int AdultsCheckedIn { get; set; }
 
-        [Display(Name = "Children Checked In")]
+        [Display(Name = "Children")]
         public int ChildrenCheckedIn { get; set; }
 
-        [Display(Name = "Not Checked In")]
-        public int TotalNotCheckedIn { get; set; }
-
-        [Display(Name = "Adults Not Checked In")]
+        [Display(Name = "Adults")]
         public int AdultsNotCheckedIn { get; set; }
 
-        [Display(Name = "Children Not Checked In")]
+        [Display(Name = "Children")]
         public int ChildrenNotCheckedIn { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace CasinoRoyal.Controllers
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
-            _dataAccsess = new DataAccsessAction(context);
+            _dataAccsess = new DataAccessAction(context);
         }
 
         public IActionResult Index()
@@ -37,17 +37,25 @@ namespace CasinoRoyal.Controllers
 
         public IActionResult KitchenStaff()
         {
-            var kitchenStaffViewModel = new KitchenStaffViewModel();
-
-            kitchenStaffViewModel.TotalGuests = _context.Guest.Count();
-            kitchenStaffViewModel.TotalAdults = _context.Guest.Count(g => g.GuestType == "Adult");
-            kitchenStaffViewModel.TotalChildren = _context.Guest.Count(g => g.GuestType == "Child");
-
-            //kitchenStaffViewModel.TotalGuests = _dataAccsess.Guests.GetAllGuests();
-            //kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
-            //kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+            var kitchenStaffViewModel = GetKitchenStaffInformationFromDb();
 
             return View(kitchenStaffViewModel);
+        }
+
+        public KitchenStaffViewModel GetKitchenStaffInformationFromDb()
+        {
+            var kitchenStaffViewModel = new KitchenStaffViewModel();
+
+            kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
+            kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+
+            kitchenStaffViewModel.AdultsCheckedIn = _dataAccsess.Guests.GetAllAdultsCheckedIn();
+            kitchenStaffViewModel.ChildrenCheckedIn = _dataAccsess.Guests.GetAllChildrenCheckedIn();
+
+            kitchenStaffViewModel.AdultsNotCheckedIn = _dataAccsess.Guests.GetAllAdultsNotCheckedIn();
+            kitchenStaffViewModel.ChildrenNotCheckedIn = _dataAccsess.Guests.GetAllChildrenNotCheckedIn();
+
+            return kitchenStaffViewModel;
         }
 
         [Authorize("IsWaiter")]

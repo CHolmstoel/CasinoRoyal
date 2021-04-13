@@ -77,3 +77,18 @@ logo {
 .content {
     text-align: center;
 }
+
+fieldset {
+    display: block;
+    border: 1px solid grey !important;
+    max-width: 250px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+fieldset legend {
+    display: block;
+    font-size: medium;
+    margin: 10px;
+}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 {
-    public interface IRepository<TEntity> where TEntity:class
+    public interface IRepository<TEntity> where TEntity : class
     {
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
