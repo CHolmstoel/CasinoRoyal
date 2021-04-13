@@ -25,12 +25,12 @@ namespace CasinoRoyal.Data.Repositories
 
         public int GetAllAdults()
         {
-            return Context.Guest.Where(g => g.GuestType == "Adult").Count();
+            return Context.Guest.Count(g => g.GuestType == "Adult");
         }
 
         public int GetAllChildren()
         {
-            return Context.Guest.Where(g => g.GuestType == "Child").Count();
+            return Context.Guest.Count(g => g.GuestType == "Child");
         }
 
         public int GetAllGuests()

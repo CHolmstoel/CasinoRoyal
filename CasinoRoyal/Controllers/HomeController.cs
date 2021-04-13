@@ -6,17 +6,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CasinoRoyal.Data;
 using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly IDataAccessAction _dataAccsess;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
+            _dataAccsess = new DataAccsessAction(_context);
         }
 
         public IActionResult Index()
@@ -35,6 +38,11 @@ namespace CasinoRoyal.Controllers
         public IActionResult KitchenStaff()
         {
             var kitchenStaffViewModel = new KitchenStaffViewModel();
+
+            kitchenStaffViewModel.TotalGuests = _dataAccsess.Guests.GetAllGuests();
+            kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
+            kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+
             return View(kitchenStaffViewModel);
         }
 
