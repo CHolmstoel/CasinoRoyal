@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Data.Repositories.RepositoryInterfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasinoRoyal.Data.Repositories
 {
@@ -34,6 +35,12 @@ namespace CasinoRoyal.Data.Repositories
             {
                 userManager.AddClaimAsync(receivingUser, new Claim("Receptionist", "IsReceptionist"));
             }
+        }
+
+        public ApplicationUser GetSingleUser(string id)
+        {
+            return Context.ApplicationUsers
+                .SingleOrDefault(i => i.Id == id);
         }
     }
 }
