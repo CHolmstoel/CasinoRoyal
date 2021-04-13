@@ -92,3 +92,9 @@ fieldset legend {
     font-size: medium;
     margin: 10px;
 }
+
+#greenCompanyColor {
+    background-color:forestgreen;
+    color:darkkhaki;
+    text-align: center;
+}
