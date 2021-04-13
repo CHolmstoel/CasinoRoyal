@@ -14,6 +14,6 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 
         public void AddReceptionistRightsToUser(UserManager<ApplicationUser> userManager, ApplicationUser receivingUser);
 
-        public ApplicationUser GetSingleUser(int id);
+        public ApplicationUser GetSingleUser(string id);
     }
 }
