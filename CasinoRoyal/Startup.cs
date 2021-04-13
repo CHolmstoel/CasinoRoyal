@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CasinoRoyal.Data.Entity;
 
@@ -51,7 +52,7 @@ namespace CasinoRoyal
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -70,6 +71,7 @@ namespace CasinoRoyal
             app.UseRouting();
 
             app.UseAuthentication();
+            SeedUsers(userManager); // Added for seeding
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -79,6 +81,52 @@ namespace CasinoRoyal
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+        }
+
+        public static void SeedUsers(UserManager<ApplicationUser> userManager)
+        {
+            const bool emailConfirmed = true;
+
+            const string kitchenUserEmail = "Kitchen@kitchen.com";
+            const string kitchenPassword = "Sommer25!";
+            const string kitchenUserCell = "20212223";
+            const string kitchenUserName = "Poul Poulsen";
+
+            if (userManager.FindByNameAsync(kitchenUserEmail).Result == null)
+            {
+                var user1 = new ApplicationUser();
+                user1.UserName = kitchenUserEmail;
+                user1.Email = kitchenUserEmail;
+                user1.EmailConfirmed = emailConfirmed;
+                user1.PhoneNumber = kitchenUserCell;
+                user1.Name = kitchenUserName;
+
+                IdentityResult result = userManager.CreateAsync(user1, kitchenPassword).Result;
+
+            }
+
+            const string receptionUserEmail = "reception@reception.com";
+            const string receptionPassword = "Sommer25!";
+            const string receptionUserCell = "20212223";
+            const string receptionUserName = "Knud Poulsen";
+
+            if (userManager.FindByNameAsync(receptionUserEmail).Result == null)
+            {
+                var user2 = new ApplicationUser();
+                user2.UserName = receptionUserEmail;
+                user2.Email = receptionUserEmail;
+                user2.EmailConfirmed = emailConfirmed;
+                user2.PhoneNumber = receptionUserCell;
+                user2.Name = receptionUserName;
+
+                IdentityResult result = userManager.CreateAsync(user2, receptionPassword).Result;
+
+                if (result.Succeeded) //Add claim to user
+                {
+                    userManager.AddClaimAsync(user2, new Claim("Receptionist", "IsReceptionist"));
+                }
+            }
+
         }
     }
 }
