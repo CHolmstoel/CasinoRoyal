@@ -21,14 +21,14 @@ namespace CasinoRoyal.Data.Repositories
         public List<HotelRoom> GetAllHotelRooms()
         {
             return new List<HotelRoom>(Context.HotelRooms
-                .Include(g => g.Occupants)
+                .Include(g => g.Guests)
                 .ToList()
                 );
         }
         public HotelRoom GetSingleHotelRoom(int id)
         {
             return Context.HotelRooms
-                .Include(g => g.Occupants)
+                .Include(g => g.Guests)
                 .SingleOrDefault(i => i.HotelRoomID == id);
         }
         public void AddHotelRoom(HotelRoom hotelRoom)
