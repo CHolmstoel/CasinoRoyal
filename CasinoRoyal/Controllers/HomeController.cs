@@ -23,10 +23,21 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Receptionist()
         {
             return View();
         }
+
+        public IActionResult KitchenStaff()
+        {
+            return View();
+        }
+
+        public IActionResult Waiter()
+        {
+            return View();
+        }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
