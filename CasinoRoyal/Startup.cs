@@ -47,7 +47,6 @@ namespace CasinoRoyal
                 options.AddPolicy("IsReceptionist",
                     policyBuilder => policyBuilder
                         .RequireClaim("Receptionist"));
-
             });
         }
 
