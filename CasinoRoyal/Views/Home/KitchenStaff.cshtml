@@ -12,6 +12,21 @@
 </p>
 <table class="table">
     <thead>
+    
+    <asp:Panel GroupingText="Guests" Width="200px">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalGuests)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalAdults)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalChildren)
+            </th>
+        </tr>
+    </asp:Panel>
+
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.TotalGuests)
