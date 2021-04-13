@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
@@ -23,16 +24,21 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
+        [Authorize("IsReceptionist")]
         public IActionResult Receptionist()
         {
-            return View();
+            var receptionistViewModel = new ReceptionistViewModel();
+
+            return View(receptionistViewModel);
         }
 
         public IActionResult KitchenStaff()
         {
-            return View();
+            var kitchenStaffViewModel = new KitchenStaffViewModel();
+            return View(kitchenStaffViewModel);
         }
 
+        [Authorize("IsWaiter")]
         public IActionResult Waiter()
         {
             return View();

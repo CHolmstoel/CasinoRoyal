@@ -2,11 +2,7 @@
 
 @{
     ViewData["Title"] = "Hotel Rooms";
-    if (Model == null)
-    {
-        Model.ChildrenNotCheckedIn = 0;
-        Model.AdultsCheckedIn = 0;
-    }
+
 }
 
 <h1>Hotel Rooms</h1>
@@ -49,31 +45,31 @@
     <tbody>
     <tr>
         <td>
-            @Html.DisplayNameFor(model => model.TotalGuests)
+            @Html.DisplayFor(model => model.TotalGuests)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.TotalAdults)
+            @Html.DisplayFor(model => model.TotalAdults)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.TotalChildren)
+            @Html.DisplayFor(model => model.TotalChildren)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+            @Html.DisplayFor(model => model.AdultsCheckedIn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
+            @Html.DisplayFor(model => model.AdultsNotCheckedIn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.ChildrenCheckedIn)
+            @Html.DisplayFor(model => model.ChildrenCheckedIn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
+            @Html.DisplayFor(model => model.TotalNotCheckedIn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
+            @Html.DisplayFor(model => model.ChildrenNotCheckedIn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+            @Html.DisplayFor(model => model.AdultsCheckedIn)
         </td>
     </tr>
     </tbody>
