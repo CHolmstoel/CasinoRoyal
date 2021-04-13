@@ -10,6 +10,7 @@ namespace CasinoRoyal.Data.Entity
     public class HotelRoom
     {
         [Key]
+        [Display(Name = "Room Number")]
         public int HotelRoomID { get; set; }
 
         [ForeignKey("GuestID")]
