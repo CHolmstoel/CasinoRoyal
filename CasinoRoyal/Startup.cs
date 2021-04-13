@@ -126,23 +126,28 @@ namespace CasinoRoyal
                 }
             }
 
-            using (context)
-            {
-                var hotelRoom = new HotelRoom();
-                var guest = new Guest()
-                {
-                    FirstName = "Ole",
-                    LastName = "Hansen",
-                    GuestType = "Adult",
-                    HasEatenBreakfast = false,
-                    IsCheckedIn = true,
-                    HotelRoom = hotelRoom
-                };
+            const string waiterUserEmail = "waiter@waiter.com";
+            const string waiterPassword = "Sommer25!";
+            const string waiterUserCell = "20212223";
+            const string waiterUserName = "Yrsa Poulsen";
 
-                context.Guest.Add(guest);
-                context.HotelRooms.Add(hotelRoom);
-                context.SaveChanges();
+            if (userManager.FindByNameAsync(waiterUserEmail).Result == null)
+            {
+                var user3 = new ApplicationUser();
+                user3.UserName = waiterUserEmail;
+                user3.Email = waiterUserEmail;
+                user3.EmailConfirmed = emailConfirmed;
+                user3.PhoneNumber = waiterUserCell;
+                user3.Name = waiterUserName;
+
+                IdentityResult result = userManager.CreateAsync(user3, waiterPassword).Result;
+
+                if (result.Succeeded) //Add claim to user
+                {
+                    userManager.AddClaimAsync(user3, new Claim("Waiter", "IsWaiter"));
+                }
             }
+
         }
     }
 }
