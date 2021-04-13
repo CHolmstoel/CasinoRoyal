@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using CasinoRoyal.Data.Entity;
 
 namespace CasinoRoyal.Data
 {
@@ -16,5 +15,7 @@ namespace CasinoRoyal.Data
         }
         public DbSet<Guest> Guest { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
