@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
@@ -24,6 +24,7 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
+        [Authorize("IsReceptionist")]
         public IActionResult Receptionist()
         {
             var receptionistViewModel = new ReceptionistViewModel();
@@ -37,6 +38,7 @@ namespace CasinoRoyal.Controllers
             return View(kitchenStaffViewModel);
         }
 
+        [Authorize("IsWaiter")]
         public IActionResult Waiter()
         {
             return View();
