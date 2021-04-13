@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using CasinoRoyal.Data.Entity;
 
 namespace CasinoRoyal.Data
 {

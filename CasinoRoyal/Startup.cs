@@ -35,6 +35,18 @@ namespace CasinoRoyal
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("IsWaiter",
+                    policyBuilder => policyBuilder
+                        .RequireClaim("Waiter"));
+
+                options.AddPolicy("IsReceptionist",
+                    policyBuilder => policyBuilder
+                        .RequireClaim("Receptionist"));
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
