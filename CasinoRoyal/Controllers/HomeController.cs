@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasinoRoyal.Controllers
 {
@@ -25,12 +26,15 @@ namespace CasinoRoyal.Controllers
 
         public IActionResult Receptionist()
         {
-            return View();
+            var receptionistViewModel = new ReceptionistViewModel();
+
+            return View(receptionistViewModel);
         }
 
         public IActionResult KitchenStaff()
         {
-            return View();
+            var kitchenStaffViewModel = new KitchenStaffViewModel();
+            return View(kitchenStaffViewModel);
         }
 
         public IActionResult Waiter()
