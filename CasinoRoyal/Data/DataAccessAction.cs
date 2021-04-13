@@ -12,6 +12,8 @@ namespace CasinoRoyal.Data
         private readonly ApplicationDbContext _context;
         public IHotelRoomRepository HotelRooms { get; private set; }
 
+        public IApplicationUserRepository ApplicationUsers { get; private set; }
+
         public IGuestRepository Guests { get; private set; }
 
         public DataAccessAction(ApplicationDbContext context)
@@ -19,6 +21,7 @@ namespace CasinoRoyal.Data
             _context = context;
             HotelRooms = new HotelRoomRepository(_context);
             Guests = new GuestRepository(_context);
+            ApplicationUsers = new ApplicationUserRepository(_context);
         }
 
         public void Dispose()

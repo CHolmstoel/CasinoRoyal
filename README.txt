@@ -3,14 +3,19 @@ How to use the application:
 1) 
 
 
-Waiter login: 
- "waiter@waiter.com";
-    "Sommer25!";
 
-    Receptionlogin:
-     "reception@reception.com";
-  receptionPassword = "Sommer25!";
 
-  Kitchen login:
- "Kitchen@kitchen.com";
- "Sommer25!";
+==========================Logins med forskellige rettigheder = Forskellige views ===================================
+
+- Waiter login: 
+ Brugernavn: waiter@waiter.com
+ Password:   Sommer25!
+
+ - Receptionlogin:
+ Brugernavn: reception@reception.com
+ Password:   Sommer25!
+
+ - Kitchen login:
+
+ Brugernavn: Kitchen@kitchen.com
+ Password:   Sommer25!
