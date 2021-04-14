@@ -37,10 +37,17 @@ namespace CasinoRoyal.Data.Repositories
             }
         }
 
-        public ApplicationUser GetSingleUser(string id)
+        public ApplicationUser GetSingleUser(string username)
         {
             return Context.ApplicationUsers
-                .SingleOrDefault(i => i.Id == id);
+                .SingleOrDefault(i => i.UserName == username);
+        }
+
+        public string GetUserName(string username)
+        {
+            var tempuser = GetSingleUser(username);
+
+            return tempuser.Name;
         }
     }
 }
