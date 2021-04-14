@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.HotelRoom)
+                @Html.DisplayFor(modelItem => item.HotelRoom.HotelRoomID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
