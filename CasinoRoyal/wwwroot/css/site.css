@@ -95,7 +95,7 @@ fieldset legend {
 
 .mytable {
     border-style: none;
-    width: 20em;
+    width: 24em;
     font-family: Arial, sans-serif;
     padding: 10px;
 }
@@ -109,6 +109,10 @@ th {
 td, th {
     padding-bottom: 10px;
     padding-left: 10px;
+}
+
+td {
+    width: 2em;
 }
 
 select {
