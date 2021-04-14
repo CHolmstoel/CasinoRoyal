@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("CamillaConnection")));
+                    Configuration.GetConnectionString("EmilConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -198,6 +198,42 @@ namespace CasinoRoyal
 
                     var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(3);
                     guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(5));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Guest id 6+7 added to room id 2
+                if (dataAccess.Guests.GetSingleGuest(6) == null && dataAccess.Guests.GetSingleGuest(7) ==null)
+                {
+                    List<Guest> guests = new List<Guest>
+                    {
+                        new Guest()
+                        {
+                        FirstName = "Nougi",
+                        LastName = "Senior",
+                        GuestType = "Adult",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                        },
+                        new Guest()
+                        {
+                            FirstName = "Nougi",
+                            LastName = "Junior",
+                            GuestType = "Child",
+                            HasEatenBreakfast = false,
+                            IsCheckedIn = false
+                        }
+                };
+
+                    foreach (var guest in guests)
+                    { 
+                        conText.Guest.Add(guest);
+                    }
+                    
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(2);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(6));
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(7));
                     conText.SaveChanges();
                 }
 
