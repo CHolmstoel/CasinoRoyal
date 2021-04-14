@@ -79,6 +79,7 @@ namespace CasinoRoyal
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapRazorPages();
             });
         }
@@ -163,11 +164,11 @@ namespace CasinoRoyal
                 var hotelRoom = new HotelRoom();
                 var guest = new Guest()
                 {
-                    FirstName = "Ole",
-                    LastName = "Hansen",
+                    FirstName = "Jørgen",
+                    LastName = "Eriksen",
                     GuestType = "Adult",
                     HasEatenBreakfast = false,
-                    IsCheckedIn = true,
+                    IsCheckedIn = false,
                     HotelRoom = hotelRoom
                 };
 

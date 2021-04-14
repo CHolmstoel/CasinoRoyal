@@ -13,28 +13,28 @@
             <label>Room Number:</label>
         </td>
         <td>
-            <select >
-                @foreach(var room in Model.HotelRooms)
-                {
-                    <option value="@room.HotelRoomID">@room.HotelRoomID</option>
-                }
-            </select>
+            <form action="" method="post">
+                @Html.DropDownListFor((model => model.RoomIndex), Model.RoomNumbers, "-- Select  --")
+                <button name="foo" value="Create" class="mybutton">List Guests</button>
+            </form>
+            @*<input type="button" class="mybutton" value="List Guests" onclick="location.href = '@Url.Action("Waiter", "Home", Model.RoomIndex)'"/>*@
         </td>
     </tr>
+
     <tr>
         <td>
             <label>Adults</label>
         </td>
         <td>
-            @foreach (var guest in Model.HotelRooms[Model.ChoosenRoom].Guests)
+            @foreach (var guest in Model.CurrentCoom.Guests)
+            {
+                int index = 0;
+                if (guest.GuestType == "Adult")
                 {
-                    int index = 0;
-                    if (guest.GuestType == "Adult")
-                    {
-                        <label for="@(++index)">@guest.FirstName</label>
-                        <input type="checkbox" id="@(++index)" name="@(++index)" value="" /><br/>
-                    }
+                    <label for="@(++index)">@guest.FirstName</label>
+                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
                 }
+            }
         </td>
     </tr>
     <tr>
@@ -42,13 +42,13 @@
             <label>Children</label>
         </td>
         <td>
-            @foreach (var guest in Model.HotelRooms[Model.ChoosenRoom].Guests)
+            @foreach (var guest in Model.CurrentCoom.Guests)
             {
                 int index = 0;
                 if (guest.GuestType == "Child")
                 {
                     <label for="@(++index)">@guest.FirstName</label>
-                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="" /><br/>
+                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
                 }
             }
         </td>
@@ -59,3 +59,9 @@
         </td>
     </tr>
 </table>
+<div>
+    @if ((string)TempData["success"] == "true")
+    {
+        <p>Guests checked in</p>
+    }
+</div>
