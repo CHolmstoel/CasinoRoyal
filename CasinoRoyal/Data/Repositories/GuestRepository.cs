@@ -48,6 +48,15 @@ namespace CasinoRoyal.Data.Repositories
                 .SingleOrDefault(i => i.GuestID == id);
         }
 
+        public void CheckInGuest(int id)
+        {
+            Guest guest = Context.Guest
+                .SingleOrDefault(g => g.GuestID == id);
+            
+            if (guest != null)
+                guest.IsCheckedIn = true;
+        }
+
         public int GetAllAdultsCheckedIn()
         {
             return Context.Guest.Where(g => g.IsCheckedIn == true).Where(t => t.GuestType == "Adult").Count();
