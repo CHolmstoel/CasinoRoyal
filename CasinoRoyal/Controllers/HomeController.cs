@@ -52,7 +52,7 @@ namespace CasinoRoyal.Controllers
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
             waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
-            waiterViewModel.CurrentCoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
 
             return View(waiterViewModel);
         }
@@ -63,7 +63,7 @@ namespace CasinoRoyal.Controllers
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
             waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
-            waiterViewModel.CurrentCoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
 
             return View(waiterViewModel);
         }
@@ -78,6 +78,11 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult CheckIn(WaiterViewModel waiterViewModel)
         {
+            waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
+            waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count - 1;
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
+
             _dataAccess.Complete();
 
             TempData["success"] = "true";

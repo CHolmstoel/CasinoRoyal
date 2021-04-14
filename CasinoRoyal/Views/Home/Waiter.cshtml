@@ -20,47 +20,50 @@
             @*<input type="button" class="mybutton" value="List Guests" onclick="location.href = '@Url.Action("Waiter", "Home", Model.RoomIndex)'"/>*@
         </td>
     </tr>
-
-    <tr>
-        <td>
-            <label>Adults</label>
-        </td>
-        <td>
-            @foreach (var guest in Model.CurrentCoom.Guests)
-            {
-                int index = 0;
-                if (guest.GuestType == "Adult")
-                {
-            <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
-                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
-                }
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Children</label>
-        </td>
-        <td>
-            @foreach (var guest in Model.CurrentCoom.Guests)
-            {
-                int index = 0;
-                if (guest.GuestType == "Child")
-                {
-                    <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
-                    <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
-                }
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <form action="CheckIn" method="post">
-                <button name="foo" value="Create" class="mybutton">Check-in</button>
-            </form>
-        </td>
-    </tr>
 </table>
+
+<form action="CheckIn" method="post">
+    <table class="mytable">
+        <tr>
+            <td>
+                <label>Adults</label>
+            </td>
+            <td>
+                @foreach (var guest in Model.CurrentRoom.Guests)
+                {
+                    int index = 0;
+                    if (guest.GuestType == "Adult")
+                    {
+                        <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
+                        <input type="checkbox" id="@(++index)" name="@(++index)" value="@guest.IsCheckedIn" /><br />
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Children</label>
+            </td>
+            <td>
+                @foreach (var guest in Model.CurrentRoom.Guests)
+                {
+                    int index = 0;
+                    if (guest.GuestType == "Child")
+                    {
+                        <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
+                        <input type="checkbox" id="@(++index)" name="@(++index)" value="@guest.IsCheckedIn" /><br />
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button name="bar" value="Create" class="mybutton">Check-in</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
 <div>
     @if ((string)TempData["success"] == "true")
     {
