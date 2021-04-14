@@ -31,7 +31,7 @@
                 int index = 0;
                 if (guest.GuestType == "Adult")
                 {
-                    <label for="@(++index)">@guest.FirstName</label>
+            <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
                     <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
                 }
             }
@@ -47,7 +47,7 @@
                 int index = 0;
                 if (guest.GuestType == "Child")
                 {
-                    <label for="@(++index)">@guest.FirstName</label>
+                    <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
                     <input type="checkbox" id="@guest.GuestID" name="@(++index)" value="@guest.IsCheckedIn" /><br/>
                 }
             }
@@ -55,7 +55,9 @@
     </tr>
     <tr>
         <td>
-            <button type="submit" asp-action="CheckIn">Check-in</button>
+            <form action="CheckIn" method="post">
+                <button name="foo" value="Create" class="mybutton">Check-in</button>
+            </form>
         </td>
     </tr>
 </table>
