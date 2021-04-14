@@ -35,5 +35,9 @@ namespace CasinoRoyal.Data.Repositories
         {
             Context.HotelRooms.Add(hotelRoom);
         }
+        public int GetNumberOfHotelRooms()
+        {
+            return Context.HotelRooms.Count();
+        }
     }
 }

@@ -1,0 +1,99 @@
+﻿@using CasinoRoyal.Data.Entity
+@model WaiterViewModel
+
+@{
+    ViewData["Title"] = "Hotel Rooms";
+}
+
+<h2>Guest Check-in For Breakfast</h2>
+<br />
+<table class="mytable">
+    <tr>
+        <td>
+            <label>Room Number:</label>
+        </td>
+        <td>
+            <form action="" method="post">
+                @Html.DropDownListFor((model => model.RoomIndex), Model.RoomNumbers, "-- Select  --")
+                <button name="foo" value="Create" class="mybutton">List Guests</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<form asp-action="CheckIn" onsubmit="return Checkin()">
+    <table class="mytable">
+        <tr>
+            <td>
+                <label>Adults</label>
+            </td>
+            <td>
+                @{
+                    if (Model.Guests != null)
+                    {
+                        foreach (var guest in Model.Guests)
+                        {
+                            if (guest.GuestType == "Adult")
+                            {
+                                <label>@($"{guest.FirstName} {guest.LastName}")</label>
+                                <input type="checkbox" value="@guest.IsCheckedIn" name="ids" />
+                            }
+                        }
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Children</label>
+            </td>
+            <td>
+                @{
+                    if (Model.Guests != null)
+                    {
+                        foreach (var guest in Model.Guests)
+                        {
+                            if (guest.GuestType == "Child")
+                            {
+                                <label>@($"{guest.FirstName} {guest.LastName}")</label>
+                                <input type="checkbox" value="@guest.IsCheckedIn" name="ids" />
+                            }
+                        }
+                    }
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" name="bar" value="Create" onclick="@Checkin()">Check-in</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+
+<div>
+    @if ((string)TempData["success"] == "true")
+    {
+        <p>Guests checked in</p>
+    }
+</div>
+
+@functions
+{
+    public object Checkin()
+    {
+        if (Model.Guests != null)
+        {
+            foreach (var guest in Model.Guests)
+            {
+                if (guest.IsCheckedIn)
+                {
+                    Model.DataAccess.Guests.CheckInGuest(guest.GuestID);
+                }
+            }
+        }
+        return this;
+    }
+}

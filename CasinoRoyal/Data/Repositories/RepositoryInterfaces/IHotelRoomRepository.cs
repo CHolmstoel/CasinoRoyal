@@ -11,5 +11,6 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
         List<HotelRoom> GetAllHotelRooms();
         HotelRoom GetSingleHotelRoom(int id);
         void AddHotelRoom(HotelRoom hotelRoom);
+        int GetNumberOfHotelRooms();
     }
 }

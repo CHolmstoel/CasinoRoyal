@@ -2,17 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasinoRoyal.Models
 {
     public class WaiterViewModel
     {
+        public IDataAccessAction DataAccess { get; set; }
+
         public WaiterViewModel()
         {
+            
+        }
+
+        public WaiterViewModel(IDataAccessAction dataAccess)
+        {
+            DataAccess = dataAccess;
         }
 
         [BindProperty]
@@ -38,6 +48,8 @@ namespace CasinoRoyal.Models
 
         [BindProperty]
         public List<string> GuestsIDsToAdd { get; set; }
+
+        public int Index { get; set; }
 
         [BindProperty]
         public SelectList RoomNumbers 

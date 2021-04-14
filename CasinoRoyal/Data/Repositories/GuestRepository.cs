@@ -50,7 +50,7 @@ namespace CasinoRoyal.Data.Repositories
 
         public void CheckInGuest(int id)
         {
-            Guest guest = Context.Guest
+            var guest = Context.Guest
                 .SingleOrDefault(g => g.GuestID == id);
             
             if (guest != null)
@@ -59,12 +59,12 @@ namespace CasinoRoyal.Data.Repositories
 
         public int GetAllAdultsCheckedIn()
         {
-            return Context.Guest.Where(g => g.IsCheckedIn == true).Where(t => t.GuestType == "Adult").Count();
+            return Context.Guest.Where(g => g.GuestType == "Adult").Count(g => g.IsCheckedIn);
         }
 
         public int GetAllChildrenCheckedIn()
         {
-            return Context.Guest.Where(g => g.IsCheckedIn == true).Where(t => t.GuestType == "Child").Count();
+            return Context.Guest.Where(g => g.GuestType == "Child").Count(g => g.IsCheckedIn);
         }
 
         public int GetAllAdultsNotCheckedIn()

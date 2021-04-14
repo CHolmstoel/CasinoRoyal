@@ -45,45 +45,11 @@ namespace CasinoRoyal.Controllers
             return View(kitchenStaffViewModel);
         }
 
-        //[Authorize("IsWaiter")] // commented out during testing
-        [HttpGet]
-        public IActionResult Waiter()
-        {
-            var waiterViewModel = new WaiterViewModel();
-            waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
-            waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
-            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
-
-            return View(waiterViewModel);
-        }
-
-        [HttpPost]
-        public IActionResult Waiter(WaiterViewModel waiterViewModel)
-        {
-            waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
-            waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
-            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex]; 
-
-            return View(waiterViewModel);
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [HttpPost]
-        public IActionResult CheckIn(WaiterViewModel waiterViewModel)
-        {
-            _dataAccess.Complete();
-
-            TempData["success"] = "true";
-
-            return RedirectToAction(nameof(Waiter));
         }
 
         public KitchenStaffViewModel GetKitchenStaffInformationFromDb()
