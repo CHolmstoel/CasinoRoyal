@@ -72,6 +72,7 @@ namespace CasinoRoyal
 
             app.UseAuthentication();
             SeedUsers(userManager, context); // Added for seeding
+            SeedRoomAndResidents(context); //Added for seeding
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -84,6 +85,10 @@ namespace CasinoRoyal
             });
         }
 
+        public static void SeedRoomAndResidents(ApplicationDbContext context)
+        {
+
+        }
         public static void SeedUsers(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
             const bool emailConfirmed = true;
