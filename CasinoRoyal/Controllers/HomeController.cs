@@ -30,13 +30,13 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
-        [Authorize("IsReceptionist")]
-        public IActionResult Receptionist()
-        {
-            var receptionistViewModel = new ReceptionistViewModel();
+        //[Authorize("IsReceptionist")]
+        //public IActionResult Receptionist()
+        //{
+        //    var receptionistViewModel = new ReceptionistViewModel();
 
-            return View(receptionistViewModel);
-        }
+        //    return View(receptionistViewModel);
+        //}
 
         public IActionResult KitchenStaff()
         {
