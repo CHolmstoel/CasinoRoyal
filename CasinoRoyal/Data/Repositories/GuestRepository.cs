@@ -36,7 +36,9 @@ namespace CasinoRoyal.Data.Repositories
 
         public List<Guest> GetAllGuests()
         {
-            return Context.Guest.ToList();
+            return Context.Guest
+                .Include(h => h.HotelRoom)
+                .ToList();
         }
 
         public Guest GetSingleGuest(int id)

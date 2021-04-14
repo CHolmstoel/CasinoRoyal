@@ -15,13 +15,13 @@ namespace CasinoRoyal.Controllers
 {
     public class HomeController : Controller
     {
-        private IDataAccessAction _dataAccsess;
+        private IDataAccessAction _dataAccess;
         private readonly ApplicationDbContext _context;
 
         public HomeController(ApplicationDbContext context)
         {
             _context = context;
-            _dataAccsess = new DataAccessAction(context);
+            _dataAccess = new DataAccessAction(context);
         }
 
         public IActionResult Index()
@@ -45,11 +45,25 @@ namespace CasinoRoyal.Controllers
         }
 
         //[Authorize("IsWaiter")] // commented out during testing
+        [HttpGet]
         public IActionResult Waiter()
         {
             var waiterViewModel = new WaiterViewModel();
-            waiterViewModel.HotelRooms = _dataAccsess.HotelRooms.GetAllHotelRooms();
-            waiterViewModel.Guests = _dataAccsess.Guests.GetAllGuests();
+            waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
+            waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
+
+            return View(waiterViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Waiter(WaiterViewModel waiterViewModel)
+        {
+            waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
+            waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex]; // CurrentRoom bliver ikke sat
 
             return View(waiterViewModel);
         }
@@ -61,12 +75,28 @@ namespace CasinoRoyal.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult CheckIn(FormCollection collection)
+        [HttpPost]
+        public IActionResult CheckIn(WaiterViewModel waiterViewModel)
         {
 
-            _dataAccsess.Complete();
+            //======================================  Henter alle den guests. Men currentguests er tom (returnerer null)
+            //if (waiterViewModel.CurrentRoom.Guests != null)
+            //{
+            //    var tempguests = waiterViewModel.CurrentRoom.Guests;
 
-            TempData["success"] = true;
+            //    foreach (var guest in tempguests)
+            //    {
+            //        if (guest.IsCheckedIn == true)
+            //        {
+            //            var id = guest.GuestID;
+            //            var temp2 = _dataAccess.Guests.GetSingleGuest(id);
+            //            temp2.IsCheckedIn = true;
+            //            _dataAccess.Complete();
+            //        }
+            //    }
+            //}
+
+            TempData["success"] = "true";
 
             return RedirectToAction(nameof(Waiter));
         }
@@ -75,14 +105,14 @@ namespace CasinoRoyal.Controllers
         {
             var kitchenStaffViewModel = new KitchenStaffViewModel();
 
-            kitchenStaffViewModel.TotalAdults = _dataAccsess.Guests.GetAllAdults();
-            kitchenStaffViewModel.TotalChildren = _dataAccsess.Guests.GetAllChildren();
+            kitchenStaffViewModel.TotalAdults = _dataAccess.Guests.GetAllAdults();
+            kitchenStaffViewModel.TotalChildren = _dataAccess.Guests.GetAllChildren();
 
-            kitchenStaffViewModel.AdultsCheckedIn = _dataAccsess.Guests.GetAllAdultsCheckedIn();
-            kitchenStaffViewModel.ChildrenCheckedIn = _dataAccsess.Guests.GetAllChildrenCheckedIn();
+            kitchenStaffViewModel.AdultsCheckedIn = _dataAccess.Guests.GetAllAdultsCheckedIn();
+            kitchenStaffViewModel.ChildrenCheckedIn = _dataAccess.Guests.GetAllChildrenCheckedIn();
 
-            kitchenStaffViewModel.AdultsNotCheckedIn = _dataAccsess.Guests.GetAllAdultsNotCheckedIn();
-            kitchenStaffViewModel.ChildrenNotCheckedIn = _dataAccsess.Guests.GetAllChildrenNotCheckedIn();
+            kitchenStaffViewModel.AdultsNotCheckedIn = _dataAccess.Guests.GetAllAdultsNotCheckedIn();
+            kitchenStaffViewModel.ChildrenNotCheckedIn = _dataAccess.Guests.GetAllChildrenNotCheckedIn();
 
             return kitchenStaffViewModel;
         }
