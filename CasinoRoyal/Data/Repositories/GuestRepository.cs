@@ -21,7 +21,7 @@ namespace CasinoRoyal.Data.Repositories
 
         public void AddGuest(Guest guest)
         {
-            Context.Guest.Add(guest);
+            Context.Guest.AddAsync(guest);
         }
 
         public int GetAllAdults()
