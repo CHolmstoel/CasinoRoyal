@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("CamillaConnection")));
+                    Configuration.GetConnectionString("EmilConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -92,61 +92,71 @@ namespace CasinoRoyal
             const string kitchenUserCell = "20212223";
             const string kitchenUserName = "Poul Poulsen";
 
-            if (userManager.FindByNameAsync(kitchenUserEmail).Result == null)
-            {
-                var user1 = new ApplicationUser();
-                user1.UserName = kitchenUserEmail;
-                user1.Email = kitchenUserEmail;
-                user1.EmailConfirmed = emailConfirmed;
-                user1.PhoneNumber = kitchenUserCell;
-                user1.Name = kitchenUserName;
+           
+                if (userManager.FindByNameAsync(kitchenUserEmail).Result == null)
+                {
+                    var user1 = new ApplicationUser();
+                    user1.UserName = kitchenUserEmail;
+                    user1.Email = kitchenUserEmail;
+                    user1.EmailConfirmed = emailConfirmed;
+                    user1.PhoneNumber = kitchenUserCell;
+                    user1.Name = kitchenUserName;
 
-                IdentityResult result = userManager.CreateAsync(user1, kitchenPassword).Result;
-            }
+                    IdentityResult result = userManager.CreateAsync(user1, kitchenPassword).Result;
+                    
+                }
+            
+            
 
             const string receptionUserEmail = "reception@reception.com";
             const string receptionPassword = "Sommer25!";
             const string receptionUserCell = "20212223";
             const string receptionUserName = "Knud Poulsen";
 
-            if (userManager.FindByNameAsync(receptionUserEmail).Result == null)
-            {
-                var user2 = new ApplicationUser();
-                user2.UserName = receptionUserEmail;
-                user2.Email = receptionUserEmail;
-                user2.EmailConfirmed = emailConfirmed;
-                user2.PhoneNumber = receptionUserCell;
-                user2.Name = receptionUserName;
-
-                IdentityResult result = userManager.CreateAsync(user2, receptionPassword).Result;
-
-                if (result.Succeeded) //Add claim to user
+           
+                if (userManager.FindByNameAsync(receptionUserEmail).Result == null)
                 {
-                    userManager.AddClaimAsync(user2, new Claim("Receptionist", "IsReceptionist"));
+                    var user2 = new ApplicationUser();
+                    user2.UserName = receptionUserEmail;
+                    user2.Email = receptionUserEmail;
+                    user2.EmailConfirmed = emailConfirmed;
+                    user2.PhoneNumber = receptionUserCell;
+                    user2.Name = receptionUserName;
+
+                    IdentityResult result = userManager.CreateAsync(user2, receptionPassword).Result;
+                    
+
+                    if (result.Succeeded) //Add claim to user
+                    {
+                        userManager.AddClaimAsync(user2, new Claim("Receptionist", "IsReceptionist"));
+                    }
+                    
                 }
-            }
+            
+            
 
             const string waiterUserEmail = "waiter@waiter.com";
             const string waiterPassword = "Sommer25!";
             const string waiterUserCell = "20212223";
             const string waiterUserName = "Yrsa Poulsen";
 
-            if (userManager.FindByNameAsync(waiterUserEmail).Result == null)
-            {
-                var user3 = new ApplicationUser();
-                user3.UserName = waiterUserEmail;
-                user3.Email = waiterUserEmail;
-                user3.EmailConfirmed = emailConfirmed;
-                user3.PhoneNumber = waiterUserCell;
-                user3.Name = waiterUserName;
-
-                IdentityResult result = userManager.CreateAsync(user3, waiterPassword).Result;
-
-                if (result.Succeeded) //Add claim to user
+                if (userManager.FindByNameAsync(waiterUserEmail).Result == null)
                 {
-                    userManager.AddClaimAsync(user3, new Claim("Waiter", "IsWaiter"));
+                    var user3 = new ApplicationUser();
+                    user3.UserName = waiterUserEmail;
+                    user3.Email = waiterUserEmail;
+                    user3.EmailConfirmed = emailConfirmed;
+                    user3.PhoneNumber = waiterUserCell;
+                    user3.Name = waiterUserName;
+
+                    IdentityResult result = userManager.CreateAsync(user3, waiterPassword).Result;
+
+                    if (result.Succeeded) //Add claim to user
+                    {
+                        userManager.AddClaimAsync(user3, new Claim("Waiter", "IsWaiter"));
+                    }
+                    
                 }
-            }
 
             using (context)
             {
@@ -163,8 +173,10 @@ namespace CasinoRoyal
 
                 context.Guest.Add(guest);
                 context.HotelRooms.Add(hotelRoom);
-                context.SaveChanges();
+                context.SaveChangesAsync();
             }
+                
+            
         }
     }
 }
