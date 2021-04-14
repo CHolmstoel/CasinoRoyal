@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("EmilConnection")));
+                    Configuration.GetConnectionString("ThomasConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -164,16 +164,16 @@ namespace CasinoRoyal
                 var hotelRoom = new HotelRoom();
                 var guest = new Guest()
                 {
-                    FirstName = "Jørgen",
-                    LastName = "Eriksen",
-                    GuestType = "Adult",
+                    FirstName = "Mogens",
+                    LastName = "Eberhart",
+                    GuestType = "Child",
                     HasEatenBreakfast = false,
                     IsCheckedIn = false,
                     HotelRoom = hotelRoom
                 };
 
-                context.Guest.Add(guest);
                 context.HotelRooms.Add(hotelRoom);
+                context.Guest.Add(guest);
                 context.SaveChanges();
             }
                 

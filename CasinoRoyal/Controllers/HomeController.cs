@@ -51,7 +51,7 @@ namespace CasinoRoyal.Controllers
             var waiterViewModel = new WaiterViewModel();
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
             waiterViewModel.CurrentCoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
 
             return View(waiterViewModel);
@@ -62,7 +62,7 @@ namespace CasinoRoyal.Controllers
         {
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
             waiterViewModel.CurrentCoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
 
             return View(waiterViewModel);
@@ -75,7 +75,8 @@ namespace CasinoRoyal.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult CheckIn(FormCollection collection)
+        [HttpPost]
+        public IActionResult CheckIn(WaiterViewModel waiterViewModel)
         {
             _dataAccess.Complete();
 
