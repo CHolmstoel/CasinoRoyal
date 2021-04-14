@@ -18,13 +18,16 @@ namespace CasinoRoyal.Models
         public List<Guest> Guests { get; set; }
 
         [BindProperty]
-        public HotelRoom CurrentCoom { get; set; }
+        public HotelRoom CurrentRoom { get; set; }
 
         [BindProperty]
         public int RoomIndex { get; set; }
 
         [BindProperty]
         public int NumberOfRooms { get; set; }
+
+        [BindProperty]
+        public List<Guest> GuestsToAdd { get; set; }
 
         [BindProperty]
         public SelectList RoomNumbers 
