@@ -41,15 +41,7 @@ namespace CasinoRoyal.Models
         public int NumberOfRooms { get; set; }
 
         [BindProperty]
-        public List<int> GuestIDs { get; set; }
-
-        [BindProperty]
-        public Guest CurrentGuest { get; set; }
-
-        [BindProperty]
         public List<string> GuestsIDsToAdd { get; set; }
-
-        public int Index { get; set; }
 
         [BindProperty]
         public SelectList RoomNumbers 

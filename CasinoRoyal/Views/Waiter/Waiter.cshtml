@@ -65,7 +65,7 @@
         </tr>
         <tr>
             <td>
-                <button type="submit" name="bar" value="Create" onclick="@Checkin()">Check-in</button>
+                <button type="submit" name="bar" value="Create" >Check-in</button>
             </td>
         </tr>
     </table>
@@ -84,16 +84,6 @@
 {
     public object Checkin()
     {
-        if (Model.Guests != null)
-        {
-            foreach (var guest in Model.Guests)
-            {
-                if (guest.IsCheckedIn)
-                {
-                    Model.DataAccess.Guests.CheckInGuest(guest.GuestID);
-                }
-            }
-        }
-        return this;
+        return Model.Guests;
     }
 }
