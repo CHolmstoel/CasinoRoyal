@@ -16,7 +16,6 @@ namespace CasinoRoyal.Controllers
     {
         private readonly ApplicationDbContext _context;
         private IDataAccessAction _dataAccess;
-
         public GuestsController(ApplicationDbContext context)
         {
             _context = context;
@@ -53,6 +52,9 @@ namespace CasinoRoyal.Controllers
         // GET: Guests/Create
         public IActionResult Create()
         {
+            //var AllRooms = from r in _dataAccess.HotelRooms.GetAllHotelRooms() select r;
+            //var AllRooms = new WaiterViewModel();
+            //AllRooms.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
             return View();
         }
 
