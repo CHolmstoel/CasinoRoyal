@@ -180,6 +180,7 @@ namespace CasinoRoyal
                 context.Guest.Add(guest);
                 context.HotelRooms.Add(hotelRoom);
                 context.SaveChanges();
+
             }
                 
             
