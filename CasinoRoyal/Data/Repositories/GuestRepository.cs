@@ -96,5 +96,10 @@ namespace CasinoRoyal.Data.Repositories
         {
             return Context.Guest.Where(g => g.HasEatenBreakfast == false).Where(t => t.GuestType == "Child").Count();
         }
+
+        public void CheckOutGuest(Guest guest)
+        {
+            Context.Guest.Remove(guest);
+        }
     }
 }

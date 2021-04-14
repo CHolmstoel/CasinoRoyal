@@ -8,22 +8,26 @@ using Microsoft.EntityFrameworkCore;
 using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Models;
+using CasinoRoyal.Data.Repositories;
 
 namespace CasinoRoyal.Controllers
 {
     public class GuestsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private IDataAccessAction _dataAccess;
 
         public GuestsController(ApplicationDbContext context)
         {
             _context = context;
+            _dataAccess = new DataAccessAction(context);
         }
 
         // GET: Guests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Guest.ToListAsync());
+            var AllGuests = from g in _dataAccess.Guests.GetAllGuests() select g;
+            return View(AllGuests);
         }
 
         // GET: Guests/Details/5
@@ -34,8 +38,10 @@ namespace CasinoRoyal.Controllers
                 return NotFound();
             }
 
-            var guest = await _context.Guest
-                .FirstOrDefaultAsync(m => m.GuestID == id);
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+
+            //var guest = await _context.Guest
+            //    .FirstOrDefaultAsync(m => m.GuestID == id);
             if (guest == null)
             {
                 return NotFound();
@@ -59,8 +65,10 @@ namespace CasinoRoyal.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(guest);
-                await _context.SaveChangesAsync();
+                _dataAccess.Guests.AddGuest(guest);
+                //_context.Add(guest);
+                //await _context.SaveChangesAsync();
+                _dataAccess.Complete();
                 return RedirectToAction(nameof(Index));
             }
             return View(guest);
@@ -74,7 +82,8 @@ namespace CasinoRoyal.Controllers
                 return NotFound();
             }
 
-            var guest = await _context.Guest.FindAsync(id);
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest.FindAsync(id);
             if (guest == null)
             {
                 return NotFound();
@@ -87,7 +96,7 @@ namespace CasinoRoyal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType")] Guest guest)
+        public async Task<IActionResult> Edit(int id, [Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType,HotelRoom")] Guest guest)
         {
             if (id != guest.GuestID)
             {
@@ -99,7 +108,8 @@ namespace CasinoRoyal.Controllers
                 try
                 {
                     _context.Update(guest);
-                    await _context.SaveChangesAsync();
+                    _dataAccess.Complete();
+                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,9 +134,9 @@ namespace CasinoRoyal.Controllers
             {
                 return NotFound();
             }
-
-            var guest = await _context.Guest
-                .FirstOrDefaultAsync(m => m.GuestID == id);
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest
+            //    .FirstOrDefaultAsync(m => m.GuestID == id);
             if (guest == null)
             {
                 return NotFound();
@@ -140,9 +150,12 @@ namespace CasinoRoyal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var guest = await _context.Guest.FindAsync(id);
-            _context.Guest.Remove(guest);
-            await _context.SaveChangesAsync();
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest.FindAsync(id);
+            _dataAccess.Guests.CheckOutGuest(guest);
+            //_context.Guest.Remove(guest);
+            _dataAccess.Complete();
+            //await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
