@@ -31,7 +31,11 @@ namespace CasinoRoyal
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
+<<<<<<< HEAD
                     Configuration.GetConnectionString("CamillaConnection")));
+=======
+                    Configuration.GetConnectionString("EmilConnection")));
+>>>>>>> 8d6659de71bcfb6e9a4d8cf23086d4806532d88d
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
