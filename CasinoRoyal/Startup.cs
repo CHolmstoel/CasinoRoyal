@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("ThomasConnection")));
+                    Configuration.GetConnectionString("EmilConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -87,7 +87,184 @@ namespace CasinoRoyal
 
         public static void SeedRoomAndResidents(ApplicationDbContext context)
         {
+            using (context)
+            {
+                ApplicationDbContext conText = context;
+                IDataAccessAction dataAccess = new DataAccessAction(conText);
 
+                //=======================================================================Guest & Room id 1
+                if (dataAccess.HotelRooms.GetSingleHotelRoom(1) == null && dataAccess.Guests.GetSingleGuest(1) == null)
+                {
+                    var hotelRoom = new HotelRoom();
+                    conText.HotelRooms.Add(hotelRoom);
+                    conText.SaveChanges();
+
+                    var guest = new Guest()
+                    {
+                        FirstName = "Mogens",
+                        LastName = "Eberhart",
+                        GuestType = "Adult",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                    };
+                    conText.Guest.Add(guest);
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(1);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(1));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Guest id 2 added to room id 1
+                if (dataAccess.Guests.GetSingleGuest(2) == null)
+                {
+
+                    var guest = new Guest()
+                    {
+                        FirstName = "Poul",
+                        LastName = "Eberhart",
+                        GuestType = "Child",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                    };
+                    conText.Guest.Add(guest);
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(1);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(2));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Guest 3 & Room id 2
+                if (dataAccess.HotelRooms.GetSingleHotelRoom(2) == null && dataAccess.Guests.GetSingleGuest(3) == null)
+                {
+                    var hotelRoom = new HotelRoom();
+                    conText.HotelRooms.Add(hotelRoom);
+                    conText.SaveChanges();
+
+                    var guest = new Guest()
+                    {
+                        FirstName = "Einar",
+                        LastName = "Palsgaard",
+                        GuestType = "Adult",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                    };
+                    conText.Guest.Add(guest);
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(2);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(3));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Guest 4 & Room id 3
+                if (dataAccess.HotelRooms.GetSingleHotelRoom(3) == null && dataAccess.Guests.GetSingleGuest(4) == null)
+                {
+                    var hotelRoom = new HotelRoom();
+                    conText.HotelRooms.Add(hotelRoom);
+                    conText.SaveChanges();
+
+                    var guest = new Guest()
+                    {
+                        FirstName = "Nicki",
+                        LastName = "Minaj",
+                        GuestType = "Adult",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                    };
+                    conText.Guest.Add(guest);
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(3);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(4));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Guest id 5 added to room id 3
+                if (dataAccess.Guests.GetSingleGuest(5) == null)
+                {
+
+                    var guest = new Guest()
+                    {
+                        FirstName = "Junior",
+                        LastName = "Minaj",
+                        GuestType = "Child",
+                        HasEatenBreakfast = false,
+                        IsCheckedIn = false
+                    };
+                    conText.Guest.Add(guest);
+                    conText.SaveChanges();
+
+                    var guestRoom = dataAccess.HotelRooms.GetSingleHotelRoom(3);
+                    guestRoom.Guests.Add(dataAccess.Guests.GetSingleGuest(5));
+                    conText.SaveChanges();
+                }
+
+                //=======================================================================Adding empty rooms id 4 - 15
+                if (dataAccess.HotelRooms.GetSingleHotelRoom(4) == null)
+                {
+                    var emptyRooms = new List<HotelRoom>
+                    {
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        },
+                        new HotelRoom()
+                        {
+                            Guests = new List<Guest>()
+                        }
+                    };
+
+                    foreach (var room in emptyRooms)
+                    {
+                        conText.HotelRooms.Add(room);
+                    }
+
+                    conText.SaveChanges();
+                }
+
+            }
         }
         public static void SeedUsers(UserManager<ApplicationUser> userManager, ApplicationDbContext context)
         {
@@ -163,27 +340,7 @@ namespace CasinoRoyal
                     }
                     
                 }
-
-            using (context)
-            {
-                var hotelRoom = new HotelRoom();
-                var guest = new Guest()
-                {
-                    FirstName = "Mogens",
-                    LastName = "Eberhart",
-                    GuestType = "Child",
-                    HasEatenBreakfast = false,
-                    IsCheckedIn = false,
-                    HotelRoom = hotelRoom
-                };
-
-                context.HotelRooms.Add(hotelRoom);
-                context.Guest.Add(guest);
-                context.SaveChanges();
-
-            }
                 
-            
         }
     }
 }
