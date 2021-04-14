@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="GuestID" />
             <div>
                 <label asp-for="HotelRoom" class="control-label"></label>
-                <input asp-for="HotelRoom" class="form-control" />
+                @Html.DisplayFor(model => model.HotelRoom.HotelRoomID)
                 <span asp-validation-for="HotelRoom" class="text-danger"></span>
             </div>
             <div class="form-group">

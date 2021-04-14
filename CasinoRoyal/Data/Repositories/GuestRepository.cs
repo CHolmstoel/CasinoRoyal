@@ -21,7 +21,7 @@ namespace CasinoRoyal.Data.Repositories
 
         public void AddGuest(Guest guest)
         {
-            Context.Guest.Add(guest);
+            Context.Guest.AddAsync(guest);
         }
 
         public int GetAllAdults()
@@ -95,6 +95,11 @@ namespace CasinoRoyal.Data.Repositories
         public int GetAllChildrenThatHasNotEaten()
         {
             return Context.Guest.Where(g => g.HasEatenBreakfast == false).Where(t => t.GuestType == "Child").Count();
+        }
+
+        public void CheckOutGuest(Guest guest)
+        {
+            Context.Guest.Remove(guest);
         }
     }
 }
