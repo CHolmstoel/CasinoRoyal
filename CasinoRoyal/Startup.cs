@@ -128,7 +128,7 @@ namespace CasinoRoyal
 
                     if (result.Succeeded) //Add claim to user
                     {
-                        userManager.AddClaimAsync(user2, new Claim("Receptionist", "IsReceptionist"));
+                        userManager.AddClaimAsync(user2, new Claim("Receptionist", "IsReceptionist")).Wait();
                     }
                     
                 }
@@ -153,7 +153,7 @@ namespace CasinoRoyal
 
                     if (result.Succeeded) //Add claim to user
                     {
-                        userManager.AddClaimAsync(user3, new Claim("Waiter", "IsWaiter"));
+                        userManager.AddClaimAsync(user3, new Claim("Waiter", "IsWaiter")).Wait();
                     }
                     
                 }
@@ -173,7 +173,7 @@ namespace CasinoRoyal
 
                 context.Guest.Add(guest);
                 context.HotelRooms.Add(hotelRoom);
-                context.SaveChangesAsync();
+                context.SaveChanges();
             }
                 
             
