@@ -11,6 +11,12 @@ namespace CasinoRoyal.Models
 {
     public class WaiterViewModel
     {
+        public WaiterViewModel()
+        {
+            HotelRooms = new List<HotelRoom>();
+            Guests = new List<Guest>();
+            GuestsToAdd = new List<Guest>();
+        }
         [BindProperty]
         public List<HotelRoom> HotelRooms { get; set; }
 

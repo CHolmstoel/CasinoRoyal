@@ -51,7 +51,7 @@ namespace CasinoRoyal.Controllers
             var waiterViewModel = new WaiterViewModel();
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
             waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
 
             return View(waiterViewModel);
@@ -62,8 +62,8 @@ namespace CasinoRoyal.Controllers
         {
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
-            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count-1;
-            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex];
+            waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex]; // CurrentRoom bliver ikke sat
 
             return View(waiterViewModel);
         }
@@ -78,7 +78,23 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult CheckIn(WaiterViewModel waiterViewModel)
         {
-            _dataAccess.Complete();
+
+            //======================================  Henter alle den guests. Men currentguests er tom (returnerer null)
+            //if (waiterViewModel.CurrentRoom.Guests != null)
+            //{
+            //    var tempguests = waiterViewModel.CurrentRoom.Guests;
+
+            //    foreach (var guest in tempguests)
+            //    {
+            //        if (guest.IsCheckedIn == true)
+            //        {
+            //            var id = guest.GuestID;
+            //            var temp2 = _dataAccess.Guests.GetSingleGuest(id);
+            //            temp2.IsCheckedIn = true;
+            //            _dataAccess.Complete();
+            //        }
+            //    }
+            //}
 
             TempData["success"] = "true";
 
