@@ -17,6 +17,5 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 
         public ApplicationUser GetSingleUser(string id);
 
-        public string GetUserName(string username);
     }
 }

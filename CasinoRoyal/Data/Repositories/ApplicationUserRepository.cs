@@ -43,11 +43,5 @@ namespace CasinoRoyal.Data.Repositories
                 .SingleOrDefault(i => i.UserName == username);
         }
 
-        public string GetUserName(string username)
-        {
-            var tempuser = GetSingleUser(username);
-
-            return tempuser.Name;
-        }
     }
 }
