@@ -10,6 +10,7 @@ using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 
 namespace CasinoRoyal.Controllers
 {
@@ -63,7 +64,7 @@ namespace CasinoRoyal.Controllers
             waiterViewModel.HotelRooms = _dataAccess.HotelRooms.GetAllHotelRooms();
             waiterViewModel.Guests = _dataAccess.Guests.GetAllGuests();
             waiterViewModel.NumberOfRooms = waiterViewModel.HotelRooms.Count;
-            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex]; // CurrentRoom bliver ikke sat
+            waiterViewModel.CurrentRoom = waiterViewModel.HotelRooms[waiterViewModel.RoomIndex]; 
 
             return View(waiterViewModel);
         }
@@ -78,23 +79,7 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult CheckIn(WaiterViewModel waiterViewModel)
         {
-
-            //======================================  Henter alle den guests. Men currentguests er tom (returnerer null)
-            //if (waiterViewModel.CurrentRoom.Guests != null)
-            //{
-            //    var tempguests = waiterViewModel.CurrentRoom.Guests;
-
-            //    foreach (var guest in tempguests)
-            //    {
-            //        if (guest.IsCheckedIn == true)
-            //        {
-            //            var id = guest.GuestID;
-            //            var temp2 = _dataAccess.Guests.GetSingleGuest(id);
-            //            temp2.IsCheckedIn = true;
-            //            _dataAccess.Complete();
-            //        }
-            //    }
-            //}
+            _dataAccess.Complete();
 
             TempData["success"] = "true";
 

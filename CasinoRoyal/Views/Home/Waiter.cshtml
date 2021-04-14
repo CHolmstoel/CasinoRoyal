@@ -6,7 +6,7 @@
 }
 
 <h2>Guest Check-in For Breakfast</h2>
-<br/>
+<br />
 <table class="mytable">
     <tr>
         <td>
@@ -17,12 +17,11 @@
                 @Html.DropDownListFor((model => model.RoomIndex), Model.RoomNumbers, "-- Select  --")
                 <button name="foo" value="Create" class="mybutton">List Guests</button>
             </form>
-            @*<input type="button" class="mybutton" value="List Guests" onclick="location.href = '@Url.Action("Waiter", "Home", Model.RoomIndex)'"/>*@
         </td>
     </tr>
 </table>
 
-<form action="CheckIn" method="post">
+<form asp-action="CheckIn">
     <table class="mytable">
         <tr>
             <td>
@@ -34,8 +33,16 @@
                     int index = 0;
                     if (guest.GuestType == "Adult")
                     {
-                        <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
-                        <input type="checkbox" id="@(++index)" name="@(++index)" value="@guest.IsCheckedIn" /><br />
+                        Model.CurrentGuest = guest;
+
+                        <label>@($"{guest.FirstName} {guest.LastName}")</label>
+                        @Html.CheckBoxFor(g => g.CurrentGuest.IsCheckedIn)
+
+                        if (Model.CurrentGuest.IsCheckedIn)
+                        {
+                            @Html.HiddenFor(g => g.CurrentGuest.GuestID)
+                        }
+                @*<input type="checkbox" name="guestids" value="@guest.IsCheckedIn" /><br />*@
                     }
                 }
             </td>
@@ -51,7 +58,7 @@
                     if (guest.GuestType == "Child")
                     {
                         <label for="@(++index)">@($"{guest.FirstName} {guest.LastName}")</label>
-                        <input type="checkbox" id="@(++index)" name="@(++index)" value="@guest.IsCheckedIn" /><br />
+                        <input type="checkbox" id="@(++index)" name="@(++index)" value="@guest.IsCheckedIn" asp-for="GuestsIDsToAdd[index]" /><br />
                     }
                 }
             </td>

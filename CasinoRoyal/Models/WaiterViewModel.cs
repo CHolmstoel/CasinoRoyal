@@ -13,10 +13,8 @@ namespace CasinoRoyal.Models
     {
         public WaiterViewModel()
         {
-            HotelRooms = new List<HotelRoom>();
-            Guests = new List<Guest>();
-            GuestsToAdd = new List<Guest>();
         }
+
         [BindProperty]
         public List<HotelRoom> HotelRooms { get; set; }
 
@@ -33,7 +31,13 @@ namespace CasinoRoyal.Models
         public int NumberOfRooms { get; set; }
 
         [BindProperty]
-        public List<Guest> GuestsToAdd { get; set; }
+        public List<int> GuestIDs { get; set; }
+
+        [BindProperty]
+        public Guest CurrentGuest { get; set; }
+
+        [BindProperty]
+        public List<string> GuestsIDsToAdd { get; set; }
 
         [BindProperty]
         public SelectList RoomNumbers 
