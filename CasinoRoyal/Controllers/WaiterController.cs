@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CasinoRoyal.Data;
+using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Models;
 
 namespace CasinoRoyal.Controllers
@@ -43,8 +44,16 @@ namespace CasinoRoyal.Controllers
         }
 
         [HttpPost]
-        public IActionResult CheckIn(WaiterViewModel waiterViewModel)
+        public IActionResult CheckIn(List<Guest> guests)
         {
+            foreach (var guest in guests)
+            {
+                if (guest.IsCheckedIn)
+                {
+                    _dataAccess.Guests.CheckInGuest(guest.GuestID);
+                }
+            }
+
             _dataAccess.Complete();
 
             TempData["success"] = "true";
