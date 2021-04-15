@@ -24,7 +24,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="header">
             <div class="container">
-                <a href='@Url.Action("Index", "Home")'>
+                <a href='@Url.Action("Index", "Home")' >
                     <img src='~/Images/logo-small.png' />
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -34,7 +34,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KitchenStaff">Kitchen View</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KitchenStaff" >Kitchen View</a>
                         </li>
                         @if (isReceptionist)
                         {
@@ -45,7 +45,7 @@
                         @*@if (isWaiter) // commented out during testing
         {*@
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Waiter" asp-action="Waiter">Waiter View</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Waiter" asp-action="Waiter" >Waiter View</a>
                         </li>
                         
                     </ul>
@@ -60,9 +60,9 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted" id="FooterColor">
-        <div class="container" id="FooterColor">
-            Copyright &copy; 2021 - CasinoRoyal A/S - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted" id="FooterAdd">
+        <div class="container" id="FooterAdd">
+            Copyright &copy; 2021 - CasinoRoyal A/S 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
