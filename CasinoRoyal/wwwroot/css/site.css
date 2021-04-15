@@ -166,3 +166,8 @@ label {
 .table td {
     text-align: center;
 }
+
+.FrontImageResponsive {
+    max-width: 100%;
+    height: auto;
+}
