@@ -15,8 +15,8 @@ a {
 }
 
 .btn-primary {
+    background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
-    background: darkgreen;
     border-color: khaki;
 }
 
@@ -83,7 +83,6 @@ logo {
 fieldset {
     display: block;
     border: 1px solid grey !important;
-    max-width: 250px;
     box-sizing: border-box;
     display: inline-block;
     margin-right: 20px;
@@ -95,12 +94,38 @@ fieldset legend {
     margin: 10px;
 }
 
+.myfieldset {
+    display: block;
+    border: 1px solid grey !important;
+    width: 15%;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.mylegend {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+
 .mytable {
     border-style: none;
-    width: 24em;
     font-family: Arial, sans-serif;
     padding: 10px;
 }
+
+.mytable td, thead, tbody, tr, th {
+    text-align: center;
+    height: auto;
+    font-size: small;
+}
+
+.mytable body {
+    min-width: 100%;
+}
+
 table {
     text-align: left;
 }
@@ -116,7 +141,7 @@ td, th {
 }
 
 td {
-    width: 2em;
+    width: 10em;
 }
 
 select {
@@ -135,7 +160,12 @@ label {
     padding: 2px;
     padding-bottom: 1px;
     font-size: 11px;
+    box-sizing: border-box;
+    background: linear-gradient(darkgreen, lightgreen);
+    color: khaki;
+    border-color: khaki;
 }
+
 #CompanyColor {
     color: khaki;
     background: darkgreen;
@@ -180,10 +210,9 @@ fieldset {
     border-radius: 10px;
     margin-bottom: 80px;
     max-width: 100%;
-    height: auto;
+    min-height: auto;
     font-size: 25px;
 }
 #CenterAlignKitchenStaffView {
     text-align: center;
 }
-

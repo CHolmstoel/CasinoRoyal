@@ -25,11 +25,6 @@ namespace CasinoRoyal.Controllers
         public IActionResult Rooms()
         {
             var waiterViewModel = new WaiterViewModel();
-            //var room = _dataAccess.HotelRooms.GetSingleHotelRoom(waiterViewModel.RoomIndex);
-            //if (room.Guests != null)
-            //{
-            //    waiterViewModel.Guests = room.Guests;
-            //}
 
             waiterViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
 
@@ -39,27 +34,43 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult Rooms(WaiterViewModel waiterViewModel)
         {
-            waiterViewModel.Guests = _dataAccess.HotelRooms.GetSingleHotelRoom(waiterViewModel.RoomIndex).Guests;
+            if ((int)waiterViewModel.DisplayRoomNumbers.SelectedValue > 0)
+            {
+                waiterViewModel.Guests = _dataAccess.HotelRooms.GetSingleHotelRoom(waiterViewModel.RoomIndex).Guests;
+            }
+            else
+            {
+                TempData["check"] = "false";
+            }
 
-            TempData["check"] = "true";
+            waiterViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
 
             return View(waiterViewModel);
         }
 
         [HttpPost]
-        public IActionResult CheckIn(WaiterViewModel waiterViewModel)
+        public IActionResult CheckIn(WaiterViewModel waiterViewModel, string btn)
         {
             foreach (var guest in waiterViewModel.Guests)
             {
-                if (guest.IsCheckedIn)
+                if (guest.GuestID == int.Parse(btn))
                 {
                     _dataAccess.Guests.CheckInGuest(guest.GuestID);
+                    _dataAccess.Complete();
                 }
             }
 
+            TempData["success"] = "true";
+
+            return RedirectToAction(nameof(Rooms));
+        }
+
+        public IActionResult Checkout()
+        {
+            _dataAccess.Guests.CheckOutAllGuests();
             _dataAccess.Complete();
 
-            TempData["success"] = "true";
+            TempData["CheckedOut"] = "true";
 
             return RedirectToAction(nameof(Rooms));
         }
