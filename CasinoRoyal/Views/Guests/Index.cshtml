@@ -8,7 +8,7 @@
 <h1>All guests at the hotel </h1>
 
 <p>
-    <a asp-action="Create" class="CheckinColor" id="CheckinColor">Check in New Guest</a>
+    <input type="button" class="btn btn-primary" value="Check in new guest" onclick="location.href='@Url.Action("Create", "Guests")'" />
 </p>
 <table class="table" >
     <thead >
