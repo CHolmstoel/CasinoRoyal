@@ -163,11 +163,27 @@ label {
     color: darkgreen;
 }
 
-.table td {
+.table td, thead, tbody, tr, th{
     text-align: center;
-}
-
-.FrontImageResponsive {
     max-width: 100%;
     height: auto;
+}
+
+
+.GeneralRepsonsive {
+    max-width: 100%;
+    height: auto;
+}
+
+fieldset {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+    max-width: 100%;
+    height: auto;
+    font-size: 25px;
+}
+#CenterAlignKitchenStaffView {
+    text-align: center;
 }
