@@ -19,8 +19,6 @@ namespace CasinoRoyal.Models
 
         public int NumberOfRooms { get; set; }
 
-        public string Type { get; set; }
-
         public SelectList DisplayRoomNumbers
         {
             get

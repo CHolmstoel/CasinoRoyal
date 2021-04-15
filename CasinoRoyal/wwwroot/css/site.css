@@ -95,12 +95,35 @@ fieldset legend {
     margin: 10px;
 }
 
+.myfieldset {
+    display: block;
+    border: 1px solid grey !important;
+    max-width: 180px;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.mylegend {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+
 .mytable {
     border-style: none;
-    width: 24em;
     font-family: Arial, sans-serif;
     padding: 10px;
 }
+
+.mytable td, thead, tbody, tr, th {
+    text-align: center;
+    max-width: 100%;
+    height: auto;
+    font-size: small;
+}
+
 table {
     text-align: left;
 }
@@ -116,7 +139,7 @@ td, th {
 }
 
 td {
-    width: 2em;
+    width: 10em;
 }
 
 select {
@@ -181,10 +204,9 @@ fieldset {
     border-radius: 10px;
     margin-bottom: 80px;
     max-width: 100%;
-    height: auto;
+    min-height: auto;
     font-size: 25px;
 }
 #CenterAlignKitchenStaffView {
     text-align: center;
 }
-

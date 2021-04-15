@@ -58,5 +58,15 @@ namespace CasinoRoyal.Controllers
 
             return RedirectToAction(nameof(Rooms));
         }
+
+        public IActionResult Checkout()
+        {
+            _dataAccess.Guests.CheckOutAllGuests();
+            _dataAccess.Complete();
+
+            TempData["CheckedOut"] = "true";
+
+            return RedirectToAction(nameof(Rooms));
+        }
     }
 }

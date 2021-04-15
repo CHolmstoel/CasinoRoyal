@@ -11,6 +11,7 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
         List<Guest> GetAllGuests();
         public void CheckInGuest(int id);
         public void CheckOutGuest(Guest guest);
+        public void CheckOutAllGuests();
         int GetAllAdults();
         int GetAllChildren();
         int GetAllAdultsCheckedIn();

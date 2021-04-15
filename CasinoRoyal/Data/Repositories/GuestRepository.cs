@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CasinoRoyal.Data.Repositories
 {
@@ -56,6 +57,16 @@ namespace CasinoRoyal.Data.Repositories
             
             if (guest != null)
                 guest.IsCheckedIn = true;
+        }
+
+        public void CheckOutAllGuests()
+        {
+            var guests = Context.Guest.Where(i => i.IsCheckedIn);
+            
+            foreach (var guest in guests)
+            {
+                guest.IsCheckedIn = false;
+            }
         }
 
         public int GetAllAdultsCheckedIn()
