@@ -13,15 +13,16 @@
             <label>Room Number:</label>
         </td>
         <td>
-            <form action="" method="post">
-                @Html.DropDownListFor((model => model.RoomIndex), Model.RoomNumbers, "-- Select  --")
-                <button name="foo" value="Create" class="mybutton">List Guests</button>
+            <form asp-action="Rooms" method="post">
+                @Html.DropDownListFor((model => model.RoomIndex), Model.DisplayRoomNumbers, "-- Select  --")
+                @Html.HiddenFor(m => m.CurrentRoom)
+                <button name="foo" value="Save" class="mybutton">List Guests</button>
             </form>
         </td>
     </tr>
 </table>
 
-<form asp-action="CheckIn" onsubmit="Checkin()">
+<form asp-action="CheckIn" method="post">
     <table class="mytable">
         <tr>
             <td>
@@ -29,9 +30,9 @@
             </td>
             <td>
                 @{
-                    if (Model.Guests != null)
+                    if (Model.CurrentRoom != null)
                     {
-                        foreach (var guest in Model.Guests)
+                        foreach (var guest in Model.CurrentRoom.Guests)
                         {
                             if (guest.GuestType == "Adult")
                             {
@@ -49,9 +50,9 @@
             </td>
             <td>
                 @{
-                    if (Model.Guests != null)
+                    if (Model.CurrentRoom != null)
                     {
-                        foreach (var guest in Model.Guests)
+                        foreach (var guest in Model.CurrentRoom.Guests)
                         {
                             if (guest.GuestType == "Child")
                             {
@@ -65,13 +66,15 @@
         </tr>
         <tr>
             <td>
-                <button type="submit" name="bar" value="Create" onclick="Checkin()" >Check-in</button>
+                @for (int i = 0; i < Model.Guests.Count; i++)
+                {
+                    Html.HiddenFor(m => m.Guests[i].GuestID);
+                }
+                <button type="submit" name="bar" value="Save" onclick="location.href = '@Url.Action("CheckIn", "Waiter")'">Check-in</button>
             </td>
         </tr>
     </table>
 </form>
-
-
 
 <div>
     @if ((string)TempData["success"] == "true")
@@ -79,22 +82,3 @@
         <p>Guests checked in</p>
     }
 </div>
-
-@functions
-{
-    public object Checkin()
-    {
-        if (Model.Guests != null)
-        {
-            foreach (var guest in Model.Guests)
-            {
-                if (guest.IsCheckedIn)
-                {
-                    Model.DataAccess.Guests.CheckInGuest(guest.GuestID);
-                    Model.DataAccess.Complete();
-                }
-            }
-        }
-        return this;
-    }
-}

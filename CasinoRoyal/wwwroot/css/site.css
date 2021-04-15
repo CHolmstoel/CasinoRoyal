@@ -102,18 +102,18 @@ fieldset legend {
     padding: 10px;
 }
 
-th {
+.mytable th {
     font-weight: normal;
     text-align: right;
     vertical-align: bottom;
 }
 
-td, th {
+.mytable td, th {
     padding-bottom: 10px;
     padding-left: 10px;
 }
 
-td {
+.mytable td {
     width: 2em;
 }
 
@@ -154,4 +154,8 @@ label {
 
 #CheckinColor {
     color: darkgreen;
+}
+
+.table td {
+    text-align: center;
 }
