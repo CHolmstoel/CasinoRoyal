@@ -13,26 +13,14 @@ namespace CasinoRoyal.Models
 {
     public class WaiterViewModel
     {
-        public IDataAccessAction DataAccess { get; set; }
-
         public WaiterViewModel()
         {
-            
         }
-
-        public WaiterViewModel(IDataAccessAction dataAccess)
-        {
-            DataAccess = dataAccess;
-        }
-
-        [BindProperty]
-        public List<HotelRoom> HotelRooms { get; set; }
-
-        [BindProperty]
-        public List<Guest> Guests { get; set; }
 
         [BindProperty]
         public HotelRoom CurrentRoom { get; set; }
+
+        public List<Guest> Guests { get => CurrentRoom.Guests; set => CurrentRoom.Guests = value; }
 
         [BindProperty]
         public int RoomIndex { get; set; }
@@ -41,10 +29,7 @@ namespace CasinoRoyal.Models
         public int NumberOfRooms { get; set; }
 
         [BindProperty]
-        public List<string> GuestsIDsToAdd { get; set; }
-
-        [BindProperty]
-        public SelectList RoomNumbers 
+        public SelectList DisplayRoomNumbers
         {
             get
             {

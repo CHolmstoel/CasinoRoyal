@@ -5,93 +5,101 @@
 
 }
 
-<h2>Breakfast Check-in Information</h2><br/>
-<fieldset>
-    <legend>Hotel Guests Total:</legend>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalGuests)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalAdults)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalChildren)
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.TotalGuests)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.TotalAdults)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.TotalChildren)
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</fieldset>
+<div id="CenterAlignKitchenStaffView">
 
-<fieldset>
-    <legend>Checked In For Breakfast:</legend>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.AdultsCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChildrenCheckedIn)
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.AdultsCheckedIn)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.ChildrenCheckedIn)
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</fieldset>
+    <h2>Breakfast Check-in Information</h2><br />
 
-<fieldset>
-    <legend>Not Checked In For Breakfast:</legend>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => model.TotalNotCheckedIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.AdultsNotCheckedIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.ChildrenNotCheckedIn)
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</fieldset>
+    <fieldset>
+        <legend>Hotel Guests Total:</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalGuests)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalAdults)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalChildren)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalGuests)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalAdults)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalChildren)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <br />
+
+    <fieldset>
+        <legend>Checked In For Breakfast:</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AdultsCheckedIn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChildrenCheckedIn)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.AdultsCheckedIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ChildrenCheckedIn)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <br />
+
+    <fieldset>
+        <legend>Not Checked In For Breakfast:</legend>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalNotCheckedIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AdultsNotCheckedIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ChildrenNotCheckedIn)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</div>
