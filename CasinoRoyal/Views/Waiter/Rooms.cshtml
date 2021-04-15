@@ -17,7 +17,7 @@
             {
                 @Html.DropDownListFor((model => model.RoomIndex), Model.DisplayRoomNumbers, "-- Select  --")
                 @Html.HiddenFor(m => m.Guests)
-                <button name="foo" value="Save" class="mybutton">List Guests</button>
+                <button value="Save" class="mybutton">List Guests</button>
             }
 
         </td>
@@ -25,54 +25,58 @@
 </table>
 
 
-<table class="mytable">
-    <tr>
-        <td>
-            <label>Adults</label>
-        </td>
-        <td>
-            @using (Html.BeginForm("CheckIn", "Waiter", FormMethod.Post))
-            {
-                if (Model.Guests != null)
+@using (Html.BeginForm("CheckIn", "Waiter", FormMethod.Post))
+{
+    <table class="mytable">
+        <tr>
+            <td>
+                <label>Adults</label>
+            </td>
+            <td>
+                @if (Model.Guests != null)
                 {
+                    if (Model.Guests.Count == 0)
+                    {
+                        <label>Room is empty</label>
+                    }
+
                     for (var i = 0; i < Model.Guests.Count; i++)
                     {
                         if (Model.Guests[i].GuestType == "Adult")
                         {
                             <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
-                            <button type="submit" class="mybutton"> Check -in </button>
+                            <button type="submit" class="mybutton" name="btn" value="Child" id="Adult"> Check -in </button>
                             @Html.HiddenFor(g => g.Guests[i].GuestID)
-                            @Html.HiddenFor(g => g.Guests[i].IsCheckedIn)
+                            @Html.HiddenFor(g => g.Guests[i].GuestType)
                         }
                     }
                 }
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <label>Children</label>
-        </td>
-        <td>
-            @using (Html.BeginForm("CheckIn", "Waiter", FormMethod.Post))
-            {
-                if (Model.Guests != null)
-                {
-                    for (var i = 0; i < Model.Guests.Count; i++)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label>Children</label>
+            </td>
+            <td>
+                @{
+                    if (Model.Guests != null)
                     {
-                        if (Model.Guests[i].GuestType == "Child")
+                        for (var i = 0; i < Model.Guests.Count; i++)
                         {
-                            <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
-                            <button type="submit" class="mybutton"> Check -in </button>
-                            @Html.HiddenFor(g => g.Guests[i].GuestID)
-                            @Html.HiddenFor(g => g.Guests[i].IsCheckedIn)
+                            if (Model.Guests[i].GuestType == "Child")
+                            {
+                                <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
+                                <button type="submit" class="mybutton" name="btn" value="Child" id="Child"> Check -in </button>
+                                @Html.HiddenFor(g => g.Guests[i].GuestID)
+                                @Html.HiddenFor(g => g.Guests[i].GuestType)
+                            }
                         }
                     }
                 }
-            }
-        </td>
-    </tr>
-</table>
+            </td>
+        </tr>
+    </table>
+}
 
 <div>
     @if ((string)TempData["success"] == "true")

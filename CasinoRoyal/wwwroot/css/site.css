@@ -135,6 +135,7 @@ label {
     padding: 2px;
     padding-bottom: 1px;
     font-size: 11px;
+    box-sizing: border-box;
 }
 #CompanyColor {
     color: khaki;
