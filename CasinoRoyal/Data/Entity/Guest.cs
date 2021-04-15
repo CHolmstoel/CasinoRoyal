@@ -11,6 +11,7 @@ namespace CasinoRoyal.Data.Entity
     {
         [Key]
         public int GuestID{ get; set; }
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public bool IsCheckedIn { get; set; }
@@ -19,6 +20,7 @@ namespace CasinoRoyal.Data.Entity
 
         [ForeignKey("HotelRoomID")]
         public HotelRoom HotelRoom { get; set; }
+
         [ForeignKey("HotelRoomID")]
 
         public int HotelRoomID { get; set; }
