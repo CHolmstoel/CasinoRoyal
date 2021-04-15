@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("ThomasConnection")));
+                    Configuration.GetConnectionString("EmilConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -105,7 +105,8 @@ namespace CasinoRoyal
                         LastName = "Eberhart",
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 1
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -125,7 +126,8 @@ namespace CasinoRoyal
                         LastName = "Eberhart",
                         GuestType = "Child",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 1
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -148,7 +150,8 @@ namespace CasinoRoyal
                         LastName = "Palsgaard",
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 2
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -171,7 +174,8 @@ namespace CasinoRoyal
                         LastName = "Minaj",
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 3
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -191,7 +195,8 @@ namespace CasinoRoyal
                         LastName = "Minaj",
                         GuestType = "Child",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 3
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -212,7 +217,8 @@ namespace CasinoRoyal
                         LastName = "Senior",
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
-                        IsCheckedIn = false
+                        IsCheckedIn = false,
+                        HotelRoomID = 2
                         },
                         new Guest()
                         {
@@ -220,7 +226,8 @@ namespace CasinoRoyal
                             LastName = "Junior",
                             GuestType = "Child",
                             HasEatenBreakfast = false,
-                            IsCheckedIn = false
+                            IsCheckedIn = false,
+                            HotelRoomID = 2
                         }
                 };
 
