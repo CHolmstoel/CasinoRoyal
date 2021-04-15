@@ -33,23 +33,24 @@
         <legend>Adults:</legend>
         <table class="mytable">
             <tbody>
-                <tr>
-                    <td>
-                        @if (Model.Guests != null)
+            <tr>
+                <td>
+                    @if (Model.Guests != null)
+                    {
+                        for (var i = 0; i < Model.Guests.Count; i++)
                         {
-                            for (var i = 0; i < Model.Guests.Count; i++)
+                            if (Model.Guests[i].GuestType == "Adult")
                             {
-                                if (Model.Guests[i].GuestType == "Adult")
-                                {
-                                    <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
-                                    <button type="submit" class="mybutton" name="btn" value="Child" id="Adult">Check-in </button>
-                                    @Html.HiddenFor(g => g.Guests[i].GuestID)
-                                    @Html.HiddenFor(g => g.Guests[i].GuestType)
-                                }
+                                <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
+                                <br/>
+                                <button type="submit" class="mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                @Html.HiddenFor(g => g.Guests[i].GuestID)
+                                @Html.HiddenFor(g => g.Guests[i].GuestType)
                             }
                         }
-                    </td>
-                </tr>
+                    }
+                </td>
+            </tr>
             </tbody>
         </table>
     </fieldset>
@@ -58,33 +59,42 @@
         <legend>Children:</legend>
         <table class="mytable">
             <tbody>
-                <tr>
-                    <td>
-                        @if (Model.Guests != null)
+            <tr>
+                <td>
+                    @if (Model.Guests != null)
+                    {
+                        for (var i = 0; i < Model.Guests.Count; i++)
                         {
-                            for (var i = 0; i < Model.Guests.Count; i++)
+                            if (Model.Guests[i].GuestType == "Child")
                             {
-                                if (Model.Guests[i].GuestType == "Child")
-                                {
-                                    <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
-                                    <button type="submit" class="mybutton" name="btn" value="Child" id="Child">Check-in </button>
-                                    @Html.HiddenFor(g => g.Guests[i].GuestID)
-                                    @Html.HiddenFor(g => g.Guests[i].GuestType)
-                                }
+                                <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
+                                <br/>
+                                <button type="submit" class="mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                @Html.HiddenFor(g => g.Guests[i].GuestID)
+                                @Html.HiddenFor(g => g.Guests[i].GuestType)
                             }
                         }
-                    </td>
-                </tr>
+                    }
+                </td>
+            </tr>
             </tbody>
         </table>
     </fieldset>
+}
     <div>
         @{
             if (Model.Guests != null)
             {
                 if (Model.Guests.Count == 0)
                 {
-                    <p>Room is empty</p>
+                    if ((string) TempData["check"] == "false")
+                    {
+                        <p>Please select room</p>
+                    }
+                    else
+                    {
+                        <p>Room is empty</p>
+                    }
                 }
             }
         }
@@ -98,6 +108,5 @@
         }
     </div>
     <div>
-        <input type="button" value="Checkout" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
+        <input type="button" class="btn btn-primary" value="Checkout" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
     </div>
-}
