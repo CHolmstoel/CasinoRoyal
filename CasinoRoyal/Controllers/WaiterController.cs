@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
@@ -20,7 +21,7 @@ namespace CasinoRoyal.Controllers
             _dataAccess = new DataAccessAction(context);
         }
 
-        //[Authorize("IsWaiter")] // commented out during testing
+        [Authorize("IsWaiter")] // commented out during testing
         [HttpGet]
         public IActionResult Rooms()
         {
@@ -31,6 +32,7 @@ namespace CasinoRoyal.Controllers
             return View(waiterViewModel);
         }
 
+        [Authorize("IsWaiter")]
         [HttpPost]
         public IActionResult Rooms(WaiterViewModel waiterViewModel)
         {
@@ -48,6 +50,7 @@ namespace CasinoRoyal.Controllers
             return View(waiterViewModel);
         }
 
+        [Authorize("IsWaiter")]
         [HttpPost]
         public IActionResult CheckIn(WaiterViewModel waiterViewModel, string btn)
         {
@@ -65,6 +68,7 @@ namespace CasinoRoyal.Controllers
             return RedirectToAction(nameof(Rooms));
         }
 
+        [Authorize("IsWaiter")]
         public IActionResult Checkout()
         {
             _dataAccess.Guests.CheckOutAllGuests();
