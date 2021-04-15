@@ -19,6 +19,9 @@ namespace CasinoRoyal.Data.Entity
 
         [ForeignKey("HotelRoomID")]
         public HotelRoom HotelRoom { get; set; }
+        [ForeignKey("HotelRoomID")]
+
+        public int HotelRoomID { get; set; }
 
     }
 }

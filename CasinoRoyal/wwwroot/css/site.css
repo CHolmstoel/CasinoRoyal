@@ -156,3 +156,8 @@ label {
     color: darkgreen;
     font-weight: bold;
 }
+
+#CenterReceptionstView{
+    max-width: 960px;
+    margin:auto;
+}
