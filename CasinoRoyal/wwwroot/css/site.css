@@ -101,17 +101,21 @@ fieldset legend {
     font-family: Arial, sans-serif;
     padding: 10px;
 }
+table {
+    text-align: left;
+}
 
 th {
-    font-weight: normal;
-    text-align: right;
+    font-weight: bold;
+    text-align: left;
     vertical-align: bottom;
 }
 
 td, th {
     padding-bottom: 10px;
-    padding-left: 10px;
+    text-align: center;
 }
+
 
 td {
     width: 2em;
@@ -152,7 +156,13 @@ label {
     
 }
 
+.CheckinColor{
+    color: darkgreen;
+    font-weight: bolder;
+}
 #CheckinColor {
     color: darkgreen;
-    font-weight: bold;
+    font-weight: bolder;
 }
+
+
