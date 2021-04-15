@@ -38,6 +38,7 @@ namespace CasinoRoyal.Data.Repositories
         {
             return Context.Guest
                 .Include(h => h.HotelRoom)
+                .OrderBy(p=>p.HotelRoomID)
                 .ToList();
         }
 
