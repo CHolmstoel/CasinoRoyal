@@ -105,18 +105,17 @@ table {
     text-align: left;
 }
 
-.mytable th {
+th {
     font-weight: normal;
     text-align: right;
     vertical-align: bottom;
 }
 
-.mytable td, th {
+td, th {
     padding-bottom: 10px;
-    text-align: center;
 }
 
-.mytable td {
+td {
     width: 2em;
 }
 

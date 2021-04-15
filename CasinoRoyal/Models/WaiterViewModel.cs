@@ -13,22 +13,14 @@ namespace CasinoRoyal.Models
 {
     public class WaiterViewModel
     {
-        public WaiterViewModel()
-        {
-        }
+        public List<Guest> Guests { get; set; }
 
-        [BindProperty]
-        public HotelRoom CurrentRoom { get; set; }
-
-        public List<Guest> Guests { get => CurrentRoom.Guests; set => CurrentRoom.Guests = value; }
-
-        [BindProperty]
         public int RoomIndex { get; set; }
 
-        [BindProperty]
         public int NumberOfRooms { get; set; }
 
-        [BindProperty]
+        public string Type { get; set; }
+
         public SelectList DisplayRoomNumbers
         {
             get
