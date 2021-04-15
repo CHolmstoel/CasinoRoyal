@@ -21,7 +21,7 @@
     </tr>
 </table>
 
-<form asp-action="CheckIn" onsubmit="return Checkin()">
+<form asp-action="CheckIn" onsubmit="Checkin()">
     <table class="mytable">
         <tr>
             <td>
@@ -65,7 +65,7 @@
         </tr>
         <tr>
             <td>
-                <button type="submit" name="bar" value="Create" >Check-in</button>
+                <button type="submit" name="bar" value="Create" onclick="Checkin()" >Check-in</button>
             </td>
         </tr>
     </table>
@@ -84,6 +84,17 @@
 {
     public object Checkin()
     {
-        return Model.Guests;
+        if (Model.Guests != null)
+        {
+            foreach (var guest in Model.Guests)
+            {
+                if (guest.IsCheckedIn)
+                {
+                    Model.DataAccess.Guests.CheckInGuest(guest.GuestID);
+                    Model.DataAccess.Complete();
+                }
+            }
+        }
+        return this;
     }
 }
