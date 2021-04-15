@@ -50,12 +50,13 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Create
-        public IActionResult Create()
+        public IActionResult Create(ReceptionistViewModel receptionistViewModel)
         {
             //var AllRooms = from r in _dataAccess.HotelRooms.GetAllHotelRooms() select r;
             //var AllRooms = new WaiterViewModel();
             //AllRooms.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
-            return View();
+            receptionistViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
+            return View(receptionistViewModel);
         }
 
         // POST: Guests/Create
@@ -63,7 +64,7 @@ namespace CasinoRoyal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType,HotelRoom")] Guest guest)
+        public async Task<IActionResult> Create( Guest guest)
         {
             if (ModelState.IsValid)
             {
