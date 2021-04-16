@@ -30,43 +30,11 @@ namespace CasinoRoyal.Controllers
             return View();
         }
 
-        //[Authorize("IsReceptionist")]
-        //public IActionResult Receptionist()
-        //{
-        //    var receptionistViewModel = new ReceptionistViewModel();
-
-        //    return View(receptionistViewModel);
-        //}
-
-        public IActionResult KitchenStaff()
-        {
-            var kitchenStaffViewModel = GetKitchenStaffInformationFromDb();
-
-            return View(kitchenStaffViewModel);
-        }
-
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public KitchenStaffViewModel GetKitchenStaffInformationFromDb()
-        {
-            var kitchenStaffViewModel = new KitchenStaffViewModel();
-
-            kitchenStaffViewModel.TotalAdults = _dataAccess.Guests.GetAllAdults();
-            kitchenStaffViewModel.TotalChildren = _dataAccess.Guests.GetAllChildren();
-
-            kitchenStaffViewModel.AdultsCheckedIn = _dataAccess.Guests.GetAllAdultsCheckedIn();
-            kitchenStaffViewModel.ChildrenCheckedIn = _dataAccess.Guests.GetAllChildrenCheckedIn();
-
-            kitchenStaffViewModel.AdultsNotCheckedIn = _dataAccess.Guests.GetAllAdultsNotCheckedIn();
-            kitchenStaffViewModel.ChildrenNotCheckedIn = _dataAccess.Guests.GetAllChildrenNotCheckedIn();
-
-            return kitchenStaffViewModel;
-        }
-
     }
 }

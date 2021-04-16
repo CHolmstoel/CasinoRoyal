@@ -28,7 +28,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" id="header">
+        <nav class="navbar navbar-wrapper navbar-expand-sm navbar-dark bg-opacity-green border-bottom box-shadow mb-3" id="stickyheader">
             <div class="container">
                 <a href='@Url.Action("Index", "Home")' >
                     <img src='~/Images/logo-small.png' />
@@ -37,24 +37,24 @@
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between text-khaki">
+                    <ul class="navbar-nav flex-grow-1 navbar-dark">
                         @if(isKitchenstaff)
                         { 
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KitchenStaff">Kitchen View</a>
+                                <a class="nav-link text-warning" asp-area="" asp-controller="KitchenStaff" asp-action="Index">Kitchen View</a>
                             </li>
                         }
                         @if (isReceptionist)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Guests" asp-action="Index">Receptionist View</a>
+                                <a class="nav-link text-warning" asp-area="" asp-controller="Receptionist" asp-action="Index">Receptionist View</a>
                             </li>
                         }
                         @if (isWaiter) // commented out during testing
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Waiter" asp-action="Rooms">Waiter View</a>
+                                <a class="nav-link text-warning" asp-area="" asp-controller="Waiter" asp-action="Index">Waiter View</a>
                             </li>
                         }
                     </ul>
@@ -69,8 +69,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted" id="FooterAdd">
-        <div class="container" id="FooterAdd">
+    <footer class="border-top text-warning footer text-muted bg-opacity-green-footer" >
+        <div class="container text-warning" id="FooterAdd">
             Copyright &copy; 2021 - CasinoRoyal A/S - The Place To Stay
         </div>
     </footer>

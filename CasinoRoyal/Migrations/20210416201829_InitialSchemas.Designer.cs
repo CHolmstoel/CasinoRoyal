@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasinoRoyal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210413141452_CreateSchemas")]
-    partial class CreateSchemas
+    [Migration("20210416201829_InitialSchemas")]
+    partial class InitialSchemas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,23 +28,32 @@ namespace CasinoRoyal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("CheckedIn")
+                        .HasColumnType("bit");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GuestType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("HasEatenBreakfast")
-                        .HasColumnType("bit");
-
-                    b.Property<int?>("HotelRoomID")
+                    b.Property<int>("HotelRoomID")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsCheckedIn")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("LastCheckInDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastReservationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("MadeReservation")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ReservationID")
+                        .HasColumnType("int");
 
                     b.HasKey("GuestID");
 
@@ -63,6 +72,39 @@ namespace CasinoRoyal.Migrations
                     b.HasKey("HotelRoomID");
 
                     b.ToTable("HotelRooms");
+                });
+
+            modelBuilder.Entity("CasinoRoyal.Data.Entity.Reservation", b =>
+                {
+                    b.Property<int>("ReservationID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("GuestID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ReservationID");
+
+                    b.ToTable("Reservations");
+                });
+
+            modelBuilder.Entity("GuestReservation", b =>
+                {
+                    b.Property<int>("GuestsGuestID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReservationsReservationID")
+                        .HasColumnType("int");
+
+                    b.HasKey("GuestsGuestID", "ReservationsReservationID");
+
+                    b.HasIndex("ReservationsReservationID");
+
+                    b.ToTable("GuestReservation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -286,9 +328,26 @@ namespace CasinoRoyal.Migrations
                 {
                     b.HasOne("CasinoRoyal.Data.Entity.HotelRoom", "HotelRoom")
                         .WithMany("Guests")
-                        .HasForeignKey("HotelRoomID");
+                        .HasForeignKey("HotelRoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("HotelRoom");
+                });
+
+            modelBuilder.Entity("GuestReservation", b =>
+                {
+                    b.HasOne("CasinoRoyal.Data.Entity.Guest", null)
+                        .WithMany()
+                        .HasForeignKey("GuestsGuestID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CasinoRoyal.Data.Entity.Reservation", null)
+                        .WithMany()
+                        .HasForeignKey("ReservationsReservationID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

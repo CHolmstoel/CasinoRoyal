@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CasinoRoyal.Migrations
 {
-    public partial class CreateSchemas : Migration
+    public partial class InitialSchemas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,6 +58,20 @@ namespace CasinoRoyal.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HotelRooms", x => x.HotelRoomID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Reservations",
+                columns: table => new
+                {
+                    ReservationID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    GuestID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Reservations", x => x.ReservationID);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,10 +188,13 @@ namespace CasinoRoyal.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsCheckedIn = table.Column<bool>(type: "bit", nullable: false),
-                    HasEatenBreakfast = table.Column<bool>(type: "bit", nullable: false),
+                    CheckedIn = table.Column<bool>(type: "bit", nullable: false),
+                    MadeReservation = table.Column<bool>(type: "bit", nullable: false),
                     GuestType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HotelRoomID = table.Column<int>(type: "int", nullable: true)
+                    LastReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastCheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HotelRoomID = table.Column<int>(type: "int", nullable: false),
+                    ReservationID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -187,7 +204,31 @@ namespace CasinoRoyal.Migrations
                         column: x => x.HotelRoomID,
                         principalTable: "HotelRooms",
                         principalColumn: "HotelRoomID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GuestReservation",
+                columns: table => new
+                {
+                    GuestsGuestID = table.Column<int>(type: "int", nullable: false),
+                    ReservationsReservationID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GuestReservation", x => new { x.GuestsGuestID, x.ReservationsReservationID });
+                    table.ForeignKey(
+                        name: "FK_GuestReservation_Guest_GuestsGuestID",
+                        column: x => x.GuestsGuestID,
+                        principalTable: "Guest",
+                        principalColumn: "GuestID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GuestReservation_Reservations_ReservationsReservationID",
+                        column: x => x.ReservationsReservationID,
+                        principalTable: "Reservations",
+                        principalColumn: "ReservationID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -233,6 +274,11 @@ namespace CasinoRoyal.Migrations
                 name: "IX_Guest_HotelRoomID",
                 table: "Guest",
                 column: "HotelRoomID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GuestReservation_ReservationsReservationID",
+                table: "GuestReservation",
+                column: "ReservationsReservationID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -253,13 +299,19 @@ namespace CasinoRoyal.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Guest");
+                name: "GuestReservation");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Guest");
+
+            migrationBuilder.DropTable(
+                name: "Reservations");
 
             migrationBuilder.DropTable(
                 name: "HotelRooms");

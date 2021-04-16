@@ -32,7 +32,7 @@ namespace CasinoRoyal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
 
-                    Configuration.GetConnectionString("EmilConnection")));
+                    Configuration.GetConnectionString("ThomasConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -108,10 +108,9 @@ namespace CasinoRoyal
                         FirstName = "Mogens",
                         LastName = "Eberhart",
                         GuestType = "Adult",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
+                        MadeReservation = false,
+                        CheckedIn = false,
                         HotelRoomID = 1,
-                        BreakfastReservationDate = DateTime.Today
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -130,8 +129,8 @@ namespace CasinoRoyal
                         FirstName = "Poul",
                         LastName = "Eberhart",
                         GuestType = "Child",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
+                        MadeReservation = false,
+                        CheckedIn = false,
                         HotelRoomID = 1
                     };
                     conText.Guest.Add(guest);
@@ -154,8 +153,8 @@ namespace CasinoRoyal
                         FirstName = "Einar",
                         LastName = "Palsgaard",
                         GuestType = "Adult",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
+                        MadeReservation = false,
+                        CheckedIn = false,
                         HotelRoomID = 2
                     };
                     conText.Guest.Add(guest);
@@ -178,10 +177,9 @@ namespace CasinoRoyal
                         FirstName = "Nicki",
                         LastName = "Minaj",
                         GuestType = "Adult",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
-                        HotelRoomID = 3,
-                        BreakfastReservationDate = DateTime.Today
+                        MadeReservation = false,
+                        CheckedIn = false,
+                        HotelRoomID = 3
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -200,10 +198,9 @@ namespace CasinoRoyal
                         FirstName = "Junior",
                         LastName = "Minaj",
                         GuestType = "Child",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
+                        MadeReservation = false,
+                        CheckedIn = false,
                         HotelRoomID = 3,
-                        BreakfastReservationDate = DateTime.Today
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -223,8 +220,8 @@ namespace CasinoRoyal
                         FirstName = "Nougi",
                         LastName = "Senior",
                         GuestType = "Adult",
-                        HasEatenBreakfast = false,
-                        IsCheckedIn = false,
+                        MadeReservation = false,
+                        CheckedIn = false,
                         HotelRoomID = 2
                         },
                         new Guest()
@@ -232,8 +229,8 @@ namespace CasinoRoyal
                             FirstName = "Nougi",
                             LastName = "Junior",
                             GuestType = "Child",
-                            HasEatenBreakfast = false,
-                            IsCheckedIn = false,
+                            MadeReservation = false,
+                            CheckedIn = false,
                             HotelRoomID = 2
                         }
                 };

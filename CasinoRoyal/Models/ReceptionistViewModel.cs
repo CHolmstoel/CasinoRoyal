@@ -11,33 +11,30 @@ namespace CasinoRoyal.Models
 {
     public class ReceptionistViewModel
     {
-        public ReceptionistViewModel()
-        {
-        }
-        [BindProperty]
         public List<HotelRoom> HotelRooms { get; set; }
+        public DateTime ReservationDate { get; set; }
+
+        public string HotelRoomNumber => "Room Number";
+        public string NumberOfAdults => "Adults";
+        public string NumberOfChildren => "Children";
         
+
+
+
         public Guest GuestToAdd { get; set; }
 
-        [BindProperty]
-        public HotelRoom CurrentRoom { get; set; }
-
-        [BindProperty]
         public int HotelRoomID { get; set; }
 
-        [BindProperty]
-        public int NumberOfRooms { get; set; }
-
-        [BindProperty]
-        public List<string> GuestsIDsToAdd { get; set; }
-
-        [BindProperty]
         public SelectList RoomNumbers
         {
             get
             {
-                return new SelectList(Enumerable.Range(1, NumberOfRooms).ToList(), selectedValue: HotelRoomID);
+                return new SelectList(Enumerable.Range(1, NumberOfRooms).ToList(), selectedValue: RoomIndex);
             }
         }
+
+        public int RoomIndex { get; set; }
+
+        public int NumberOfRooms { get; set; }
     }
 }

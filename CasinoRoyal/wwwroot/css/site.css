@@ -6,8 +6,36 @@ a.navbar-brand {
     text-align: center;
     word-break: break-all;
     color: khaki;
-    background: darkgreen;
 }
+
+.nav-link {
+    color: khaki;
+}
+
+.bg-opacity-green {
+    background: rgba(0, 100, 0, 0.7);
+}
+
+.bg-opacity-green-footer {
+    background: rgba(0, 100, 0, 0.9);
+}
+
+.text-khaki {
+    color: khaki;
+}
+
+#stickyheader {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#stickyfooter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 
 /* Provide sufficient contrast against white background */
 a {
@@ -68,6 +96,7 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+    margin-top: 80px;
 }
 .footer {
     position: absolute;
@@ -75,6 +104,8 @@ body {
     width: 100%;
     white-space: nowrap;
     line-height: 60px; /* Vertically center the text there */
+    font-family: 'Brush Script MT', cursive;
+    text-align: center;
 }
 
 logo {
@@ -185,13 +216,6 @@ label {
     background: darkgreen;
 }
 
-#FooterAdd {
-    color: khaki;
-    background: darkgreen;
-    text-align: center;
-    font-family: 'Brush Script MT', cursive;
-}
-
 #CheckoutColor {
     color: firebrick;
     font-weight: bold;
@@ -210,6 +234,10 @@ label {
     text-align: center;
     max-width: 100%;
     height: auto;
+}
+
+.table tbody {
+    padding: 2px;
 }
 
 

@@ -23,7 +23,7 @@ namespace CasinoRoyal.Controllers
 
         [Authorize("IsWaiter")] // commented out during testing
         [HttpGet]
-        public IActionResult Rooms()
+        public IActionResult Index()
         {
             var waiterViewModel = new WaiterViewModel();
 
@@ -34,7 +34,7 @@ namespace CasinoRoyal.Controllers
 
         [Authorize("IsWaiter")]
         [HttpPost]
-        public IActionResult Rooms(WaiterViewModel waiterViewModel)
+        public IActionResult Index(WaiterViewModel waiterViewModel)
         {
             if ((int)waiterViewModel.DisplayRoomNumbers.SelectedValue > 0)
             {
@@ -65,7 +65,7 @@ namespace CasinoRoyal.Controllers
 
             TempData["success"] = "true";
 
-            return RedirectToAction(nameof(Rooms));
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize("IsWaiter")]
@@ -76,7 +76,7 @@ namespace CasinoRoyal.Controllers
 
             TempData["CheckedOut"] = "true";
 
-            return RedirectToAction(nameof(Rooms));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

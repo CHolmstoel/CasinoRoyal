@@ -1,0 +1,48 @@
+﻿@using Microsoft.Data.SqlClient.DataClassification
+@model ReceptionistViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h4>Breakfast status, @DateTime.Today.ToString("D")</h4>
+
+<table class="mytable">
+    <thead>
+    <tr>
+        <th>
+            @Html.Label(Model.HotelRoomNumber)
+        </th>
+        <th>
+            <label>Adult done</label>
+        </th>
+        <th>
+            <label>Children done</label>
+        </th>
+    </tr>
+    </thead>
+    @foreach (var item in Model.HotelRooms)
+    {
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HotelRoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdultsBreakfastDone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildrenBreakfastDone)
+            </td>
+            <td>
+                <button type="submit" class="mybutton" asp-action="Book" asp-route-id="@item.HotelRoomID">Book Breakfast</button>
+            </td>
+        </tr>
+        </tbody>
+    }
+</table>
+<p>
+    <input type="button" class="btn btn-primary" value="Cancel All Reservations" onclick="location.href='@Url.Action("Create", "Guests")'" />
+</p>

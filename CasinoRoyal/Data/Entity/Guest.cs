@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CasinoRoyal.Data.Entity
 {
@@ -14,17 +12,22 @@ namespace CasinoRoyal.Data.Entity
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public bool IsCheckedIn { get; set; }
-        public bool HasEatenBreakfast { get; set; }
+        public bool CheckedIn { get; set; }
+        public bool MadeReservation { get; set; }
         public string GuestType { get; set; }
-        public DateTime BreakfastReservationDate { get; set; }
+        public DateTime LastReservationDate { get; set; }
+        public DateTime LastCheckInDate { get; set; }
 
         [ForeignKey("HotelRoomID")]
         public HotelRoom HotelRoom { get; set; }
 
         [ForeignKey("HotelRoomID")]
-
         public int HotelRoomID { get; set; }
+
+        [ForeignKey("ReservationID")]
+        public int ReservationID { get; set; }
+
+        public List<Reservation> Reservations { get; set; }
 
     }
 }

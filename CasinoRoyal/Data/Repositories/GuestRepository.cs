@@ -22,22 +22,22 @@ namespace CasinoRoyal.Data.Repositories
 
         public void AddGuest(Guest guest)
         {
-            Context.Guest.AddAsync(guest);
+            context.Guest.AddAsync(guest);
         }
 
         public int GetAllAdults()
         {
-            return Context.Guest.Count(g => g.GuestType == "Adult");
+            return context.Guest.Count(g => g.GuestType == "Adult");
         }
 
         public int GetAllChildren()
         {
-            return Context.Guest.Count(g => g.GuestType == "Child");
+            return context.Guest.Count(g => g.GuestType == "Child");
         }
 
         public List<Guest> GetAllGuests()
         {
-            return Context.Guest
+            return context.Guest
                 .Include(h => h.HotelRoom)
                 .OrderBy(p=>p.HotelRoomID)
                 .ToList();
@@ -45,68 +45,79 @@ namespace CasinoRoyal.Data.Repositories
 
         public Guest GetSingleGuest(int id)
         {
-            return Context.Guest
+            return context.Guest
                 .Include(r => r.HotelRoom)
                 .SingleOrDefault(i => i.GuestID == id);
         }
 
         public void CheckInGuest(int id)
         {
-            var guest = Context.Guest
+            var guest = context.Guest
                 .SingleOrDefault(g => g.GuestID == id);
             
             if (guest != null)
-                guest.IsCheckedIn = true;
+                guest.CheckedIn = true;
         }
 
         public void CheckOutAllGuests()
         {
-            var guests = Context.Guest.Where(i => i.IsCheckedIn);
+            var guests = context.Guest.Where(i => i.CheckedIn);
             
             foreach (var guest in guests)
             {
-                guest.IsCheckedIn = false;
+                guest.CheckedIn = false;
             }
         }
 
         public int GetAllAdultsCheckedIn()
         {
-            return Context.Guest.Where(g => g.GuestType == "Adult").Count(g => g.IsCheckedIn);
+            return context.Guest.Where(g => g.GuestType == "Adult").Count(g => g.CheckedIn);
         }
 
         public int GetAllChildrenCheckedIn()
         {
-            return Context.Guest.Where(g => g.GuestType == "Child").Count(g => g.IsCheckedIn);
+            return context.Guest.Where(g => g.GuestType == "Child").Count(g => g.CheckedIn);
         }
 
         public int GetAllAdultsNotCheckedIn()
         {
-            return Context.Guest.Where(g => g.IsCheckedIn == false).Where(t => t.GuestType == "Adult").Count();
+            return context.Guest.Where(g => g.CheckedIn == false).Count(t => t.GuestType == "Adult");
         }
 
         public int GetAllChildrenNotCheckedIn()
         {
-            return Context.Guest.Where(g => g.IsCheckedIn == false).Where(t => t.GuestType == "Child").Count();
+            return context.Guest.Where(g => g.CheckedIn == false).Count(t => t.GuestType == "Child");
         }
 
-        public int GetAllAdultsThatHasEaten()
+        public int GetAllAdultsThatMadeReservation()
         {
-            return Context.Guest.Where(g => g.HasEatenBreakfast == true).Where(t => t.GuestType == "Adult").Count();
+            return context.Guest.Where(g => g.MadeReservation).Count(t => t.GuestType == "Adult");
         }
 
-        public int GetAllChildrenThatHasEaten()
+        public int GetAllChildrenThatMadeReservation()
         {
-            return Context.Guest.Where(g => g.HasEatenBreakfast == true).Where(t => t.GuestType == "Child").Count();
+            return context.Guest.Where(g => g.MadeReservation).Count(t => t.GuestType == "Child");
         }
 
-        public int GetAllAdultsThatHasNotEaten()
+        public List<Guest> GetAllGuestsEatenToday()
         {
-            return Context.Guest.Where(g => g.HasEatenBreakfast == false).Where(t => t.GuestType == "Adult").Count();
-        }
+            var ReservationsForToday = context.Reservations.Where(d => d.Date == DateTime.Today).Include(g => g.Guests)
+                .ToList();
 
-        public int GetAllChildrenThatHasNotEaten()
-        {
-            return Context.Guest.Where(g => g.HasEatenBreakfast == false).Where(t => t.GuestType == "Child").Count();
+            var guests = new List<Guest>();
+
+            foreach (var reservation in ReservationsForToday)
+            {
+                foreach (var guest in reservation.Guests)
+                {
+                    if (guest.CheckedIn)
+                    {
+                        guests.Add(guest);
+                    }   
+                }
+            }
+
+            return guests;
         }
 
         public void CheckOutGuest(Guest guest)
