@@ -1,0 +1,46 @@
+﻿@model HotelRoom
+
+<h4>Book breakfast - Displaying guests from room @Model.HotelRoomID</h4>
+<br/>
+<table class="mytable">
+    <thead class="font-weight-bold">
+        <tr>
+            <th>
+                <label class="font-weight-bold">First Name</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Last Name</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Type</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Reservation date</label>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model.Guests)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GuestType)
+                </td>
+                <td>
+                    @Html.TextBoxFor(modelItem => item.LastReservationDate)
+                </td>
+                <td>
+                    <form asp-action="Complete">
+                        <button type="submit" class="mybutton" value="@item.HotelRoomID" name="BookButton">Book Breakfast</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

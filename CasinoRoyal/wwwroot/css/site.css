@@ -155,7 +155,7 @@ fieldset legend {
 .mytable {
     border-style: none;
     font-family: Arial, sans-serif;
-    padding: 10px;
+    padding: 0;
 }
 
 .mytable td, thead, tbody, tr, th {
@@ -209,6 +209,14 @@ label {
     background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
     border-color: goldenrod;
+    min-width: 10em;
+}
+
+#mybuttonstyle {
+    text-align: center;
+    height: 3em;
+    padding-top: 5px;
+    padding-bottom: 0;
 }
 
 #CompanyColor {

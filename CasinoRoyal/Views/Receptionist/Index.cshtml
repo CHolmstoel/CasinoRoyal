@@ -6,9 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
 <h4>Breakfast status, @DateTime.Today.ToString("D")</h4>
-
+<br/>
 <table class="mytable">
     <thead>
     <tr>
@@ -37,7 +36,28 @@
                 @Html.DisplayFor(modelItem => item.ChildrenBreakfastDone)
             </td>
             <td>
-                <button type="submit" class="mybutton" asp-action="Book" asp-route-id="@item.HotelRoomID">Book Breakfast</button>
+                <form asp-action="Book">
+                    @Html.HiddenFor(r => r.HotelRoomID)
+                    <button type="submit" class="mybutton" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton">
+                        @{
+                            if (TempData["Booking"] != null)
+                            {
+                                if (int.Parse(TempData["Booking"].ToString()) == item.HotelRoomID)
+                                {
+                                    <p>Successful!</p>
+                                }
+                                else
+                                {
+                                    <p>Book Breakfast</p>
+                                }
+                            }
+                            else
+                            {
+                                <p>Book Breakfast</p>
+                            }
+                        }
+                    </button>
+                </form>
             </td>
         </tr>
         </tbody>
