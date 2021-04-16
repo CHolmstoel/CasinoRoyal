@@ -9,6 +9,7 @@ using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Models;
 using CasinoRoyal.Data.Repositories;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CasinoRoyal.Controllers
 {
@@ -23,6 +24,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Index()
         {
             var AllGuests = from g in _dataAccess.Guests.GetAllGuests() select g;
@@ -30,6 +32,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Details/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -50,6 +53,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Create
+        [Authorize("IsReceptionist")]
         public IActionResult Create(ReceptionistViewModel receptionistViewModel)
         {
             //var AllRooms = from r in _dataAccess.HotelRooms.GetAllHotelRooms() select r;
@@ -62,6 +66,7 @@ namespace CasinoRoyal.Controllers
         // POST: Guests/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize("IsReceptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create( Guest guest)
@@ -78,6 +83,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Edit/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -97,6 +103,7 @@ namespace CasinoRoyal.Controllers
         // POST: Guests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize("IsReceptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType,HotelRoom")] Guest guest)
@@ -131,6 +138,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Delete/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +157,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // POST: Guests/Delete/5
+        [Authorize("IsReceptionist")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
