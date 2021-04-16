@@ -13,8 +13,6 @@ namespace CasinoRoyal.Data.Entity
         [Display(Name = "Room Number")]
         public int HotelRoomID { get; set; }
 
-        public DateTime BreakfastReservationDate { get; set; }
-
         public List<Guest> Guests { get; set; }
     }
 }

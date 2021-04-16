@@ -11,19 +11,24 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    color: khaki;
+    color: darkgoldenrod;
 }
 
 .btn-primary {
     background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
+    height: 3em;
     border-color: khaki;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: khaki;
     background: darkgreen;
-    border-color: khaki;
+    border-color: goldenrod;
+}
+
+.nav-item {
+    padding-left: 30px;
 }
 
 /* Sticky footer styles
@@ -82,22 +87,28 @@ logo {
 
 fieldset {
     display: block;
+    font-weight: bold;
     border: 1px solid grey !important;
     box-sizing: border-box;
     display: inline-block;
     margin-right: 20px;
+    background: khaki;
 }
 
 fieldset legend {
     display: block;
     font-size: medium;
-    margin: 10px;
+    margin: 15px;
+    color: black;
+    border-color: goldenrod;
+    padding-top: 12px;
 }
 
 .myfieldset {
     display: block;
     border: 1px solid grey !important;
-    width: 15%;
+    font-weight: bold;
+    width: 6em;
     box-sizing: border-box;
     display: inline-block;
     margin-right: 10px;
@@ -120,6 +131,7 @@ fieldset legend {
     text-align: center;
     height: auto;
     font-size: small;
+    color: darkgreen;
 }
 
 .mytable body {
@@ -153,17 +165,19 @@ label {
 }
 
 .redtext {
-    color: darkred;
+    color: firebrick;
 }
 
 .mybutton {
-    padding: 2px;
+    padding: 4px;
     padding-bottom: 1px;
+    height: 4em;
     font-size: 11px;
+    font-weight: bold;
     box-sizing: border-box;
     background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
-    border-color: khaki;
+    border-color: goldenrod;
 }
 
 #CompanyColor {
@@ -179,7 +193,7 @@ label {
 }
 
 #CheckoutColor {
-    color: red;
+    color: firebrick;
     font-weight: bold;
     
 }
@@ -215,4 +229,8 @@ fieldset {
 }
 #CenterAlignKitchenStaffView {
     text-align: center;
+}
+
+.mylabel {
+    font-weight: bold;
 }

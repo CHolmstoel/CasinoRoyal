@@ -41,6 +41,22 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.HasEatenBreakfast)
         </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.BreakfastReservationDate)
+        </dt>
+        <dd class="col-sm-12">
+            @{
+                if (Model.BreakfastReservationDate == DateTime.MinValue)
+                {
+                    @Html.Label("Not Reserved")
+                    ;
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.BreakfastReservationDate)
+                }
+            }
+        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.GuestType)
         </dt>

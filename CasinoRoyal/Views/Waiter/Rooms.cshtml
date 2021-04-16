@@ -20,7 +20,7 @@
                 @Html.HiddenFor(m => m.Guests)
             </td>
             <td>
-                <button value="Save" class="mybutton">List Guests</button>
+                <button value="Save" class="btn mybutton">List Guests</button>
             </td>
         </tr>
     }
@@ -41,9 +41,9 @@
                         {
                             if (Model.Guests[i].GuestType == "Adult")
                             {
-                                <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
+                                <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
                                 <br/>
-                                <button type="submit" class="mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                 @Html.HiddenFor(g => g.Guests[i].GuestID)
                                 @Html.HiddenFor(g => g.Guests[i].GuestType)
                             }
@@ -67,9 +67,9 @@
                         {
                             if (Model.Guests[i].GuestType == "Child")
                             {
-                                <label for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
+                                <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
                                 <br/>
-                                <button type="submit" class="mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                 @Html.HiddenFor(g => g.Guests[i].GuestID)
                                 @Html.HiddenFor(g => g.Guests[i].GuestType)
                             }

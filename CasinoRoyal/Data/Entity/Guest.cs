@@ -17,6 +17,7 @@ namespace CasinoRoyal.Data.Entity
         public bool IsCheckedIn { get; set; }
         public bool HasEatenBreakfast { get; set; }
         public string GuestType { get; set; }
+        public DateTime BreakfastReservationDate { get; set; }
 
         [ForeignKey("HotelRoomID")]
         public HotelRoom HotelRoom { get; set; }

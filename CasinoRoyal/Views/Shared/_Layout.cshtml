@@ -10,6 +10,12 @@
     {
         isReceptionist = true;
     }
+
+    var isKitchenstaff = false;
+    if (User.HasClaim("KitchenStaff", "IsKitchenStaff"))
+    {
+        isKitchenstaff = true;
+    }
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -33,21 +39,24 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KitchenStaff" >Kitchen View</a>
-                        </li>
+                        @if(isKitchenstaff)
+                        { 
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KitchenStaff">Kitchen View</a>
+                            </li>
+                        }
                         @if (isReceptionist)
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Guests" asp-action="Index">Receptionist View</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Guests" asp-action="Index">Receptionist View</a>
+                            </li>
                         }
-                        @*@if (isWaiter) // commented out during testing
-        {*@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Waiter" asp-action="Rooms" >Waiter View</a>
-                        </li>
-                        
+                        @if (isWaiter) // commented out during testing
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Waiter" asp-action="Rooms">Waiter View</a>
+                            </li>
+                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

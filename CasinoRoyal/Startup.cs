@@ -48,6 +48,10 @@ namespace CasinoRoyal
                 options.AddPolicy("IsReceptionist",
                     policyBuilder => policyBuilder
                         .RequireClaim("Receptionist"));
+
+                options.AddPolicy("isKitchenStaff",
+                    policyBuilder => policyBuilder
+                        .RequireClaim("KitchenStaff"));
             });
         }
 
@@ -95,7 +99,7 @@ namespace CasinoRoyal
                 //=======================================================================Guest & Room id 1
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(1) == null && dataAccess.Guests.GetSingleGuest(1) == null)
                 {
-                    var hotelRoom = new HotelRoom(){BreakfastReservationDate = new DateTime(2021-06-08)};
+                    var hotelRoom = new HotelRoom();
                     conText.HotelRooms.Add(hotelRoom);
                     conText.SaveChanges();
 
@@ -106,7 +110,8 @@ namespace CasinoRoyal
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
                         IsCheckedIn = false,
-                        HotelRoomID = 1
+                        HotelRoomID = 1,
+                        BreakfastReservationDate = DateTime.Today
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -140,7 +145,7 @@ namespace CasinoRoyal
                 //=======================================================================Guest 3 & Room id 2
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(2) == null && dataAccess.Guests.GetSingleGuest(3) == null)
                 {
-                    var hotelRoom = new HotelRoom(){ BreakfastReservationDate = new DateTime(2021 - 06 - 08) };
+                    var hotelRoom = new HotelRoom();
                     conText.HotelRooms.Add(hotelRoom);
                     conText.SaveChanges();
 
@@ -164,7 +169,7 @@ namespace CasinoRoyal
                 //=======================================================================Guest 4 & Room id 3
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(3) == null && dataAccess.Guests.GetSingleGuest(4) == null)
                 {
-                    var hotelRoom = new HotelRoom(){ BreakfastReservationDate = new DateTime(2021 - 06 - 08) };
+                    var hotelRoom = new HotelRoom();
                     conText.HotelRooms.Add(hotelRoom);
                     conText.SaveChanges();
 
@@ -175,7 +180,8 @@ namespace CasinoRoyal
                         GuestType = "Adult",
                         HasEatenBreakfast = false,
                         IsCheckedIn = false,
-                        HotelRoomID = 3
+                        HotelRoomID = 3,
+                        BreakfastReservationDate = DateTime.Today
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -196,7 +202,8 @@ namespace CasinoRoyal
                         GuestType = "Child",
                         HasEatenBreakfast = false,
                         IsCheckedIn = false,
-                        HotelRoomID = 3
+                        HotelRoomID = 3,
+                        BreakfastReservationDate = DateTime.Today
                     };
                     conText.Guest.Add(guest);
                     conText.SaveChanges();
@@ -329,6 +336,11 @@ namespace CasinoRoyal
                     user1.Name = kitchenUserName;
 
                     IdentityResult result = userManager.CreateAsync(user1, kitchenPassword).Result;
+
+                    if (result.Succeeded)
+                    {
+                        userManager.AddClaimAsync(user1, new Claim("KitchenStaff", "IsKitchenStaff")).Wait();
+                    }
                     
                 }
             

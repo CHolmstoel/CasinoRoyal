@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CasinoRoyal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210414193042_addedDateTimeToHotelRoomEntity")]
-    partial class addedDateTimeToHotelRoomEntity
+    [Migration("20210416150006_AddedDateTimeToGuest")]
+    partial class AddedDateTimeToGuest
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,9 @@ namespace CasinoRoyal.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<DateTime>("BreakfastReservationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
@@ -37,7 +40,7 @@ namespace CasinoRoyal.Migrations
                     b.Property<bool>("HasEatenBreakfast")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("HotelRoomID")
+                    b.Property<int>("HotelRoomID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsCheckedIn")
@@ -59,9 +62,6 @@ namespace CasinoRoyal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("BreakfastReservationDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("HotelRoomID");
 
@@ -289,7 +289,9 @@ namespace CasinoRoyal.Migrations
                 {
                     b.HasOne("CasinoRoyal.Data.Entity.HotelRoom", "HotelRoom")
                         .WithMany("Guests")
-                        .HasForeignKey("HotelRoomID");
+                        .HasForeignKey("HotelRoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("HotelRoom");
                 });
