@@ -1,46 +1,51 @@
-﻿@model HotelRoom
+﻿@model ReceptionistViewModel
 
-<h4>Book breakfast - Displaying guests from room @Model.HotelRoomID</h4>
+<h4>Book breakfast - Displaying guests from room @Model.CurrentRoom.HotelRoomID</h4>
 <br/>
+
 <table class="mytable">
     <thead class="font-weight-bold">
-        <tr>
-            <th>
-                <label class="font-weight-bold">First Name</label>
-            </th>
-            <th>
-                <label class="font-weight-bold">Last Name</label>
-            </th>
-            <th>
-                <label class="font-weight-bold">Type</label>
-            </th>
-            <th>
-                <label class="font-weight-bold">Reservation date</label>
-            </th>
-        </tr>
+    <tr>
+        <th>
+            <label class="font-weight-bold">First Name</label>
+        </th>
+        <th>
+            <label class="font-weight-bold">Last Name</label>
+        </th>
+        <th>
+            <label class="font-weight-bold">Type</label>
+        </th>
+        <th>
+            <label class="font-weight-bold">Reservation date</label>
+        </th>
+    </tr>
     </thead>
-    @foreach (var item in Model.Guests)
+    @foreach (var guest in Model.CurrentRoom.Guests)
     {
+        Model.CurrentGuest = guest;
+
         <tbody>
+        <form method="post" asp-action="Complete">
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
+                    @Html.DisplayFor(m => m.CurrentGuest.FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
+                    @Html.DisplayFor(m => m.CurrentGuest.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GuestType)
+                    @Html.DisplayFor(m => m.CurrentGuest.GuestType)
                 </td>
                 <td>
-                    @Html.TextBoxFor(modelItem => item.LastReservationDate)
+                    @Html.TextBoxFor(m => m.CurrentGuest.LastReservationDate)
                 </td>
                 <td>
-                    <form asp-action="Complete">
-                        <button type="submit" class="mybutton" value="@item.HotelRoomID" name="BookButton">Book Breakfast</button>
-                    </form>
+                    <button type="submit" class="mybutton" name="BookButton" value="@Model.CurrentRoom.HotelRoomID">Book Breakfast</button>
+                    @Html.HiddenFor(g => g.CurrentGuest.GuestID);
+
                 </td>
             </tr>
+        </form>
         </tbody>
     }
 </table>

@@ -13,28 +13,14 @@ namespace CasinoRoyal.Models
     {
         public List<HotelRoom> HotelRooms { get; set; }
         public DateTime ReservationDate { get; set; }
+        public HotelRoom CurrentRoom { get; set; }
+        public Guest CurrentGuest { get; set; }
 
         public string HotelRoomNumber => "Room Number";
         public string NumberOfAdults => "Adults";
         public string NumberOfChildren => "Children";
         
 
-
-
-        public Guest GuestToAdd { get; set; }
-
-        public int HotelRoomID { get; set; }
-
-        public SelectList RoomNumbers
-        {
-            get
-            {
-                return new SelectList(Enumerable.Range(1, NumberOfRooms).ToList(), selectedValue: RoomIndex);
-            }
-        }
-
-        public int RoomIndex { get; set; }
-
-        public int NumberOfRooms { get; set; }
+        //public int HotelRoomID { get; set; }
     }
 }

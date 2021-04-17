@@ -9,6 +9,7 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
     public interface IHotelRoomRepository: IRepository<HotelRoom>
     {
         List<HotelRoom> GetAllHotelRooms();
+        List<Guest> GetReservationsForRoom(int id);
         HotelRoom GetSingleHotelRoom(int id);
         void AddHotelRoom(HotelRoom hotelRoom);
         int GetNumberOfHotelRooms();

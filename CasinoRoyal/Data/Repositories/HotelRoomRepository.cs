@@ -20,24 +20,34 @@ namespace CasinoRoyal.Data.Repositories
         }
         public List<HotelRoom> GetAllHotelRooms()
         {
-            return new List<HotelRoom>(Context.HotelRooms
+            return context.HotelRooms
                 .Include(g => g.Guests)
-                .ToList()
-                );
+                .ToList();
         }
+
         public HotelRoom GetSingleHotelRoom(int id)
         {
-            return Context.HotelRooms
+            return context.HotelRooms
                 .Include(g => g.Guests)
                 .SingleOrDefault(i => i.HotelRoomID == id);
         }
+
+        public List<Guest> GetReservationsForRoom(int id)
+        {
+            return context.HotelRooms
+                .Include(g => g.Guests)
+                .SingleOrDefault(r => r.HotelRoomID == id)
+                .Guests.Where(g => g.MadeReservation)
+                .ToList();
+        }
+
         public void AddHotelRoom(HotelRoom hotelRoom)
         {
-            Context.HotelRooms.Add(hotelRoom);
+            context.HotelRooms.Add(hotelRoom);
         }
         public int GetNumberOfHotelRooms()
         {
-            return Context.HotelRooms.Count();
+            return context.HotelRooms.Count();
         }
     }
 }

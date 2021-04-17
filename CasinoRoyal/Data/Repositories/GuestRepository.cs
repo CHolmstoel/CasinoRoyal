@@ -50,16 +50,27 @@ namespace CasinoRoyal.Data.Repositories
                 .SingleOrDefault(i => i.GuestID == id);
         }
 
-        public void CheckInGuest(int id)
+        public void MakeReservation(int id, DateTime date)
+        {
+            var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
+            guest.LastReservationDate = date;
+            guest.MadeReservation = true;
+            guest.CheckedIn = false;
+        }
+
+        public void CheckIn(int id)
         {
             var guest = context.Guest
                 .SingleOrDefault(g => g.GuestID == id);
-            
+
             if (guest != null)
+            {
                 guest.CheckedIn = true;
+                guest.MadeReservation = false;
+            }
         }
 
-        public void CheckOutAllGuests()
+        public void CheckOutAll()
         {
             var guests = context.Guest.Where(i => i.CheckedIn);
             

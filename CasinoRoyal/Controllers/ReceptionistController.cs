@@ -33,16 +33,23 @@ namespace CasinoRoyal.Controllers
             return View(receptionistViewModel);
         }
 
-        public IActionResult Book(string BookButton)
+        public IActionResult Book(string bookButton)
         {
-            var hotelRoom = _dataAccess.HotelRooms.GetSingleHotelRoom(int.Parse(BookButton));
+            var receptionistViewModel = new ReceptionistViewModel();
 
-            return View(hotelRoom);
+            receptionistViewModel.CurrentRoom = _dataAccess.HotelRooms.GetSingleHotelRoom(int.Parse(bookButton));
+
+            return View(receptionistViewModel);
         }
 
-        public IActionResult Complete(string BookButton)
+        [HttpPost]
+        public IActionResult Complete(ReceptionistViewModel receptionistViewModel, string bookButton)
         {
-            TempData["Booking"] = BookButton;
+            _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
+            _dataAccess.Complete();
+
+            TempData["Booking"] = bookButton;
+            
             return RedirectToAction(nameof(Index));
         }
     }

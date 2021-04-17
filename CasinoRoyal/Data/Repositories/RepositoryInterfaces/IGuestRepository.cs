@@ -9,9 +9,9 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
     public interface IGuestRepository: IRepository<Guest>
     {
         List<Guest> GetAllGuests();
-        public void CheckInGuest(int id);
-        public void CheckOutGuest(Guest guest);
-        public void CheckOutAllGuests();
+        public void MakeReservation(int id, DateTime date);
+        public void CheckIn(int id);
+        public void CheckOutAll();
         int GetAllAdults();
         int GetAllChildren();
         int GetAllAdultsCheckedIn();

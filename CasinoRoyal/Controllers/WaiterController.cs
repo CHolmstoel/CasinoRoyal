@@ -7,6 +7,7 @@ using CasinoRoyal.Data;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CasinoRoyal.Controllers
 {
@@ -38,7 +39,7 @@ namespace CasinoRoyal.Controllers
         {
             if ((int)waiterViewModel.DisplayRoomNumbers.SelectedValue > 0)
             {
-                waiterViewModel.Guests = _dataAccess.HotelRooms.GetSingleHotelRoom(waiterViewModel.RoomIndex).Guests;
+                waiterViewModel.Guests = _dataAccess.HotelRooms.GetReservationsForRoom(waiterViewModel.RoomIndex);
             }
             else
             {
@@ -58,20 +59,20 @@ namespace CasinoRoyal.Controllers
             {
                 if (guest.GuestID == int.Parse(btn))
                 {
-                    _dataAccess.Guests.CheckInGuest(guest.GuestID);
+                    _dataAccess.Guests.CheckIn(guest.GuestID);
                     _dataAccess.Complete();
                 }
             }
 
             TempData["success"] = "true";
 
-            return RedirectToAction(nameof(Index));
+            return View("Succesful");
         }
 
         [Authorize("IsWaiter")]
         public IActionResult Checkout()
         {
-            _dataAccess.Guests.CheckOutAllGuests();
+            _dataAccess.Guests.CheckOutAll();
             _dataAccess.Complete();
 
             TempData["CheckedOut"] = "true";
