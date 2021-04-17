@@ -8,9 +8,9 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
 {
     public interface IReservationRepository: IRepository<Reservation>
     {
-        List<Reservation> GetAllReservations();
-        Reservation GetSingleReservation(int id);
-        void MakeReservation(Reservation reservation);
+        public List<Reservation> GetAllReservations();
+        public Reservation GetSingleReservation(int id);
+        public void MakeReservation(Reservation reservation);
 
     }
 }
