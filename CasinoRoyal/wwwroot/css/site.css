@@ -121,6 +121,14 @@ logo {
 .content {
     text-align: center;
 }
+#FrontPageFont {
+    font-family: 'Garamond';
+    color: darkkhaki;
+    font-size: 75px;
+    max-width: 100%;
+    height: auto;
+    text-align: left;
+}
 
 fieldset {
     display: block;
