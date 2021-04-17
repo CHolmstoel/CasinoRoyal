@@ -52,14 +52,14 @@ namespace CasinoRoyal.Data.Repositories
 
         public void MakeReservation(int id, DateTime date)
         {
-            var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
+            var guest = context.Guest.Include(g => g.Reservations).SingleOrDefault(i => i.GuestID == id);
 
             if (guest.Reservations == null)
             {
                 guest.Reservations = new List<Reservation>();
             }
 
-            if (guest.Reservations.Any(d => d.Date.Date == DateTime.Today.Date))
+            if (guest.Reservations.Any(d => d.Date.Date == date.Date))
             {
                 var reservationToRemove = guest.Reservations.SingleOrDefault(d => d.Date.Date == date.Date);
 
@@ -163,15 +163,31 @@ namespace CasinoRoyal.Data.Repositories
             Context.Guest.Remove(guest);
         }
 
-        public bool ReservationPossible(int id)
+        public bool ReservationPossible(int id, DateTime date)
         {
             var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
-            if (guest.LastCheckInDate.Date == DateTime.Today.Date)
+            if (guest.LastCheckInDate.Date == DateTime.Today.Date )
             {
-                return false;
+                if (date.Date == guest.LastCheckInDate.Date)
+                    return false;
+                else
+                    return true;
             }
             else
                 return true;
+
+
+            //if (guest.LastReservationDate.Date != date.Date)
+            //    return true;
+            //else
+            //{
+            //    if (guest.LastCheckInDate.Date == DateTime.Today.Date)
+            //    {
+            //        return false;
+            //    }
+            //    else
+            //        return true;
+            //}
         }
     }
 }
