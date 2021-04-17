@@ -1,6 +1,6 @@
 How to use the application:
 
-1) Make sure to the google chrome browser
+1) Use any other browser than Internet Explorer and Edge. 
 
 
 
