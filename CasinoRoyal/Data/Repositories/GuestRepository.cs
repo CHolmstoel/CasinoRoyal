@@ -151,5 +151,16 @@ namespace CasinoRoyal.Data.Repositories
         {
             Context.Guest.Remove(guest);
         }
+
+        public bool ReservationPossible(int id)
+        {
+            var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
+            if (guest.LastCheckInDate == DateTime.Today)
+            {
+                return false;
+            }
+            else
+                return true;
+        }
     }
 }
