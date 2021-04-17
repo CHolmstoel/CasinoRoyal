@@ -168,7 +168,7 @@ namespace CasinoRoyal.Data.Repositories
             var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
             if (guest.LastCheckInDate.Date == DateTime.Today.Date )
             {
-                if (date.Date == guest.LastCheckInDate.Date)
+                if (date.Date == DateTime.Today.Date)
                     return false;
                 else
                     return true;
