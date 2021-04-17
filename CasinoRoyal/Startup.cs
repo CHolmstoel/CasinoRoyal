@@ -96,7 +96,7 @@ namespace CasinoRoyal
                 ApplicationDbContext conText = context;
                 IDataAccessAction dataAccess = new DataAccessAction(conText);
 
-                //=======================================================================Guest & Room id 1
+                //======================================================================= Guest & Room id 1
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(1) == null && dataAccess.Guests.GetSingleGuest(1) == null)
                 {
                     var hotelRoom = new HotelRoom();
@@ -120,7 +120,7 @@ namespace CasinoRoyal
                     conText.SaveChanges();
                 }
 
-                //=======================================================================Guest id 2 added to room id 1
+                //======================================================================= Guest id 2 added to room id 1
                 if (dataAccess.Guests.GetSingleGuest(2) == null)
                 {
 
@@ -141,7 +141,7 @@ namespace CasinoRoyal
                     conText.SaveChanges();
                 }
 
-                //=======================================================================Guest 3 & Room id 2
+                //======================================================================= Guest 3 & Room id 2
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(2) == null && dataAccess.Guests.GetSingleGuest(3) == null)
                 {
                     var hotelRoom = new HotelRoom();
@@ -165,7 +165,7 @@ namespace CasinoRoyal
                     conText.SaveChanges();
                 }
 
-                //=======================================================================Guest 4 & Room id 3
+                //======================================================================= Guest 4 & Room id 3
                 if (dataAccess.HotelRooms.GetSingleHotelRoom(3) == null && dataAccess.Guests.GetSingleGuest(4) == null)
                 {
                     var hotelRoom = new HotelRoom();
@@ -189,7 +189,7 @@ namespace CasinoRoyal
                     conText.SaveChanges();
                 }
 
-                //=======================================================================Guest id 5 added to room id 3
+                //======================================================================= Guest id 5 added to room id 3
                 if (dataAccess.Guests.GetSingleGuest(5) == null)
                 {
 
@@ -210,7 +210,7 @@ namespace CasinoRoyal
                     conText.SaveChanges();
                 }
 
-                //=======================================================================Guest id 6+7 added to room id 2
+                //======================================================================= Guest id 6+7 added to room id 2
                 if (dataAccess.Guests.GetSingleGuest(6) == null && dataAccess.Guests.GetSingleGuest(7) ==null)
                 {
                     List<Guest> guests = new List<Guest>
