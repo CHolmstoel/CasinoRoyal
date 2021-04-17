@@ -46,21 +46,16 @@
                     <form asp-action="Book">
                         <button type="submit" class="mybutton" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton">
                             @{
-                                if (TempData["Booking"] != null)
+                                if (TempData["Booking"] != null && (TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
                                 {
-                                    if ((TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
-                                    {
-                                        <p>Successful!</p>
-                                    }
-                                    else if((TempData["Fail"].ToString()) == item.HotelRoomID.ToString())
-                                    {
-                                        <p>Guest has eaten today</p>
-                                    }
-                                    else
-                                    {
-                                        <p>Book Breakfast</p>
-                                    }
+                                    <p>Successful!</p>
                                 }
+
+                                else if(TempData["Fail"] != null && (TempData["Fail"].ToString()) == item.HotelRoomID.ToString())
+                                {
+                                    <p>Guest has eaten today</p>
+                                }
+
                                 else
                                 {
                                     <p>Book Breakfast</p>
@@ -86,7 +81,7 @@
     </tr>
     <tr>
         <td>
-            <input type="button" class="btn btn-primary myborderbox" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"
+            <input type="button" class="btn btn-primary myborderbox" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"/>
         </td>
         <td>
             @{

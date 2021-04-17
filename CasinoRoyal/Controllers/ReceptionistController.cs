@@ -50,11 +50,11 @@ namespace CasinoRoyal.Controllers
             { 
                 _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
                 _dataAccess.Complete();
-                TempData["Booking"] = bookButton.ToString();
+                TempData["Booking"] = bookButton;
             }
             else
             {
-                TempData["Fail"] = bookButton.ToString();
+                TempData["Fail"] = bookButton;
             }
 
             
