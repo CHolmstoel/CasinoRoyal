@@ -65,6 +65,7 @@ namespace CasinoRoyal.Data.Repositories
 
             if (guest != null)
             {
+                guest.LastCheckInDate = DateTime.Now;
                 guest.CheckedIn = true;
                 guest.MadeReservation = false;
             }
@@ -72,10 +73,11 @@ namespace CasinoRoyal.Data.Repositories
 
         public void CheckOutAll()
         {
-            var guests = context.Guest.Where(i => i.CheckedIn);
+            var guests = context.Guest.ToList();
             
             foreach (var guest in guests)
             {
+                guest.LastCheckInDate = DateTime.MinValue;
                 guest.CheckedIn = false;
             }
         }

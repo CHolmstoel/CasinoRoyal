@@ -26,38 +26,41 @@
     {
         <tbody>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.HotelRoomID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AdultsBreakfastDone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ChildrenBreakfastDone)
-            </td>
-            <td>
-                <form asp-action="Book">
-                    <button type="submit" class="mybutton" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton">
-                        @{
-                            if (TempData["Booking"] != null)
-                            {
-                                if (int.Parse(TempData["Booking"].ToString()) == item.HotelRoomID)
+            @if (item.Guests.Count != 0)
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.HotelRoomID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AdultsBreakfastDone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChildrenBreakfastDone)
+                </td>
+                <td>
+                    <form asp-action="Book">
+                        <button type="submit" class="mybutton" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton">
+                            @{
+                                if (TempData["Booking"] != null)
                                 {
-                                    <p>Successful!</p>
+                                    if (int.Parse(TempData["Booking"].ToString()) == item.HotelRoomID)
+                                    {
+                                        <p>Successful!</p>
+                                    }
+                                    else
+                                    {
+                                        <p>Book Breakfast</p>
+                                    }
                                 }
                                 else
                                 {
                                     <p>Book Breakfast</p>
                                 }
                             }
-                            else
-                            {
-                                <p>Book Breakfast</p>
-                            }
-                        }
-                    </button>
-                </form>
-            </td>
+                        </button>
+                    </form>
+                </td>
+            }
         </tr>
         </tbody>
     }

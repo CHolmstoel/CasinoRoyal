@@ -22,6 +22,7 @@ namespace CasinoRoyal.Data.Repositories
         {
             return context.HotelRooms
                 .Include(g => g.Guests)
+                .ThenInclude(r => r.Reservations)
                 .ToList();
         }
 

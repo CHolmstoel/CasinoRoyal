@@ -37,6 +37,9 @@
                     @Html.DisplayFor(m => m.CurrentGuest.GuestType)
                 </td>
                 <td>
+                    @{
+                        guest.LastReservationDate = DateTime.Now;
+                    }
                     @Html.TextBoxFor(m => m.CurrentGuest.LastReservationDate)
                 </td>
                 <td>

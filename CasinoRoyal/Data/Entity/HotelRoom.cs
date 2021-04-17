@@ -20,7 +20,8 @@ namespace CasinoRoyal.Data.Entity
         {
             get
             {
-                return Guests.Where(t => t.GuestType == "Adult").Where(l => l.LastCheckInDate == DateTime.Today).Count(g => g.CheckedIn);
+                return Guests.Where(t => t.GuestType == "Adult")
+                    .Count(l => l.LastCheckInDate.Date == DateTime.Today.Date);
             }
         }
 
@@ -29,7 +30,8 @@ namespace CasinoRoyal.Data.Entity
         {
             get
             {
-                return Guests.Where(t => t.GuestType == "Child").Where(l => l.LastCheckInDate == DateTime.Today).Count(g => g.CheckedIn);
+                return Guests.Where(t => t.GuestType == "Child")
+                    .Count(l => l.LastCheckInDate.Date == DateTime.Today.Date);
             }
         }
 

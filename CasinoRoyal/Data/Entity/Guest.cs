@@ -7,6 +7,11 @@ namespace CasinoRoyal.Data.Entity
 {
     public class Guest
     {
+        public Guest()
+        {
+            LastReservationDate = DateTime.Now;
+        }
+
         [Key]
         public int GuestID{ get; set; }
         [Display(Name = "First Name")]
