@@ -84,7 +84,22 @@
             <input type="button" class="btn btn-primary myborderbox" value="Reservations - Next 5 Days" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
         </td>
         <td>
-            <input type="button" class="btn btn-primary myborderbox" value="Cancel All Reservations" onclick="location.href = '@Url.Action("", "Receptionist")'" />
+            <input type="button" class="btn btn-primary myborderbox" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"
+        </td>
+        <td>
+            @{
+                if (TempData["cancel"] != null)
+                {
+                    if (TempData["cancel"].ToString() == "CancelBtn")
+                    {
+                        <p>Successful cancel!</p>
+                    }
+                    else
+                    {
+                        <p>Failed to cancel</p>
+                    }
+                }
+            }
         </td>
     </tr>
 </table>
