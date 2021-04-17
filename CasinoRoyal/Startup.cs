@@ -108,7 +108,6 @@ namespace CasinoRoyal
                         FirstName = "Mogens",
                         LastName = "Eberhart",
                         GuestType = "Adult",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 1,
@@ -130,7 +129,6 @@ namespace CasinoRoyal
                         FirstName = "Poul",
                         LastName = "Eberhart",
                         GuestType = "Child",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 1
@@ -155,7 +153,6 @@ namespace CasinoRoyal
                         FirstName = "Einar",
                         LastName = "Palsgaard",
                         GuestType = "Adult",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 2
@@ -180,7 +177,6 @@ namespace CasinoRoyal
                         FirstName = "Nicki",
                         LastName = "Minaj",
                         GuestType = "Adult",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 3
@@ -202,7 +198,6 @@ namespace CasinoRoyal
                         FirstName = "Junior",
                         LastName = "Minaj",
                         GuestType = "Child",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 3,
@@ -225,7 +220,6 @@ namespace CasinoRoyal
                         FirstName = "Nougi",
                         LastName = "Senior",
                         GuestType = "Adult",
-                        Reservations = new List<Reservation>(),
                         MadeReservation = false,
                         CheckedIn = false,
                         HotelRoomID = 2
@@ -235,7 +229,6 @@ namespace CasinoRoyal
                             FirstName = "Nougi",
                             LastName = "Junior",
                             GuestType = "Child",
-                            Reservations = new List<Reservation>(),
                             MadeReservation = false,
                             CheckedIn = false,
                             HotelRoomID = 2
