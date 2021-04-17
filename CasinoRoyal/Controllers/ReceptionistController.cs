@@ -46,7 +46,7 @@ namespace CasinoRoyal.Controllers
         public IActionResult CompleteGuest(ReceptionistViewModel receptionistViewModel, string bookButton)
         {
             //Hvis reservationen ligger idag, tjek for dette, ellers ikke
-            if(_dataAccess.Guests.ReservationPossible(receptionistViewModel.CurrentGuest.GuestID))
+            if(_dataAccess.Guests.ReservationPossible(receptionistViewModel.CurrentGuest.GuestID,receptionistViewModel.ReservationDate))
             { 
                 _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
                 _dataAccess.Complete();
