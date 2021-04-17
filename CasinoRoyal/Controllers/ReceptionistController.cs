@@ -90,7 +90,7 @@ namespace CasinoRoyal.Controllers
                 }
             }
 
-            return View();
+            return View(receptionistViewModel);
         }
 
         // GET: Guests/Create
