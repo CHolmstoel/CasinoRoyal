@@ -54,7 +54,7 @@ namespace CasinoRoyal.Controllers
             }
             else
             {
-                TempData["Booking"] = "Failed";
+                TempData["Fail"] = bookButton.ToString();
             }
 
             
