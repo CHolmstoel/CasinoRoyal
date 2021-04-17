@@ -68,6 +68,12 @@
         </tbody>
     }
 </table>
-<p>
-    <input type="button" class="btn btn-primary" value="Cancel All Reservations" onclick="location.href='@Url.Action("Create", "Guests")'" />
-</p>
+<div>
+    <input type="button" class="btn btn-primary" value="Cancel All Reservations" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
+</div>
+
+<br/>
+
+<div>
+    <input type="button" class="btn btn-primary" value="New hotel guest" onclick="location.href = '@Url.Action("Create", "Receptionist")'" />
+</div>

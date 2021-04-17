@@ -92,5 +92,35 @@ namespace CasinoRoyal.Controllers
 
             return View();
         }
+
+        // GET: Guests/Create
+        [Authorize("IsReceptionist")]
+        public IActionResult Create(ReceptionistViewModel receptionistViewModel)
+        {
+            //var AllRooms = from r in _dataAccess.HotelRooms.GetAllHotelRooms() select r;
+            //var AllRooms = new WaiterViewModel();
+            //AllRooms.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
+            receptionistViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
+            return View(receptionistViewModel);
+        }
+
+        // POST: Guests/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize("IsReceptionist")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Guest guest)
+        {
+            if (ModelState.IsValid)
+            {
+                _dataAccess.Guests.AddGuest(guest);
+                //_context.Add(guest);
+                //await _context.SaveChangesAsync();
+                _dataAccess.Complete();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(guest);
+        }
     }
 }

@@ -21,8 +21,26 @@ namespace CasinoRoyal.Models
         public string Date => "Reservation Date";
         public string NumberOfAdults => "Adults";
         public string NumberOfChildren => "Children";
-        
 
-        //public int HotelRoomID { get; set; }
+
+        public Guest GuestToAdd { get; set; }
+
+        [BindProperty]
+        public int HotelRoomID { get; set; }
+
+        [BindProperty]
+        public int NumberOfRooms { get; set; }
+
+        [BindProperty]
+        public List<string> GuestsIDsToAdd { get; set; }
+
+        [BindProperty]
+        public SelectList RoomNumbers
+        {
+            get
+            {
+                return new SelectList(Enumerable.Range(1, NumberOfRooms).ToList(), selectedValue: HotelRoomID);
+            }
+        }
     }
 }
