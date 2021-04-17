@@ -48,9 +48,13 @@
                             @{
                                 if (TempData["Booking"] != null)
                                 {
-                                    if (int.Parse(TempData["Booking"].ToString()) == item.HotelRoomID)
+                                    if ((TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
                                     {
                                         <p>Successful!</p>
+                                    }
+                                    else if(TempData["Booking"].ToString() == "Failed")
+                                    {
+                                        <p>Guest has eaten today</p>
                                     }
                                     else
                                     {
@@ -82,7 +86,22 @@
     </tr>
     <tr>
         <td>
-            <input type="button" class="btn btn-primary myborderbox" value="Cancel All Reservations" onclick="location.href = '@Url.Action("", "Receptionist")'" />
+            <input type="button" class="btn btn-primary myborderbox" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"
+        </td>
+        <td>
+            @{
+                if (TempData["cancel"] != null)
+                {
+                    if (TempData["cancel"].ToString() == "CancelBtn")
+                    {
+                        <p>Successful cancel!</p>
+                    }
+                    else
+                    {
+                        <p>Failed to cancel</p>
+                    }
+                }
+            }
         </td>
     </tr>
 </table>

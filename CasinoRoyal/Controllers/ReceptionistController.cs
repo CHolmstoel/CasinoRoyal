@@ -45,10 +45,19 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult CompleteGuest(ReceptionistViewModel receptionistViewModel, string bookButton)
         {
-            _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
-            _dataAccess.Complete();
+            //Hvis reservationen ligger idag, tjek for dette, ellers ikke
+            if(_dataAccess.Guests.ReservationPossible(receptionistViewModel.CurrentGuest.GuestID))
+            { 
+                _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
+                _dataAccess.Complete();
+                TempData["Booking"] = bookButton.ToString();
+            }
+            else
+            {
+                TempData["Booking"] = "Failed";
+            }
 
-            TempData["Booking"] = bookButton;
+            
             
             return RedirectToAction(nameof(Index));
         }
@@ -103,6 +112,8 @@ namespace CasinoRoyal.Controllers
 
             _dataAccess.Reservations.CancelAllReservations();
             _dataAccess.Complete();
+
+            TempData["cancel"] = "CancelBtn";
 
             return RedirectToAction(nameof(Index));
         }

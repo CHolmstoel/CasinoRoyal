@@ -166,7 +166,7 @@ namespace CasinoRoyal.Data.Repositories
         public bool ReservationPossible(int id)
         {
             var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
-            if (guest.LastCheckInDate == DateTime.Today)
+            if (guest.LastCheckInDate.Date == DateTime.Today.Date)
             {
                 return false;
             }
