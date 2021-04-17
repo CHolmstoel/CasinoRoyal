@@ -170,6 +170,7 @@ fieldset legend {
 
 .buttontable table, td, tr {
     text-align: left;
+    margin-bottom: 12px;
 }
 
 .mytable td, thead, tbody, tr, th {
