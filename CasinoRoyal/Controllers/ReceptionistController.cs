@@ -79,27 +79,21 @@ namespace CasinoRoyal.Controllers
 
         public IActionResult Reservations(ReceptionistViewModel receptionistViewModel)
         {
-            if (receptionistViewModel.GuestsWithReservations == null)
+            if (receptionistViewModel.Reservations == null)
             {
-                receptionistViewModel.GuestsWithReservations = new List<Guest>();
+                receptionistViewModel.Reservations = new List<Reservation>();
             }
 
             else
             {
-                receptionistViewModel.GuestsWithReservations.Clear();
+                receptionistViewModel.Reservations.Clear();
             }
 
             var reservations = _dataAccess.Reservations.GetAllReservations();
 
-            foreach (var reservation in reservations)
-            {
-                foreach (var guest in reservation.Guests)
-                {
-                    receptionistViewModel.GuestsWithReservations.Add(guest);
-                }
-            }
+            reservations.Sort((res1, res2) => res1.Date.CompareTo(res2.Date));
 
-            receptionistViewModel.GuestsWithReservations.Sort((room1,room2) => room1.HotelRoomID.CompareTo(room2.HotelRoomID));
+            receptionistViewModel.Reservations = reservations;
 
             return View(receptionistViewModel);
         }
@@ -107,9 +101,9 @@ namespace CasinoRoyal.Controllers
         [Authorize("IsReceptionist")]
         public IActionResult CancelAllReservations(ReceptionistViewModel receptionistViewModel)
         {
-            if (receptionistViewModel.GuestsWithReservations != null)
+            if (receptionistViewModel.Reservations != null)
             {
-                receptionistViewModel.GuestsWithReservations.Clear();
+                receptionistViewModel.Reservations.Clear();
             }
 
             _dataAccess.Reservations.CancelAllReservations();

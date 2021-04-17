@@ -250,7 +250,7 @@ label {
     height: 3em;
     padding-top: 5px;
     padding-bottom: 0;
-    border-radius: 7px;
+    border-radius: .25rem;
 }
 
 #CompanyColor {
@@ -327,6 +327,19 @@ fieldset {
 
     .opacity_img:hover {
         cursor: pointer;
-        box-shadow: 0px 0px 5px #fff;
+        box-shadow: 5px 0px 10px rgba(52, 112, 50, 1);
         transition: opacity 0.5s;
     }
+
+#my_a:hover {
+    color: #ffc107 !important;
+}
+
+.max-width-img {
+    max-width: 30em;
+}
+
+.mywarning {
+    font-size: small;
+    color: red;
+}

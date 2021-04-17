@@ -20,7 +20,9 @@ namespace CasinoRoyal.Data.Entity
         public bool CheckedIn { get; set; }
         public bool MadeReservation { get; set; }
         public string GuestType { get; set; }
+
         public DateTime LastReservationDate { get; set; }
+
         public DateTime LastCheckInDate { get; set; }
 
         [ForeignKey("HotelRoomID")]
@@ -33,6 +35,10 @@ namespace CasinoRoyal.Data.Entity
         public int ReservationID { get; set; }
 
         public List<Reservation> Reservations { get; set; }
+
+
+        [NotMapped]
+        public string LastReservationDateDisplay { get => LastReservationDate.ToString("D"); set => DateTime.Parse(value); }
 
     }
 }

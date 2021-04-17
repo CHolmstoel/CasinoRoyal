@@ -86,7 +86,7 @@ namespace CasinoRoyal.Data.Repositories
 
             if (guest != null)
             {
-                var reservation = context.Reservations.Include(g => g.Guests).SingleOrDefault(g => g.GuestID == id);
+                var reservation = context.Reservations.Include(g => g.Guests).Where(r => r.Date == DateTime.Today.Date).SingleOrDefault(g => g.GuestID == id);
 
                 if (reservation != null)
                 {

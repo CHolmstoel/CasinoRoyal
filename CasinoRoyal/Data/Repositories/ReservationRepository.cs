@@ -20,7 +20,7 @@ namespace CasinoRoyal.Data.Repositories
 
         public List<Reservation> GetAllReservations()
         {
-            return context.Reservations.Include(g => g.Guests).ToList();
+            return context.Reservations.Where(r => DateTime.Today.Date <= r.Date && r.Date <= DateTime.Today.AddDays(5).Date).Include(g => g.Guests).ToList();
         }
 
         public Reservation GetSingleReservation(int id)

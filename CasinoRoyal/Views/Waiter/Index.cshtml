@@ -29,7 +29,7 @@
                 <label>Room Number:</label>
             </td>
             <td>
-                @Html.DropDownListFor(m => m.RoomIndex, Model.DisplayRoomNumbers, "-- Select  --", new { onchange = "submit();" })
+                @Html.DropDownListFor(m => m.RoomIndex, Model.DisplayRoomNumbers, "-- Select Room --", new { onchange = "submit();" })
                 @Html.HiddenFor(m => m.Guests)
             </td>
         </tr>
@@ -101,22 +101,22 @@
             {
                 if ((string)TempData["check"] == "false")
                 {
-                    <p>Please select room</p>
+                    <p class="mywarning">Please select room</p>
                 }
                 else
                 {
-                    <p>No Reservations</p>
+                    <p class="mywarning">No Reservations for today</p>
                 }
             }
         }
     }
     @if ((string)TempData["success"] == "true")
     {
-        <p>Guest checked in</p>
+        <p class="mywarning">Guest checked in</p>
     }
     @if ((string)TempData["CheckedOut"] == "true")
     {
-        <p>All guests checked out</p>
+        <p class="mywarning">All guests checked out</p>
     }
 </div>
 <div>

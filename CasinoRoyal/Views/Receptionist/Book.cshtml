@@ -22,7 +22,7 @@
                 @Html.DisplayFor(m => m.CurrentRoom.HotelRoomID)
             </td>
             <td>
-                @Html.TextBoxFor(m => m.ReservationDate)
+                @Html.TextBoxFor(m => m.ReservationDateDisplay)
             </td>
             <td>
                 <button type="submit" class="mybutton">Book Breakfast</button>
@@ -74,7 +74,7 @@
                     @{
                         guest.LastReservationDate = DateTime.Now;
                     }
-                    @Html.TextBoxFor(m => m.CurrentGuest.LastReservationDate)
+                    @Html.TextBoxFor(m => m.CurrentGuest.LastReservationDateDisplay)
                 </td>
                 <td>
                     <button type="submit" class="mybutton" name="BookButton" value="@Model.CurrentRoom.HotelRoomID">Book Breakfast</button>

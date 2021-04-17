@@ -6,6 +6,9 @@
     <thead>
     <tr>
         <td>
+            <label class="font-weight-bold">Reservation date</label>
+        </td>
+        <td>
             <label class="font-weight-bolder">Room Number</label>
         </td>
         <td>
@@ -17,15 +20,17 @@
         <td>
             <label class="font-weight-bold">Type</label>
         </td>
-        <td>
-            <label class="font-weight-bold">Reservation date</label>
-        </td>
     </tr>
     </thead>
-    @foreach (var guest in Model.GuestsWithReservations)
+    @foreach (var reservation in Model.Reservations)
     {
-        <tbody>
+        foreach (var guest in reservation.Guests)
+        {
+            <tbody>
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => reservation.Date)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => guest.HotelRoomID)
                 </td>
@@ -38,11 +43,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => guest.GuestType)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => guest.LastReservationDate)
-                </td>
-
             </tr>
-        </tbody>
+            </tbody>
+        }
     }
 </table>
