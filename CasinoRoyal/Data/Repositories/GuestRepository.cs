@@ -52,14 +52,14 @@ namespace CasinoRoyal.Data.Repositories
 
         public void MakeReservation(int id, DateTime date)
         {
-            var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
+            var guest = context.Guest.Include(g => g.Reservations).SingleOrDefault(i => i.GuestID == id);
 
             if (guest.Reservations == null)
             {
                 guest.Reservations = new List<Reservation>();
             }
 
-            if (guest.Reservations.Any(d => d.Date.Date == DateTime.Today.Date))
+            if (guest.Reservations.Any(d => d.Date.Date == date.Date))
             {
                 var reservationToRemove = guest.Reservations.SingleOrDefault(d => d.Date.Date == date.Date);
 
