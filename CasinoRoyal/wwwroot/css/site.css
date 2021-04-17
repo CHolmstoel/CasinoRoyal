@@ -232,7 +232,7 @@ label {
     box-sizing: border-box;
     background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
-    border-color: goldenrod;
+    border-color: khaki;
     min-width: 10em;
     border-radius: 7px;
 }
