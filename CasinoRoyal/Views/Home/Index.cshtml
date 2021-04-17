@@ -1,20 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 
 }
 
 <div class="content">
     <p id="FrontPageFont">Welcome to</p>
-    
-    <img src="~/Images/logo.png" class="GeneralRepsonsive"/>
-    
-    <br/>
-    <br/>
-    <div>
-        <button class="mybutton" asp-area="Identity" asp-page="/Account/Login">Login</button>
-        <button class="mybutton" asp-area="Identity" asp-page="/Account/Register">Register</button>
-    </div>
-        
-    
 
+    <img src="~/Images/logo.png" class="GeneralRepsonsive" />
+
+    <br />
+    <br />
+
+    <div class="container">
+        <a asp-area="Identity" asp-page="/Account/Login">
+            <button class="mybutton" >Login</button>
+        </a>
+        <a asp-area="Identity" asp-page="/Account/Register">
+            <button class="mybutton" >Register</button>
+        </a>
+    </div>
 </div>
