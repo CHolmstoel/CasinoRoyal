@@ -1,6 +1,8 @@
 How to use the application:
 
-1) 
+1) Make sure to the google chrome browser
+
+
 
 
 
@@ -16,6 +18,5 @@ How to use the application:
  Password:   Sommer25!
 
  - Kitchen login:
-
  Brugernavn: Kitchen@kitchen.com
  Password:   Sommer25!

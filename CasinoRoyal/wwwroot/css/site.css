@@ -188,6 +188,15 @@ table {
     text-align: left;
 }
 
+.tablekitchen fieldset legend{
+    font-size: 24px;
+}
+#tablekitchen table, thead, th, td, tr {
+    font-size: 22px;
+    width: auto;
+    height: auto;
+}
+
 th {
     font-weight: normal;
     text-align: right;
@@ -223,7 +232,7 @@ label {
     box-sizing: border-box;
     background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
-    border-color: goldenrod;
+    border-color: khaki;
     min-width: 10em;
     border-radius: 7px;
 }

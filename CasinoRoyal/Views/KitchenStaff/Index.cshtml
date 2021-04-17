@@ -9,9 +9,9 @@
 
     <h2>Breakfast Check-in Information</h2><br />
 
-    <fieldset id="fieldsetMargin">
+    <fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Hotel Guests Total:</legend>
-        <table class="table">
+        <table class="table" >
             <thead>
                 <tr>
                     <th>
@@ -41,9 +41,9 @@
         </table>
     </fieldset>
     <br />
-    <fieldset id="fieldsetMargin">
+    <fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Checked In For Breakfast:</legend>
-        <table class="table">
+        <table class="table" >
             <thead>
                 <tr>
                     <th>
@@ -67,12 +67,12 @@
         </table>
     </fieldset>
     <br />
-    <fieldset>
+    <fieldset fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Not Checked In For Breakfast:</legend>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>
+        <table class="table" id="tablekitchen" >
+            <thead >
+                <tr >
+                    <th >
                         @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
                     </th>
                     <th>
