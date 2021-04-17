@@ -87,7 +87,11 @@ namespace CasinoRoyal.Data.Repositories
             if (guest != null)
             {
                 var reservation = context.Reservations.Include(g => g.Guests).SingleOrDefault(g => g.GuestID == id);
-                context.Reservations.Remove(reservation);
+
+                if (reservation != null)
+                {
+                    context.Reservations.Remove(reservation);
+                }
                 
                 guest.Reservations.Remove(reservation);
                 guest.LastCheckInDate = DateTime.Now;
