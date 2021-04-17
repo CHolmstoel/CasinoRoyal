@@ -32,7 +32,8 @@ namespace CasinoRoyal.Controllers
 
             if (TempData["Room Index"] != null)
             {
-                waiterViewModel.RoomIndex = (int) TempData["Room Index"];
+                waiterViewModel.RoomIndex = (int)TempData["Room Index"];
+                TempData["success"] = "true";
             }
 
             return View(waiterViewModel);
@@ -42,8 +43,6 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult Index(WaiterViewModel waiterViewModel)
         {
-
-
             if ((int)waiterViewModel.DisplayRoomNumbers.SelectedValue > 0)
             {
                 waiterViewModel.Guests = _dataAccess.HotelRooms.GetReservationsForRoom(waiterViewModel.RoomIndex);
@@ -54,6 +53,7 @@ namespace CasinoRoyal.Controllers
             }
 
             waiterViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
+            waiterViewModel.RoomIndex = 0;
 
             return View(waiterViewModel);
         }
@@ -62,17 +62,19 @@ namespace CasinoRoyal.Controllers
         [HttpPost]
         public IActionResult CheckIn(WaiterViewModel waiterViewModel, string btn)
         {
+            var id = int.Parse(btn);
+
             foreach (var guest in waiterViewModel.Guests)
             {
-                if (guest.GuestID == int.Parse(btn))
+                if (guest.GuestID == id)
                 {
                     _dataAccess.Guests.CheckIn(guest.GuestID);
                     _dataAccess.Complete();
                 }
             }
 
-            TempData["Room Index"] = waiterViewModel.RoomIndex;
-            TempData["success"] = "true";
+            TempData["Room Index"] =
+                waiterViewModel.Guests.SingleOrDefault(g => g.GuestID == id).HotelRoomID;
 
             return RedirectToAction(nameof(Index));
         }

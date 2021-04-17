@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using CasinoRoyal.Data.Entity;
 using CasinoRoyal.Data.Repositories.RepositoryInterfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace CasinoRoyal.Data.Repositories
 {
@@ -19,7 +20,7 @@ namespace CasinoRoyal.Data.Repositories
 
         public List<Reservation> GetAllReservations()
         {
-            return context.Reservations.ToList();
+            return context.Reservations.Include(g => g.Guests).ToList();
         }
 
         public Reservation GetSingleReservation(int id)

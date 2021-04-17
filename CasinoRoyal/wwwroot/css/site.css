@@ -126,6 +126,10 @@ fieldset {
     background: khaki;
 }
 
+#fieldsetMargin {
+    margin-bottom: 40px;
+}
+
 fieldset legend {
     display: block;
     font-size: medium;
@@ -210,6 +214,7 @@ label {
     color: khaki;
     border-color: goldenrod;
     min-width: 10em;
+    border-radius: 7px;
 }
 
 #mybuttonstyle {
@@ -217,6 +222,7 @@ label {
     height: 3em;
     padding-top: 5px;
     padding-bottom: 0;
+    border-radius: 7px;
 }
 
 #CompanyColor {
@@ -269,4 +275,15 @@ fieldset {
 
 .mylabel {
     font-weight: bold;
+}
+
+.centerTextBold {
+    margin-left: 30px;
+    font-weight: bold;
+    font-size: medium;
+    text-align: left;
+}
+
+.dashed {
+    border-bottom: 3px dashed #bbb;
 }

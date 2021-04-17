@@ -15,8 +15,10 @@ namespace CasinoRoyal.Models
         public DateTime ReservationDate { get; set; }
         public HotelRoom CurrentRoom { get; set; }
         public Guest CurrentGuest { get; set; }
+        public List<Guest> GuestsWithReservations { get; set; }
 
         public string HotelRoomNumber => "Room Number";
+        public string Date => "Reservation Date";
         public string NumberOfAdults => "Adults";
         public string NumberOfChildren => "Children";
         

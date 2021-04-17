@@ -1,16 +1,29 @@
-﻿@using CasinoRoyal.Data.Entity
-@using Microsoft.Data.SqlClient
-@model WaiterViewModel
+﻿@model WaiterViewModel
 @{
     ViewData["Title"] = "Hotel Rooms";
 }
 
 <h3>Guest Check-in For Breakfast</h3>
-
+@functions
+{
+    void AutoSubmit()
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById("myform").submit();
+            }
+        </script>
+    }
+}
 
 <table class="mytable">
-    @using (Html.BeginForm("Index", "Waiter", FormMethod.Post))
-    {
+    <form asp-action="Index" id="myform">
+        @{
+            if (Model.RoomIndex != 0)
+            {
+                AutoSubmit();
+            }
+        }
         <tr>
             <td>
                 <label>Room Number:</label>
@@ -19,11 +32,8 @@
                 @Html.DropDownListFor(m => m.RoomIndex, Model.DisplayRoomNumbers, "-- Select  --", new { onchange = "submit();" })
                 @Html.HiddenFor(m => m.Guests)
             </td>
-            <td>
-                <button value="Save" class="btn mybutton">List Guests</button>
-            </td>
         </tr>
-    }
+    </form>
 </table>
 
 
@@ -46,6 +56,7 @@
                                     <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                     @Html.HiddenFor(g => g.Guests[i].GuestID)
                                     @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                    @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
                                 }
                             }
                         }
@@ -72,6 +83,7 @@
                                     <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                     @Html.HiddenFor(g => g.Guests[i].GuestID)
                                     @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                    @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
                                 }
                             }
                         }

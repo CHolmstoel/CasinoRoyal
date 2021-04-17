@@ -43,7 +43,7 @@ namespace CasinoRoyal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Complete(ReceptionistViewModel receptionistViewModel, string bookButton)
+        public IActionResult CompleteGuest(ReceptionistViewModel receptionistViewModel, string bookButton)
         {
             _dataAccess.Guests.MakeReservation(receptionistViewModel.CurrentGuest.GuestID, receptionistViewModel.CurrentGuest.LastReservationDate);
             _dataAccess.Complete();
@@ -51,6 +51,46 @@ namespace CasinoRoyal.Controllers
             TempData["Booking"] = bookButton;
             
             return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        public IActionResult CompleteRoom(ReceptionistViewModel receptionistViewModel)
+        {
+            var guests = _dataAccess.HotelRooms.GetSingleHotelRoom(receptionistViewModel.CurrentRoom.HotelRoomID).Guests;
+            
+            foreach (var guest in guests)
+            {
+                _dataAccess.Guests.MakeReservation(guest.GuestID, receptionistViewModel.ReservationDate);   
+            }
+
+            _dataAccess.Complete();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Reservations(ReceptionistViewModel receptionistViewModel)
+        {
+            if (receptionistViewModel.GuestsWithReservations == null)
+            {
+                receptionistViewModel.GuestsWithReservations = new List<Guest>();
+            }
+
+            else
+            {
+                receptionistViewModel.GuestsWithReservations.Clear();
+            }
+
+            var reservations = _dataAccess.Reservations.GetAllReservations();
+
+            foreach (var reservation in reservations)
+            {
+                foreach (var guest in reservation.Guests)
+                {
+                    receptionistViewModel.GuestsWithReservations.Add(guest);
+                }
+            }
+
+            return View();
         }
     }
 }
