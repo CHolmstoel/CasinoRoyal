@@ -1,23 +1,4 @@
-﻿@{
-    var isWaiter = false;
-    if (User.HasClaim("Waiter", "IsWaiter"))
-    {
-        isWaiter = true;
-    }
-
-    var isReceptionist = false;
-    if (User.HasClaim("Receptionist", "IsReceptionist"))
-    {
-        isReceptionist = true;
-    }
-
-    var isKitchenstaff = false;
-    if (User.HasClaim("KitchenStaff", "IsKitchenStaff"))
-    {
-        isKitchenstaff = true;
-    }
-}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -31,7 +12,7 @@
         <nav class="navbar navbar-wrapper navbar-expand-sm navbar-dark bg-opacity-green border-bottom box-shadow mb-3" id="stickyheader">
             <div class="container">
                 <a href='@Url.Action("Index", "Home")' >
-                    <img src="~/Images/logo-small.png" class="logo" width="75"/>
+                    <img src="~/Images/logo-small.png" class="myimg opacity_img" width="75"/>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -39,24 +20,6 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between text-khaki">
                     <ul class="navbar-nav flex-grow-1 navbar-dark">
-                        @if(isKitchenstaff)
-                        { 
-                            <li class="nav-item">
-                                <a class="nav-link text-warning" asp-area="" asp-controller="KitchenStaff" asp-action="Index">Kitchen View</a>
-                            </li>
-                        }
-                        @if (isReceptionist)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-warning" asp-area="" asp-controller="Receptionist" asp-action="Index">Receptionist View</a>
-                            </li>
-                        }
-                        @if (isWaiter) // commented out during testing
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-warning" asp-area="" asp-controller="Waiter" asp-action="Index">Waiter View</a>
-                            </li>
-                        }
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

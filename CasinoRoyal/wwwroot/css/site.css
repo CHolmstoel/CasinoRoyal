@@ -127,7 +127,7 @@ logo {
     font-size: 50px;
     max-width: 100%;
     height: auto;
-    text-align: left;
+    text-align: center;
 }
 
 fieldset {
@@ -315,3 +315,18 @@ fieldset {
 .dashed {
     border-bottom: 3px dashed #bbb;
 }
+
+.myimg {
+    padding: 5px;
+}
+
+.opacity_img {
+    box-shadow: none;
+    transition: opacity 0.5s;
+}
+
+    .opacity_img:hover {
+        cursor: pointer;
+        box-shadow: 0px 0px 5px #fff;
+        transition: opacity 0.5s;
+    }
