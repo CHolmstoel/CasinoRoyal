@@ -99,6 +99,8 @@ namespace CasinoRoyal.Controllers
                 }
             }
 
+            receptionistViewModel.GuestsWithReservations.Sort((room1,room2) => room1.HotelRoomID.CompareTo(room2.HotelRoomID));
+
             return View(receptionistViewModel);
         }
 
