@@ -104,6 +104,8 @@ namespace CasinoRoyal.Controllers
             _dataAccess.Reservations.CancelAllReservations();
             _dataAccess.Complete();
 
+            TempData["cancel"] = "CancelBtn";
+
             return RedirectToAction(nameof(Index));
         }
 

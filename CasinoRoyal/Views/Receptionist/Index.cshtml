@@ -69,7 +69,17 @@
     }
 </table>
 <div>
-    <input type="button" class="btn btn-primary" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'" />
+    <input type="button" class="btn btn-primary" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'" >
+        @{
+            if (TempData["cancel"] != null)
+            {
+                if (TempData["cancel"].ToString() == "CancelBtn")
+                {
+                    <p>Successful cancel!</p>
+                }
+            }
+        }
+    <input/>
 </div>
 
 <br/>
