@@ -16,11 +16,14 @@ namespace CasinoRoyal.Data
 
         public IGuestRepository Guests { get; private set; }
 
+        public IReservationRepository Reservations { get; private set; }
+
         public DataAccessAction(ApplicationDbContext context)
         {
             _context = context;
             HotelRooms = new HotelRoomRepository(_context);
             Guests = new GuestRepository(_context);
+            Reservations = new ReservationRepository(_context);
             ApplicationUsers = new ApplicationUserRepository(_context);
         }
 

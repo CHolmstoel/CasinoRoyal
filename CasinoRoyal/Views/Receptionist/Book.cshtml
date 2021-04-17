@@ -1,31 +1,65 @@
 ﻿@model ReceptionistViewModel
 
-<h4>Book breakfast - Displaying guests from room @Model.CurrentRoom.HotelRoomID</h4>
+<h4>Breakfast Reservation - Room @Model.CurrentRoom.HotelRoomID</h4>
+<br/>
+
+<form method="post" asp-action="CompleteRoom">
+    <table class="mytable">
+        <p class="centerTextBold dashed">Entire Room:</p>
+        <thead class="font-weight-bold">
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.HotelRoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(m => m.Date)
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => m.CurrentRoom.HotelRoomID)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.ReservationDate)
+            </td>
+            <td>
+                <button type="submit" class="mybutton">Book Breakfast</button>
+                @Html.HiddenFor(g => g.CurrentRoom.HotelRoomID);
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
 <br/>
 
 <table class="mytable">
-    <thead class="font-weight-bold">
-    <tr>
-        <th>
-            <label class="font-weight-bold">First Name</label>
-        </th>
-        <th>
-            <label class="font-weight-bold">Last Name</label>
-        </th>
-        <th>
-            <label class="font-weight-bold">Type</label>
-        </th>
-        <th>
-            <label class="font-weight-bold">Reservation date</label>
-        </th>
-    </tr>
+    <thead>
+        <p class="centerTextBold dashed">Single Guest:</p>
+        <tr>
+            <th>
+                <label class="font-weight-bold">First Name</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Last Name</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Type</label>
+            </th>
+            <th>
+                <label class="font-weight-bold">Reservation date</label>
+            </th>
+        </tr>
     </thead>
     @foreach (var guest in Model.CurrentRoom.Guests)
     {
         Model.CurrentGuest = guest;
 
         <tbody>
-        <form method="post" asp-action="Complete">
+        <form method="post" asp-action="CompleteGuest">
             <tr>
                 <td>
                     @Html.DisplayFor(m => m.CurrentGuest.FirstName)

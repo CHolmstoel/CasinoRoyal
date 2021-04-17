@@ -16,7 +16,6 @@ namespace CasinoRoyal.Data
         public DbSet<Guest> Guest { get; set; }
         public DbSet<HotelRoom> HotelRooms { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
-
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }

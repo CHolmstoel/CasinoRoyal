@@ -27,6 +27,15 @@ namespace CasinoRoyal.Controllers
 
         public IActionResult Index()
         {
+            if (User.HasClaim("Waiter", "IsWaiter"))
+                return RedirectToAction("Index", "Waiter");
+
+            if (User.HasClaim("Receptionist", "IsReceptionist"))
+                return RedirectToAction("Index", "Receptionist");
+
+            if (User.HasClaim("KitchenStaff", "IsKitchenStaff"))
+                return RedirectToAction("Index", "KitchenStaff");
+
             return View();
         }
 

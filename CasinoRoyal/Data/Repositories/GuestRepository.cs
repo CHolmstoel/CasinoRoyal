@@ -53,6 +53,16 @@ namespace CasinoRoyal.Data.Repositories
         public void MakeReservation(int id, DateTime date)
         {
             var guest = context.Guest.SingleOrDefault(i => i.GuestID == id);
+
+            if (guest.Reservations == null)
+            {
+                guest.Reservations = new List<Reservation>();
+            }
+
+            var reservation = new Reservation() {Date = date, GuestID = guest.GuestID};
+            context.Reservations.Add(reservation);
+
+            guest.Reservations.Add(reservation);
             guest.LastReservationDate = date;
             guest.MadeReservation = true;
             guest.CheckedIn = false;
@@ -65,6 +75,10 @@ namespace CasinoRoyal.Data.Repositories
 
             if (guest != null)
             {
+                var reservation = context.Reservations.Include(g => g.Guests).SingleOrDefault(g => g.GuestID == id);
+                context.Reservations.Remove(reservation);
+                
+                guest.Reservations.Remove(reservation);
                 guest.LastCheckInDate = DateTime.Now;
                 guest.CheckedIn = true;
                 guest.MadeReservation = false;

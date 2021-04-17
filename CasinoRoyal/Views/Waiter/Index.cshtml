@@ -1,29 +1,39 @@
-﻿@using CasinoRoyal.Data.Entity
-@model WaiterViewModel
-
+﻿@model WaiterViewModel
 @{
     ViewData["Title"] = "Hotel Rooms";
 }
 
 <h3>Guest Check-in For Breakfast</h3>
-
+@functions
+{
+    void AutoSubmit()
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                document.getElementById("myform").submit();
+            }
+        </script>
+    }
+}
 
 <table class="mytable">
-    @using (Html.BeginForm("Index", "Waiter", FormMethod.Post))
-    {
+    <form asp-action="Index" id="myform">
+        @{
+            if (Model.RoomIndex != 0)
+            {
+                AutoSubmit();
+            }
+        }
         <tr>
             <td>
                 <label>Room Number:</label>
             </td>
             <td>
-                @Html.DropDownListFor((model => model.RoomIndex), Model.DisplayRoomNumbers, "-- Select  --")
+                @Html.DropDownListFor(m => m.RoomIndex, Model.DisplayRoomNumbers, "-- Select  --", new { onchange = "submit();" })
                 @Html.HiddenFor(m => m.Guests)
             </td>
-            <td>
-                <button value="Save" class="btn mybutton">List Guests</button>
-            </td>
         </tr>
-    }
+    </form>
 </table>
 
 
@@ -33,24 +43,25 @@
         <legend>Adults:</legend>
         <table class="mytable">
             <tbody>
-            <tr>
-                <td>
-                    @if (Model.Guests != null)
-                    {
-                        for (var i = 0; i < Model.Guests.Count; i++)
+                <tr>
+                    <td>
+                        @if (Model.Guests != null)
                         {
-                            if (Model.Guests[i].GuestType == "Adult")
+                            for (var i = 0; i < Model.Guests.Count; i++)
                             {
-                                <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
-                                <br/>
-                                <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
-                                @Html.HiddenFor(g => g.Guests[i].GuestID)
-                                @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                if (Model.Guests[i].GuestType == "Adult")
+                                {
+                                    <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
+                                    <br />
+                                    <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                    @Html.HiddenFor(g => g.Guests[i].GuestID)
+                                    @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                    @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
+                                }
                             }
                         }
-                    }
-                </td>
-            </tr>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
@@ -59,54 +70,55 @@
         <legend>Children:</legend>
         <table class="mytable">
             <tbody>
-            <tr>
-                <td>
-                    @if (Model.Guests != null)
-                    {
-                        for (var i = 0; i < Model.Guests.Count; i++)
+                <tr>
+                    <td>
+                        @if (Model.Guests != null)
                         {
-                            if (Model.Guests[i].GuestType == "Child")
+                            for (var i = 0; i < Model.Guests.Count; i++)
                             {
-                                <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
-                                <br/>
-                                <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
-                                @Html.HiddenFor(g => g.Guests[i].GuestID)
-                                @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                if (Model.Guests[i].GuestType == "Child")
+                                {
+                                    <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
+                                    <br />
+                                    <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                    @Html.HiddenFor(g => g.Guests[i].GuestID)
+                                    @Html.HiddenFor(g => g.Guests[i].GuestType)
+                                    @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
+                                }
                             }
                         }
-                    }
-                </td>
-            </tr>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
 }
-    <div>
-        @{
-            if (Model.Guests != null)
+<div>
+    @{
+        if (Model.Guests != null)
+        {
+            if (Model.Guests.Count == 0)
             {
-                if (Model.Guests.Count == 0)
+                if ((string)TempData["check"] == "false")
                 {
-                    if ((string) TempData["check"] == "false")
-                    {
-                        <p>Please select room</p>
-                    }
-                    else
-                    {
-                        <p>No Reservations</p>
-                    }
+                    <p>Please select room</p>
+                }
+                else
+                {
+                    <p>No Reservations</p>
                 }
             }
         }
-        @if ((string) TempData["success"] == "true")
-        {
-            <p>Guest checked in</p>
-        }
-        @if ((string) TempData["CheckedOut"] == "true")
-        {
-            <p>All guests checked out</p>
-        }
-    </div>
-    <div>
-        <input type="button" class="btn btn-primary" value="Checkout all guests" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
-    </div>
+    }
+    @if ((string)TempData["success"] == "true")
+    {
+        <p>Guest checked in</p>
+    }
+    @if ((string)TempData["CheckedOut"] == "true")
+    {
+        <p>All guests checked out</p>
+    }
+</div>
+<div>
+    <input type="button" class="btn btn-primary" value="Checkout all guests" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
+</div>
