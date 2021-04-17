@@ -66,7 +66,7 @@ namespace CasinoRoyal.Controllers
 
             TempData["success"] = "true";
 
-            return View("Succesful");
+            return RedirectToAction(nameof(Index));
         }
 
         [Authorize("IsWaiter")]
