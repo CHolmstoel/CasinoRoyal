@@ -32,5 +32,10 @@ namespace CasinoRoyal.Data.Repositories
         {
             context.Reservations.Add(reservation);
         }
+
+        public void CancelAllReservations()
+        {
+            context.RemoveRange(GetAllReservations());
+        }
     }
 }

@@ -93,6 +93,20 @@ namespace CasinoRoyal.Controllers
             return View(receptionistViewModel);
         }
 
+        [Authorize("IsReceptionist")]
+        public IActionResult CancelAllReservations(ReceptionistViewModel receptionistViewModel)
+        {
+            if (receptionistViewModel.GuestsWithReservations != null)
+            {
+                receptionistViewModel.GuestsWithReservations.Clear();
+            }
+
+            _dataAccess.Reservations.CancelAllReservations();
+            _dataAccess.Complete();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         // GET: Guests/Create
         [Authorize("IsReceptionist")]
         public IActionResult Create(ReceptionistViewModel receptionistViewModel)

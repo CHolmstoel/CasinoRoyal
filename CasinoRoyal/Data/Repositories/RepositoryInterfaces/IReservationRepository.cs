@@ -12,5 +12,7 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
         public Reservation GetSingleReservation(int id);
         public void MakeReservation(Reservation reservation);
 
+        public void CancelAllReservations();
+
     }
 }
