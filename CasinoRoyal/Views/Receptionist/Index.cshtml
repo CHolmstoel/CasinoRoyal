@@ -48,9 +48,13 @@
                             @{
                                 if (TempData["Booking"] != null)
                                 {
-                                    if (int.Parse(TempData["Booking"].ToString()) == item.HotelRoomID)
+                                    if ((TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
                                     {
                                         <p>Successful!</p>
+                                    }
+                                    else if(TempData["Booking"].ToString() == "Failed")
+                                    {
+                                        <p>Guest has eaten today</p>
                                     }
                                     else
                                     {
