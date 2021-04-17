@@ -20,6 +20,7 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
         int GetAllChildrenNotCheckedIn();
         int GetAllAdultsThatMadeReservation();
         int GetAllChildrenThatMadeReservation();
+        bool ReservationPossible(int id);
 
         Guest GetSingleGuest(int id);
         void AddGuest(Guest guest);

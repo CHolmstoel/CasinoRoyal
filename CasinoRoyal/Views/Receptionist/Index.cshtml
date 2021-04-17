@@ -7,10 +7,12 @@
 }
 
 <h4>Breakfast status, @DateTime.Today.ToString("D")</h4>
-<br/>
-<input type="button" class="btn btn-primary" value="Reservations - Next 5 Days" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
-<br/>
-<br/>
+<br />
+<div>
+    <input type="button" class="btn btn-primary myborderbox" value="New Hotel Guest" onclick="location.href = '@Url.Action("Create", "Receptionist")'" />
+</div>
+<br />
+
 <table class="mytable">
     <thead>
     <tr>
@@ -69,21 +71,19 @@
     }
 </table>
 <div>
-    <input type="button" class="btn btn-primary" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'" >
-        @{
-            if (TempData["cancel"] != null)
-            {
-                if (TempData["cancel"].ToString() == "CancelBtn")
-                {
-                    <p>Successful cancel!</p>
-                }
-            }
-        }
-    <input/>
+    <input type="button" class="btn btn-primary" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'" />
 </div>
 
 <br/>
+<br/>
 
-<div>
-    <input type="button" class="btn btn-primary" value="New hotel guest" onclick="location.href = '@Url.Action("Create", "Receptionist")'" />
-</div>
+<table class="buttontable">
+    <tr>
+        <td>
+            <input type="button" class="btn btn-primary myborderbox" value="Reservations - Next 5 Days" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
+        </td>
+        <td>
+            <input type="button" class="btn btn-primary myborderbox" value="Cancel All Reservations" onclick="location.href = '@Url.Action("", "Receptionist")'" />
+        </td>
+    </tr>
+</table>
