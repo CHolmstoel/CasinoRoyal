@@ -192,6 +192,10 @@ fieldset legend {
     min-width: 100%;
 }
 
+.myrow {
+    font-size: small;
+}
+
 table {
     text-align: left;
 }
@@ -364,4 +368,8 @@ fieldset {
 .mediumbutton {
     font-size: medium;
     width: 10em;
+}
+
+.small-text {
+    font-size: small;
 }

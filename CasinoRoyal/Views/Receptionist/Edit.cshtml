@@ -4,10 +4,9 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br/>
+<h3>Edit Information</h3>
 
-<h1>Edit</h1>
-
-<h4>Guest</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,10 +14,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="GuestID" />
             <div>
-                <label asp-for="HotelRoom" class="control-label"></label>
+                <label>Room Number </label>
                 @Html.DisplayFor(model => model.HotelRoom.HotelRoomID)
                 <span asp-validation-for="HotelRoom" class="text-danger"></span>
             </div>
+            <br/>
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -46,7 +46,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="GuestIndex">Back to List</a>
 </div>
 
 @section Scripts {

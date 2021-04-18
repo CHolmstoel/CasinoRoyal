@@ -6,15 +6,12 @@
 }
 
 <h1>All guests at the hotel </h1>
-
-<p>
-    <input type="button" class="btn btn-primary" value="Check in new guest" onclick="location.href='@Url.Action("Create", "Guests")'" />
-</p>
-<table class="table">
+<br/>
+<table class="mytable">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.HotelRoom)
+                @Html.DisplayNameFor(model => model.HotelRoomID)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -42,7 +39,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HotelRoom.HotelRoomID)
+                    @Html.DisplayFor(modelItem => item.HotelRoomID)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FirstName)
@@ -61,8 +58,9 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.GuestID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.GuestID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.GuestID" id="CheckoutColor">Check out</a>
+                    <a asp-action="Details" asp-route-id="@item.GuestID">Details</a>
+                    <br/>
+                    <a asp-action="Delete" asp-route-id="@item.GuestID" id="CheckoutColor">Remove</a>
                 </td>
             </tr>
         }

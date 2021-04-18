@@ -4,19 +4,17 @@
     ViewData["Title"] = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<br/>
+<h3>Remove Guest</h3>
 
-<h1>Check out</h1>
-
-<h3>Are you sure you want to check the guest out?</h3>
 <div>
-    <h4>Guest</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.HotelRoom)
+            @Html.DisplayNameFor(model => model.HotelRoomID)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.HotelRoom)
+            @Html.DisplayFor(model => model.HotelRoomID)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirstName)
@@ -31,28 +29,19 @@
             @Html.DisplayFor(model => model.LastName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.CheckedIn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.CheckedIn)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.MadeReservation)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.MadeReservation)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.GuestType)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GuestType)
         </dd>
     </dl>
-
+    <br/>
     <form asp-action="Delete">
         <input type="hidden" asp-for="GuestID" />
-        <input type="submit" value="Check out" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+        <p class="font-weight-bold">Are you sure you want to check the guest out?</p>
+        <input type="submit" value="Check out"  class="mybutton red_button" id="mybuttonstyle"/>
+        <br/>
+        <br/>
+        <a asp-action="GuestIndex">Back to List</a>
     </form>
 </div>
