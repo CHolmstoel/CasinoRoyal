@@ -9,33 +9,45 @@ namespace CasinoRoyal.Data.Entity
 {
     public class HotelRoom
     {
-        [Key]
-        [Display(Name = "Room Number")]
-        public int HotelRoomID { get; set; }
+        [Key] [Display(Name = "Room Number")] public int HotelRoomID { get; set; }
         public List<Guest> Guests { get; set; }
 
+        [NotMapped] public DateTime ReservationDate { get; set; }
 
         [NotMapped]
-        public int AdultsBreakfastDone
+        public int AdultsBreakfastDone => AdultsBreakfastDoneCalculator();
+
+        [NotMapped]
+        public int ChildrenBreakfastDone => ChildrenBreakfastDoneCalculator();
+
+        private int AdultsBreakfastDoneCalculator()
         {
-            get
+            var count = 0;
+
+            foreach (var guest in Guests)
             {
-                return Guests.Where(t => t.GuestType == "Adult")
-                    .Count(l => l.LastCheckInDate.Date == DateTime.Today.Date);
+                if (guest.GuestType == "Adult" && guest.Reservations.Any(d => d.Date.Date == DateTime.Today.Date))
+                {
+                    ++count;
+                }
             }
+
+            return count;
         }
 
-        [NotMapped]
-        public int ChildrenBreakfastDone
+        private int ChildrenBreakfastDoneCalculator()
         {
-            get
-            {
-                return Guests.Where(t => t.GuestType == "Child")
-                    .Count(l => l.LastCheckInDate.Date == DateTime.Today.Date);
-            }
-        }
+            var count = 0;
 
-        [NotMapped]
-        public DateTime ReservationDate { get; set; }
+            foreach (var guest in Guests)
+            {
+                if (guest.GuestType == "Child" && guest.Reservations.Any(d => d.Date.Date == DateTime.Today.Date))
+                {
+                    ++count;
+                }
+            }
+
+            return count;
+        }
     }
 }
