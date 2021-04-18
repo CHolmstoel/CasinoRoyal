@@ -127,9 +127,6 @@ namespace CasinoRoyal.Controllers
         [Authorize("IsReceptionist")]
         public IActionResult Create(ReceptionistViewModel receptionistViewModel)
         {
-            //var AllRooms = from r in _dataAccess.HotelRooms.GetAllHotelRooms() select r;
-            //var AllRooms = new WaiterViewModel();
-            //AllRooms.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
             receptionistViewModel.NumberOfRooms = _dataAccess.HotelRooms.GetNumberOfHotelRooms();
             return View(receptionistViewModel);
         }
@@ -145,8 +142,6 @@ namespace CasinoRoyal.Controllers
             if (ModelState.IsValid)
             {
                 _dataAccess.Guests.AddGuest(guest);
-                //_context.Add(guest);
-                //await _context.SaveChangesAsync();
                 _dataAccess.Complete();
                 return RedirectToAction(nameof(Index));
             }
@@ -163,8 +158,6 @@ namespace CasinoRoyal.Controllers
 
             var guest = _dataAccess.Guests.GetSingleGuest((int)id);
 
-            //var guest = await _context.Guest
-            //    .FirstOrDefaultAsync(m => m.GuestID == id);
             if (guest == null)
             {
                 return NotFound();
@@ -183,7 +176,7 @@ namespace CasinoRoyal.Controllers
             }
 
             var guest = _dataAccess.Guests.GetSingleGuest((int)id);
-            //var guest = await _context.Guest.FindAsync(id);
+
             if (guest == null)
             {
                 return NotFound();
@@ -209,7 +202,6 @@ namespace CasinoRoyal.Controllers
                 {
                     _context.Update(guest);
                     _dataAccess.Complete();
-                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -235,8 +227,7 @@ namespace CasinoRoyal.Controllers
                 return NotFound();
             }
             var guest = _dataAccess.Guests.GetSingleGuest((int)id);
-            //var guest = await _context.Guest
-            //    .FirstOrDefaultAsync(m => m.GuestID == id);
+
             if (guest == null)
             {
                 return NotFound();
@@ -251,11 +242,10 @@ namespace CasinoRoyal.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var guest = _dataAccess.Guests.GetSingleGuest((int)id);
-            //var guest = await _context.Guest.FindAsync(id);
+
             _dataAccess.Guests.CheckOutGuest(guest);
-            //_context.Guest.Remove(guest);
             _dataAccess.Complete();
-            //await _context.SaveChangesAsync();
+
             return RedirectToAction(nameof(GuestIndex));
         }
     }
