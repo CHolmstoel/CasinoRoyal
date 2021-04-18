@@ -10,60 +10,63 @@
 <img sr/>
 <table class="mytable">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.HotelRoomID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CheckedIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MadeReservation)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GuestType)
-            </th>
-            <th>
-                @Html.Display("Actions")
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HotelRoomID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckedIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MadeReservation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GuestType)
+        </th>
+        <th>
+            @Html.Display("Actions")
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HotelRoomID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FirstName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CheckedIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MadeReservation)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.GuestType)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.GuestID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.GuestID">Details</a>
-                    <br/>
-                    <a asp-action="Delete" asp-route-id="@item.GuestID" id="CheckoutColor">Remove</a>
-                </td>
-            </tr>
-        }
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HotelRoomID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MadeReservation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GuestType)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GuestID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GuestID">Details</a>
+                <br/>
+                <a asp-action="Delete" asp-route-id="@item.GuestID" id="CheckoutColor">Remove</a>
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
+<a asp-controller="Receptionist" asp-action="Index">
+    <img src="~/Images/back-button.png" width="50" />
+</a>
