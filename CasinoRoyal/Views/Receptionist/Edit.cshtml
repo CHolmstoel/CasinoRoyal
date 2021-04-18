@@ -45,13 +45,10 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="GuestIndex">Back to List</a>
-</div>
+<a asp-controller="Receptionist" asp-action="GuestIndex">
+    <img src="~/Images/back-button.png" width="50" />
+</a>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-<a asp-controller="Receptionist" asp-action="GuestIndex">
-    <img src="~/Images/back-button.png" width="50" />
-</a>
