@@ -70,12 +70,16 @@ namespace CasinoRoyal.Data.Repositories
                 }
             }
 
+            if (date.Date == DateTime.Today.Date)
+            {
+                guest.CheckedIn = false;
+            }
+
             var reservation = new Reservation() {Date = date, GuestID = guest.GuestID};
             context.Reservations.Add(reservation);
             guest.Reservations.Add(reservation);
             guest.LastReservationDate = date;
             guest.MadeReservation = true;
-            guest.CheckedIn = false;
         }
 
 
