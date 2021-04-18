@@ -85,6 +85,6 @@ How to use the application:
  to receptionist view to book that same guest for breakfast for today, you will get the message that, that paticular guest has already eaten today.
  It is however possible to book breakfast for the future, like tomorrow. 
 
- 2) If a guest has already eaten today but the rest of the guest i the room has not. You can still use the, book breakfast for all button, but the
+ 2) If a guest has already eaten today but the rest of the guest in the room has not. You can still use the "book breakfast for all" button, but the
  guest who has not eaten, will not be added to the reservation view. Verify this by looking at the bookings for the next 5 days in receptionist view
 =======
