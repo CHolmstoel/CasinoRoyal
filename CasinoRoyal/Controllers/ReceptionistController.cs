@@ -75,7 +75,10 @@ namespace CasinoRoyal.Controllers
             
             foreach (var guest in guests)
             {
-                _dataAccess.Guests.MakeReservation(guest.GuestID, receptionistViewModel.ReservationDate);   
+                if (_dataAccess.Guests.ReservationPossible(guest.GuestID, receptionistViewModel.ReservationDate))
+                {
+                    _dataAccess.Guests.MakeReservation(guest.GuestID, receptionistViewModel.ReservationDate);
+                }
             }
 
             _dataAccess.Complete();
