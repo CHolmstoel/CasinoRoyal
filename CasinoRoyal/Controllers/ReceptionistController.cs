@@ -33,12 +33,14 @@ namespace CasinoRoyal.Controllers
             return View(receptionistViewModel);
         }
 
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> GuestIndex()
         {
             var AllGuests = from g in _dataAccess.Guests.GetAllGuests() select g;
             return View(AllGuests);
         }
 
+        [Authorize("IsReceptionist")]
         public IActionResult Book(string bookButton)
         {
             var receptionistViewModel = new ReceptionistViewModel();
@@ -48,6 +50,7 @@ namespace CasinoRoyal.Controllers
             return View(receptionistViewModel);
         }
 
+        [Authorize("IsReceptionist")]
         [HttpPost]
         public IActionResult CompleteGuest(ReceptionistViewModel receptionistViewModel, string bookButton)
         {
@@ -68,6 +71,7 @@ namespace CasinoRoyal.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize("IsReceptionist")]
         [HttpPost]
         public IActionResult CompleteRoom(ReceptionistViewModel receptionistViewModel)
         {
@@ -86,6 +90,7 @@ namespace CasinoRoyal.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize("IsReceptionist")]
         public IActionResult Reservations(ReceptionistViewModel receptionistViewModel)
         {
             if (receptionistViewModel.Reservations == null)
@@ -149,6 +154,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Details/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -168,6 +174,7 @@ namespace CasinoRoyal.Controllers
 
 
         // GET: Guests/Edit/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -187,6 +194,7 @@ namespace CasinoRoyal.Controllers
         // POST: Guests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize("IsReceptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType,HotelRoom")] Guest guest)
@@ -220,6 +228,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // GET: Guests/Delete/5
+        [Authorize("IsReceptionist")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -237,6 +246,7 @@ namespace CasinoRoyal.Controllers
         }
 
         // POST: Guests/Delete/5
+        [Authorize("IsReceptionist")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

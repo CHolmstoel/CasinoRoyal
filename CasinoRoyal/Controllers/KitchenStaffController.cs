@@ -25,6 +25,7 @@ namespace CasinoRoyal.Controllers
             _dataAccess = new DataAccessAction(context);
         }
 
+        [Authorize("isKitchenStaff")]
         public IActionResult Index()
         {
             var kitchenStaffViewModel = GetKitchenStaffInformationFromDb();
