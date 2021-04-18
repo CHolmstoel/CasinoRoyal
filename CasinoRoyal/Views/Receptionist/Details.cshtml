@@ -49,6 +49,9 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.GuestID">Edit</a> |
-    <a asp-action="GuestIndex">Back to List</a>
+    <input type="button" class="mybutton green_button" id="mybuttonstyle" value="Edit Guest" onclick="location.href = '@Url.Action("Edit", "Receptionist")'"/>
 </div>
+<br/>
+<a asp-controller="Receptionist" asp-action="GuestIndex">
+    <img src="~/Images/back-button.png" width="50" />
+</a>

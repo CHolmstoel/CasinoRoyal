@@ -7,11 +7,10 @@
 
 <div id="CenterAlignKitchenStaffView">
 
-    <h2>Breakfast Check-in Information</h2><br />
-
+    <h2>Breakfast Check-in Information, @DateTime.Today.ToString("D")</h2><br />
     <fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Hotel Guests Total:</legend>
-        <table class="table" >
+        <table class="table">
             <thead>
                 <tr>
                     <th>
@@ -43,7 +42,7 @@
     <br />
     <fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Checked In For Breakfast:</legend>
-        <table class="table" >
+        <table class="table">
             <thead>
                 <tr>
                     <th>
@@ -69,36 +68,36 @@
     <br />
     <fieldset fieldset id="fieldsetMargin" class="tablekitchen">
         <legend>Not Checked In For Breakfast:</legend>
-        <table class="table" id="tablekitchen" >
-            <thead >
-            <tr >
-                <th >
-                    @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
-                </th>
-            </tr>
+        <table class="table" id="tablekitchen">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalNotCheckedIn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AdultsNotCheckedIn)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ChildrenNotCheckedIn)
+                    </th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => model.TotalNotCheckedIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.AdultsNotCheckedIn)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.ChildrenNotCheckedIn)
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalNotCheckedIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.AdultsNotCheckedIn)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ChildrenNotCheckedIn)
+                    </td>
+                </tr>
             </tbody>
         </table>
     </fieldset>
-    
+
     <div>
         <input type="button" class="btn btn-primary myborderbox" value="Update" onclick="location.href = '@Url.Action("Index", "KitchenStaff")'" />
     </div>

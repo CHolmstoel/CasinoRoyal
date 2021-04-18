@@ -1,8 +1,6 @@
 ﻿@model ReceptionistViewModel
 
 <h4>Breakfast Reservation - Room @Model.CurrentRoom.HotelRoomID</h4>
-<br/>
-
 <form method="post" asp-action="CompleteRoom">
     <table class="mytable">
         <p class="centerTextBold dashed">Entire Room:</p>
@@ -37,21 +35,21 @@
 
 <table class="mytable">
     <thead>
-        <p class="centerTextBold dashed">Single Guest:</p>
-        <tr>
-            <th>
-                <label class="font-weight-bold small-text">First Name</label>
-            </th>
-            <th>
-                <label class="font-weight-bold small-text">Last Name</label>
-            </th>
-            <th>
-                <label class="font-weight-bold small-text">Type</label>
-            </th>
-            <th>
-                <label class="font-weight-bold small-text">Date</label>
-            </th>
-        </tr>
+    <p class="centerTextBold dashed">Single Guest:</p>
+    <tr>
+        <th>
+            <label class="font-weight-bold small-text">First Name</label>
+        </th>
+        <th>
+            <label class="font-weight-bold small-text">Last Name</label>
+        </th>
+        <th>
+            <label class="font-weight-bold small-text">Type</label>
+        </th>
+        <th>
+            <label class="font-weight-bold small-text">Date</label>
+        </th>
+    </tr>
     </thead>
     @foreach (var guest in Model.CurrentRoom.Guests)
     {
@@ -85,3 +83,6 @@
         </tbody>
     }
 </table>
+<a asp-controller="Receptionist" asp-action="Index">
+    <img src="~/Images/back-button.png" width="50" />
+</a>
