@@ -8,9 +8,9 @@ How to use the application:
 
 3) Go to the package manager console and enter the command: update-database. (The database will now be setup with the seeded data and the user logins stated above)
 
-==========================Logins with different claims = different views ===================================
+====================Logins with different claims = different views ==========================
 
-- Waiter login: 
+ - Waiter login: 
  Brugernavn: waiter@waiter.com
  Password:   Sommer25!
 
@@ -23,8 +23,7 @@ How to use the application:
  Password:   Sommer25!
 
 
-
- ==========================Use case 1 (Kitchen view (IPad)) ===================================
+ ==========================Use case 1 (Kitchen view (IPad)) ==================================
 
  1) Start the application by ctrl + F5.
 
@@ -37,7 +36,7 @@ How to use the application:
  Extra) You may choose register rather than login if you'd like and register yourself as an user. But the rights needed to enter the views, needs to be setup either directly in the database or by the repository API. 
 
 
- ==========================Use case 2 (Desktop receptionist view)===================================
+ ==========================Use case 2 (Receptionist view (Desktop))============================
 
  1) Start the application once again by ctrl + F5. (If you'r still logged in as an kitchen staff user, please choose to logout)
 
@@ -59,7 +58,7 @@ How to use the application:
  10) You may either close this view of keep it open for further changes later on. 
 
 
- ==========================Use case 3 (Mobile waiter view) ===================================
+ ==========================Use case 3 (Waiter view (Mobile)) ==================================
 
  1) Start the application once again by ctrl + F5. (If you'r still logged in as an receptionist user, please choose to logout)
 
@@ -73,7 +72,9 @@ How to use the application:
 
  6) You'll now see that the numeric values of the tables has changed accordingly to the guests checked in by the waiter. 
 
+ 7) *Optional: You can push the "Checkout all guests" to checkout all guest from the restaurant.
 
- ==========================Use case 4 ===================================
+ =====================================Use case 4 ============================================
 
  1) Have fun, and try out the solution :-)
+
