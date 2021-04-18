@@ -11,6 +11,11 @@ namespace CasinoRoyal.Models
 {
     public class ReceptionistViewModel
     {
+        public ReceptionistViewModel()
+        {
+            ReservationDate = DateTime.Now;    
+        }
+
         public List<HotelRoom> HotelRooms { get; set; }
         public DateTime ReservationDate { get; set; }
         public HotelRoom CurrentRoom { get; set; }

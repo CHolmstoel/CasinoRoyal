@@ -3,7 +3,6 @@
     ViewData["Title"] = "Hotel Rooms";
 }
 
-<h3>Guest Check-in For Breakfast</h3>
 @functions
 {
     void AutoSubmit()
@@ -16,6 +15,8 @@
     }
 }
 
+<h3>Guest Check-in For Breakfast, @DateTime.Today.ToString("D")</h3>
+<br/>
 <table class="mytable">
     <form asp-action="Index" id="myform">
         @{
@@ -53,7 +54,7 @@
                                 {
                                     <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}") </label>
                                     <br />
-                                    <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                    <button type="submit" class="btn mycheckinbutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                     @Html.HiddenFor(g => g.Guests[i].GuestID)
                                     @Html.HiddenFor(g => g.Guests[i].GuestType)
                                     @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
@@ -80,7 +81,7 @@
                                 {
                                     <label class="mylabel" for="@Model.Guests[i].GuestID">@($"{Model.Guests[i].FirstName} {Model.Guests[i].LastName}")</label>
                                     <br />
-                                    <button type="submit" class="btn mybutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
+                                    <button type="submit" class="btn mycheckinbutton" name="btn" value="@Model.Guests[i].GuestID" id="@Model.Guests[i].GuestID">Check-in </button>
                                     @Html.HiddenFor(g => g.Guests[i].GuestID)
                                     @Html.HiddenFor(g => g.Guests[i].GuestType)
                                     @Html.HiddenFor(g => g.Guests[i].HotelRoomID)
@@ -101,18 +102,14 @@
             {
                 if ((string)TempData["check"] == "false")
                 {
-                    <p class="mywarning">Please select room</p>
+                    <p class="mywarning">Please Select Room</p>
                 }
                 else
                 {
-                    <p class="mywarning">No Reservations for today</p>
+                    <p class="mywarning">Currently no reservations for this room today</p>
                 }
             }
         }
-    }
-    @if ((string)TempData["success"] == "true")
-    {
-        <p class="mywarning">Guest checked in</p>
     }
     @if ((string)TempData["CheckedOut"] == "true")
     {
@@ -120,5 +117,5 @@
     }
 </div>
 <div>
-    <input type="button" class="btn btn-primary" value="Checkout all guests" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
+    <input type="button" class="btn btn-primary red_button" value="Checkout all guests" onclick="location.href='@Url.Action("Checkout", "Waiter")'" />
 </div>

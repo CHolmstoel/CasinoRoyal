@@ -249,6 +249,20 @@ label {
     background: linear-gradient(darkgreen, lightgreen);
 }
 
+.mycheckinbutton {
+    padding: 4px;
+    padding-bottom: 1px;
+    height: 4em;
+    font-size: 12px;
+    font-weight: bold;
+    box-sizing: border-box;
+    color: khaki;
+    border-color: khaki;
+    min-width: 8em;
+    border-radius: 7px;
+    background: linear-gradient(darkgreen, lightgreen);
+}
+
 .green_button {
     background: linear-gradient(darkgreen, lightgreen);
 }
