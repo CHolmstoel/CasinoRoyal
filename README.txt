@@ -2,23 +2,23 @@ How to use the application:
 
  ==========================Setup ===================================
 
-1) Use any other browser than Internet Explorer and Edge. 
+1) Use any other browser than Internet Explorer and Edge for the full experience. 
 
 2) Go to the appsetting.json file and change the connection string to match your sql server. Change the "Catalog" to a appropriate name. 
 
 3) Go to the package manager console and enter the command: update-database. (The database will now be setup with the seeded data and the user logins stated above)
 
-==========================Logins med forskellige rettigheder = Forskellige views ===================================
+==========================Logins with different claims = different views ===================================
 
 - Waiter login: 
  Brugernavn: waiter@waiter.com
  Password:   Sommer25!
 
- - Receptionlogin:
+ - Receptionist login:
  Brugernavn: reception@reception.com
  Password:   Sommer25!
 
- - Kitchen login:
+ - KitchenStaff login:
  Brugernavn: Kitchen@kitchen.com
  Password:   Sommer25!
 
@@ -30,7 +30,7 @@ How to use the application:
 
  2) Push F12 and change the view size by pushing the "toggle device toolbar". Choose "IPad".
 
- 3) Push the login button. Enter the above stated kitchen login. (You'll now be transfered to the kithcen IPad friendly view.)
+ 3) Push the login button. Enter the above stated KitchenStaff login. (You'll now be transfered to the kitchen IPad friendly view.)
 
  4) KEEP THE WINDOW OPEN. 
 
@@ -56,7 +56,7 @@ How to use the application:
 
  8) *Optional: Push the cancel all reservations button and make some new reservations. 
 
- 9) You may either close this view of keep it open for further changes later on. 
+ 9) You may either close this view or keep it open for further changes later on. 
 
  ==========================Use case 3 ===================================
 
