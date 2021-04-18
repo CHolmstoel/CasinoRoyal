@@ -39,7 +39,7 @@ How to use the application:
 
  ==========================Use case 2 (Desktop receptionist view)===================================
 
- 1) Start the application once again by ctrl + F5. 
+ 1) Start the application once again by ctrl + F5. (If you'r still logged in as an kitchen staff user, please choose to logout)
 
  2) Push the login button. Enter the above stated Receptionist login. (You'll now be transfered to the Receptionist desktop friendly view)
 
@@ -48,18 +48,32 @@ How to use the application:
  4) *Optional: Push the Edit/Remove button to see all guest, their details and perhaps remove the one you just created. 
  5) *Optional: If you didn't remove a guest you can go back to the kitchen view, push the update button and see the numeric changes of the tables. 
 
- 5) Push the book breakfast button to book breakfast for one or more of the rooms. Fill out the date with a date within 5 five days from now. 
+ 6) Push the book breakfast button to book breakfast for one or more of the rooms. Fill out the date with a date within 5 five days from now. 
 
- 6) Push the book breakfast button after entering the date for either the whole room or single guests. 
+ 7) Push the book breakfast button after entering the date for either the whole room or single guests. 
 
- 7) Push the Reservation - Next 5 days button. 
+ 8) Push the Reservation - Next 5 days button. 
 
- 8) *Optional: Push the cancel all reservations button and make some new reservations. 
+ 9) *Optional: Push the cancel all reservations button and make some new reservations. 
 
- 9) You may either close this view or keep it open for further changes later on. 
+ 10) You may either close this view of keep it open for further changes later on. 
 
- ==========================Use case 3 ===================================
 
- 1) 
+ ==========================Use case 3 (Mobile waiter view) ===================================
+
+ 1) Start the application once again by ctrl + F5. (If you'r still logged in as an receptionist user, please choose to logout)
+
+ 2) Push the login button. Enter the above stated Waiter login. (You'll now be transfered to the waiter mobile device friendly view)
+
+ 3) Select a room number from the drop down that contains guests. Example: Room 1. 
+
+ 4) Push the Check-in button for one or more of the guests. 
+
+ 5) Go back to kitchen window that you've kept open, and press the update button. 
+
+ 6) You'll now see that the numeric values of the tables has changed accordingly to the guests checked in by the waiter. 
+
 
  ==========================Use case 4 ===================================
+
+ 1) Have fun, and try out the solution :-)
