@@ -8,9 +8,16 @@
 
 <h4>Breakfast status, @DateTime.Today.ToString("D")</h4>
 <br />
-<div>
-    <input type="button" class="btn btn-primary myborderbox" value="New Hotel Guest" onclick="location.href = '@Url.Action("Create", "Receptionist")'" />
-</div>
+<table class="mytable">
+    <tr>
+        <td>
+            <input type="button" class="btn btn-primary myborderbox_ mediumbutton" value="Add New Guest" onclick="location.href = '@Url.Action("Create", "Receptionist")'" />
+        </td>
+        <td>
+            <input type="button" class="btn btn-primary myborderbox red_button mediumbutton" value="Edit/Remove" onclick="location.href = '@Url.Action("GuestIndex", "Receptionist")'" />
+        </td>
+    </tr>
+</table>
 <br />
 
 <table class="mytable">
@@ -44,24 +51,23 @@
                 </td>
                 <td>
                     <form asp-action="Book">
-                        <button type="submit" class="mybutton" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton">
-                            @{
-                                if (TempData["Booking"] != null && (TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
-                                {
-                                    <p>Successful!</p>
-                                }
 
-                                else if(TempData["Fail"] != null && (TempData["Fail"].ToString()) == item.HotelRoomID.ToString())
-                                {
-                                    <p>Guest has eaten today</p>
-                                }
-
-                                else
-                                {
-                                    <p>Book Breakfast</p>
-                                }
+                        @{
+                            if (TempData["Booking"] != null && (TempData["Booking"].ToString()) == item.HotelRoomID.ToString())
+                            {
+                                <button type="submit" class="mybutton green_button" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton"><p>Successful!</p></button>
                             }
-                        </button>
+
+                            else if (TempData["Fail"] != null && (TempData["Fail"].ToString()) == item.HotelRoomID.ToString())
+                            {
+                                <button type="submit" class="mybutton red_button" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton"><p>Guest has eaten today</p></button>
+
+                            }
+                            else
+                            {
+                                <button type="submit" class="mybutton yellow_button" id="mybuttonstyle" value="@item.HotelRoomID" name="BookButton"><p>Book Breakfast</p></button>
+                            }
+                        }
                     </form>
                 </td>
             }
@@ -76,24 +82,26 @@
 <table class="buttontable">
     <tr>
         <td>
-            <input type="button" class="btn btn-primary myborderbox" value="Reservations - Next 5 Days" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
+            <input type="button" class="btn btn-primary myborderbox bigbutton" value="Reservations - Next 5 Days" onclick="location.href = '@Url.Action("Reservations", "Receptionist")'" />
         </td>
     </tr>
     <tr>
         <td>
-            <input type="button" class="btn btn-primary myborderbox" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"/>
+            <input type="button" class="btn btn-primary myborderbox red_button bigbutton" name="CancelBtn" value="Cancel All Reservations" onclick="location.href = '@Url.Action("CancelAllReservations", "Receptionist")'"/>
         </td>
+    </tr>
+    <tr>
         <td>
             @{
                 if (TempData["cancel"] != null)
                 {
                     if (TempData["cancel"].ToString() == "CancelBtn")
                     {
-                        <p>Successful cancel!</p>
+                        <p class="mywarning">Successful cancel!</p>
                     }
                     else
                     {
-                        <p>Failed to cancel</p>
+                        <p class="mywarning">Failed to cancel</p>
                     }
                 }
             }

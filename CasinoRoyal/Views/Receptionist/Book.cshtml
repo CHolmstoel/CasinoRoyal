@@ -27,7 +27,6 @@
             <td>
                 <button type="submit" class="mybutton">Book Breakfast</button>
                 @Html.HiddenFor(g => g.CurrentRoom.HotelRoomID);
-
             </td>
         </tr>
         </tbody>
@@ -78,8 +77,8 @@
                 </td>
                 <td>
                     <button type="submit" class="mybutton" name="BookButton" value="@Model.CurrentRoom.HotelRoomID">Book Breakfast</button>
-                    @Html.HiddenFor(g => g.CurrentGuest.GuestID);
-
+                    @Html.HiddenFor(g => g.CurrentGuest.GuestID)
+                    @Html.HiddenFor(g=> g.CurrentGuest.LastReservationDate)
                 </td>
             </tr>
         </form>

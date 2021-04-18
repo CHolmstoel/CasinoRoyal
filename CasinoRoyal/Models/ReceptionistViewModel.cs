@@ -25,7 +25,7 @@ namespace CasinoRoyal.Models
         public string ReservationDateDisplay
         {
             get => ReservationDate.ToString("D");
-            set => DateTime.Parse(value);
+            set => ReservationDate = DateTime.Parse(value);
         } 
 
         public Guest GuestToAdd { get; set; }

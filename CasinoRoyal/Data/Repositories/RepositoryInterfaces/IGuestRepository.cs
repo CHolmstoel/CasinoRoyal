@@ -12,16 +12,15 @@ namespace CasinoRoyal.Data.Repositories.RepositoryInterfaces
         public void MakeReservation(int id, DateTime date);
         public void CheckIn(int id);
         public void CheckOutAll();
+        void CheckOutGuest(Guest guest);
         int GetAllAdults();
         int GetAllChildren();
         int GetAllAdultsCheckedIn();
         int GetAllChildrenCheckedIn();
         int GetAllAdultsNotCheckedIn();
         int GetAllChildrenNotCheckedIn();
-        int GetAllAdultsThatMadeReservation();
-        int GetAllChildrenThatMadeReservation();
         bool ReservationPossible(int id, DateTime date);
-
+        bool GuestExists(int id);
         Guest GetSingleGuest(int id);
         void AddGuest(Guest guest);
 

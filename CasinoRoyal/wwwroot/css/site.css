@@ -238,11 +238,24 @@ label {
     font-size: 11px;
     font-weight: bold;
     box-sizing: border-box;
-    background: linear-gradient(darkgreen, lightgreen);
     color: khaki;
     border-color: khaki;
     min-width: 12em;
     border-radius: 7px;
+    background: linear-gradient(darkgreen, lightgreen);
+}
+
+.green_button {
+    background: linear-gradient(darkgreen, lightgreen);
+}
+
+.red_button {
+    background: linear-gradient(darkred, lightcoral);
+}
+
+.yellow_button {
+    background: linear-gradient(orange, yellow);
+    color: darkgreen;
 }
 
 #mybuttonstyle {
@@ -342,4 +355,13 @@ fieldset {
 .mywarning {
     font-size: small;
     color: red;
+}
+
+.bigbutton {
+    width: 15em;
+}
+
+.mediumbutton {
+    font-size: medium;
+    width: 10em;
 }

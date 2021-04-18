@@ -164,7 +164,12 @@ namespace CasinoRoyal.Data.Repositories
 
         public void CheckOutGuest(Guest guest)
         {
-            Context.Guest.Remove(guest);
+            context.Guest.Remove(guest);
+        }
+
+        public bool GuestExists(int id)
+        {
+            return context.Guest.Any(g => g.GuestID == id);
         }
 
         public bool ReservationPossible(int id, DateTime date)
@@ -179,19 +184,6 @@ namespace CasinoRoyal.Data.Repositories
             }
             else
                 return true;
-
-
-            //if (guest.LastReservationDate.Date != date.Date)
-            //    return true;
-            //else
-            //{
-            //    if (guest.LastCheckInDate.Date == DateTime.Today.Date)
-            //    {
-            //        return false;
-            //    }
-            //    else
-            //        return true;
-            //}
         }
     }
 }

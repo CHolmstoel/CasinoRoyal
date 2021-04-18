@@ -38,7 +38,11 @@ namespace CasinoRoyal.Data.Entity
 
 
         [NotMapped]
-        public string LastReservationDateDisplay { get => LastReservationDate.ToString("D"); set => DateTime.Parse(value); }
+        public string LastReservationDateDisplay 
+        { 
+            get => LastReservationDate.ToString("D"); 
+            set => LastReservationDate = DateTime.Parse(value);
+        }
 
     }
 }

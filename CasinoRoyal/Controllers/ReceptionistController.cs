@@ -33,6 +33,12 @@ namespace CasinoRoyal.Controllers
             return View(receptionistViewModel);
         }
 
+        public async Task<IActionResult> GuestIndex()
+        {
+            var AllGuests = from g in _dataAccess.Guests.GetAllGuests() select g;
+            return View(AllGuests);
+        }
+
         public IActionResult Book(string bookButton)
         {
             var receptionistViewModel = new ReceptionistViewModel();
@@ -142,6 +148,112 @@ namespace CasinoRoyal.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(guest);
+        }
+
+        // GET: Guests/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+
+            //var guest = await _context.Guest
+            //    .FirstOrDefaultAsync(m => m.GuestID == id);
+            if (guest == null)
+            {
+                return NotFound();
+            }
+
+            return View(guest);
+        }
+
+
+        // GET: Guests/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest.FindAsync(id);
+            if (guest == null)
+            {
+                return NotFound();
+            }
+            return View(guest);
+        }
+
+        // POST: Guests/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("GuestID,FirstName,LastName,IsCheckedIn,HasEatenBreakfast,GuestType,HotelRoom")] Guest guest)
+        {
+            if (id != guest.GuestID)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(guest);
+                    _dataAccess.Complete();
+                    //await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!_dataAccess.Guests.GuestExists(guest.GuestID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(GuestIndex));
+            }
+            return View(guest);
+        }
+
+        // GET: Guests/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest
+            //    .FirstOrDefaultAsync(m => m.GuestID == id);
+            if (guest == null)
+            {
+                return NotFound();
+            }
+
+            return View(guest);
+        }
+
+        // POST: Guests/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var guest = _dataAccess.Guests.GetSingleGuest((int)id);
+            //var guest = await _context.Guest.FindAsync(id);
+            _dataAccess.Guests.CheckOutGuest(guest);
+            //_context.Guest.Remove(guest);
+            _dataAccess.Complete();
+            //await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(GuestIndex));
         }
     }
 }
