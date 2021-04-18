@@ -8,6 +8,7 @@ How to use the application:
 
 3) Go to the package manager console and enter the command: update-database. (The database will now be setup with the seeded data and the user logins stated above)
 
+
 ====================Logins with different claims = different views ==========================
 
  - Waiter login: 
@@ -73,6 +74,7 @@ How to use the application:
  6) You'll now see that the numeric values of the tables has changed accordingly to the guests checked in by the waiter. 
 
  7) *Optional: You can push the "Checkout all guests" to checkout all guest from the restaurant.
+
 
  =====================================Use case 4 ============================================
 
